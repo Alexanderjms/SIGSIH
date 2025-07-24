@@ -1,0 +1,17 @@
+.logo {
+  height: 10em;
+  width: auto;
+  position: absolute;
+}
+
+.serif-regular {
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.serif-bold {
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+  font-style: normal;
+}
