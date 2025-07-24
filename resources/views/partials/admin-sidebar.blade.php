@@ -19,7 +19,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                     </svg>
                 </button>
-                <ul x-show="open" x-ref="menu" x-smooth-collapse class="space-y-1 ml-4 mt-2">
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
                             <span>Gestión de Usuarios</span>
@@ -99,11 +99,6 @@
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
                             <span>Gestion de proyectos</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <span>Finanzas del proyecto</span>
                         </a>
                     </li>
                 </ul>
@@ -260,4 +255,4 @@
         </ul>
     </nav>
 </aside>
- 
+
