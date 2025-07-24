@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 // Redirect root to admin dashboard
 Route::redirect('/', '/admin/dashboard');
+
 // Admin routes group
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', function () {
@@ -25,7 +25,3 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.usuarios');
     })->name('usuarios');
 });
-
-Route::get('/admin/usuarios', function () {
-    return view('admin.usuarios');
-})->name('admin.usuarios');
