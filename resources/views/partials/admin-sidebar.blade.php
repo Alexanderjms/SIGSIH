@@ -22,7 +22,7 @@
                 <ul x-show="open" x-ref="menu" x-smooth-collapse class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <span>Gestión de personas</span>
+                            <span>Gestión de Usuarios</span>
                         </a>
                     </li>
                     <li>
@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <span>Bitácora</span>
+                            <span>Configuración de accesos al sistema</span>
                         </a>
                     </li>
                 </ul>
@@ -79,12 +79,17 @@
                             <span>Ordenes de Servicio</span>
                         </a>
                     </li>
+                      <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Empresas</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('calendario')">
+            <li class="mt-4" x-data="sidebarDropdown('proyectos')">
                 <button @click="toggle()"
                     class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
-                    <span class="flex-1 text-left">Calendario y Mantenimiento</span>
+                    <span>Proyectos</span>
                     <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
@@ -93,7 +98,46 @@
                 <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <span>Gestión de Citas</span>
+                            <span>Gestion de proyectos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Finanzas del proyecto</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('tickets')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Tickets</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestion de tickets</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('calendario')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span class="flex-1 text-left">Calendario</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Agencias</span>
                         </a>
                     </li>
                     <li>
@@ -118,9 +162,31 @@
                             <span>Facturas</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>CAI</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+            <li class="mt-4" x-data="sidebarDropdown('reportes')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Reportes</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestion de Reportes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('inventario')">
                 <button @click="toggle()"
                     class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
                     <span>Inventario</span>
@@ -135,8 +201,6 @@
                             <span>Productos</span>
                         </a>
                     </li>
-                </ul>
-                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
                             <span>Kardex</span>
@@ -144,10 +208,10 @@
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+            <li class="mt-4" x-data="sidebarDropdown('administracion')">
                 <button @click="toggle()"
                     class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
-                    <span>Proyectos</span>
+                    <span>Administración</span>
                     <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
@@ -156,22 +220,30 @@
                 <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <span>Gestion de proyectos</span>
+                            <span>Gestión de usuarios</span>
                         </a>
                     </li>
-                </ul>
-                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <span>Finanzas del proyecto</span>
+                            <span>Cambio de contraseña</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Bitácora</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestion de Base de Datos</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+            <li class="mt-4" x-data="sidebarDropdown('mantenimiento')">
                 <button @click="toggle()"
                     class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
-                    <span>Tickets</span>
+                    <span>Mantenimiento</span>
                     <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
@@ -184,8 +256,8 @@
                         </a>
                     </li>
                 </ul>
-                
             </li>
         </ul>
     </nav>
 </aside>
+ 
