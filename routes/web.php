@@ -25,3 +25,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.usuarios');
     })->name('usuarios');
 });
+
+// Login route
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
