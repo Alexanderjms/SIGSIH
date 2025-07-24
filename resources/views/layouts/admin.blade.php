@@ -1,22 +1,26 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/css/global.css', 'resources/js/sidebar.js'])
     @livewireStyles
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="bg-gray-900 min-h-screen flex flex-col">
     <div class="flex h-screen min-h-0">
         @include('partials.admin-sidebar')
         <main class="flex-1 p-6 overflow-y-auto h-screen bg-white text-gray-900">
             @hasSection('page-header')
-                <div class="bg-white p-4 rounded shadow mb-6">
-                    @yield('page-header')
-                </div>
+            <div class="bg-white p-4 rounded shadow mb-6">
+                @yield('page-header')
+            </div>
             @endif
             <div class="bg-white p-6 rounded-lg shadow">
                 @yield('content')
@@ -25,4 +29,5 @@
     </div>
     @livewireScripts
 </body>
+
 </html>
