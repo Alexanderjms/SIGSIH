@@ -1,15 +1,14 @@
 {
     "private": true,
     "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview",
-        "install-all": "composer install && npm install",
-        "setup": "composer install && npm install && copy .env.example .env && php artisan key:generate && composer require livewire/livewire",
-        "serve": "start \"Laravel Server\" php artisan serve && start \"Vite Dev\" npm run dev",
-        "optimize": "npm run build && php artisan optimize"
-    },
+   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "install-all": "composer install && npm install && composer require livewire/livewire",
+    "env-init": "copy .env.example .env && php artisan key:generate",
+    "serve": "start \"Laravel Server\" php artisan serve && start \"Vite Dev\" npm run dev"
+},
     "devDependencies": {
         "autoprefixer": "^10.4.21",
         "axios": "^1.6.4",
