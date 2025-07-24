@@ -29,3 +29,16 @@
   font-weight: 700;
   font-style: normal;
 }
+
+.list-sub-modules{
+    font-size: 15px;
+}
+
+/* Oculta la barra de scroll en todos los navegadores modernos */
+.scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
