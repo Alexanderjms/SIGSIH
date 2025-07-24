@@ -1,7 +1,9 @@
 .logo {
-  height: 10em;
+  height: 10rem; /* h-16 de Tailwind */
   width: auto;
-  position: absolute;
+  position: relative;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .serif-regular {
@@ -34,7 +36,6 @@
     font-size: 15px;
 }
 
-/* Oculta la barra de scroll en todos los navegadores modernos */
 .scrollbar-hidden {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE y Edge */

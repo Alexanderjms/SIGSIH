@@ -1,5 +1,5 @@
-<aside class="w-64 bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg">
-    <nav class="flex-1 flex flex-col py-6 overflow-y-auto scrollbar-hidden">
+<aside class="w-64 bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto scrollbar-hidden">
+    <nav class="flex-1 flex flex-col py-6">
         <ul class="space-y-4 flex-1">
             <li>
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 py-2 px-6 rounded-l-full {{ request()->routeIs('admin.dashboard') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400 transition-colors' }}">
