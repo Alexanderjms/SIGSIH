@@ -1,5 +1,8 @@
-<aside class="w-64 bg-gray-900 text-gray-200 min-h-full p-0 shadow-lg">
-    <nav class="h-full flex flex-col py-6">
+<aside class="w-64 bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg">
+    <div class="flex items-center gap-2 px-6 py-4 mb-2">
+        <span class="font-bold text-lg tracking-wide">HARDLAN</span>
+    </div>
+    <nav class="flex-1 flex flex-col py-6">
         <ul class="space-y-1 flex-1">
             <li>
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 py-2 px-6 rounded-l-full {{ request()->routeIs('admin.dashboard') ? 'bg-gray-800 font-semibold text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400 transition-colors' }}">
@@ -7,11 +10,181 @@
                     Dashboard
                 </a>
             </li>
-            <li>
-                <a href="{{ route('admin.usuarios') }}" class="flex items-center gap-3 py-2 px-6 rounded-l-full {{ request()->routeIs('admin.usuarios') ? 'bg-gray-800 font-semibold text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400 transition-colors' }}">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M17 8V6a4 4 0 00-8 0v2m8 0a4 4 0 01-8 0m8 0v2a4 4 0 01-8 0V8m8 0V6a4 4 0 00-8 0v2"/></svg>
-                    Usuarios
-                </a>
+            <li class="mt-4" x-data="sidebarDropdown('seguridad')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Seguridad</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-ref="menu" x-smooth-collapse class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestión de personas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestión de roles y permiso</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Bitácora</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('clientes')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Clientes</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestión de Empresas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Cotizaciones</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('solicitudes')">
+                <button @click="toggle()"
+                    class="w-full flex items-center px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span class="flex-1 text-left">Solicitudes y Orden de Servicio</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Solicitudes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Ordenes de Servicio</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('calendario')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span class="flex-1 text-left">Calendario y Mantenimiento</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestión de Citas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Calendario</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Facturación</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Facturas</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Inventario</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Productos</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Kardex</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Proyectos</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestion de proyectos</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Finanzas del proyecto</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+                <button @click="toggle()"
+                    class="w-full flex items-center justify-between px-6 py-2 text-xs font-bold uppercase text-gray-400 cursor-pointer focus:outline-none">
+                    <span>Tickets</span>
+                    <svg :class="{'rotate-90': open}" class="w-4 h-4 ml-2 transition-transform" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <ul x-show="open" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="#" class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            <span>Gestion de tickets</span>
+                        </a>
+                    </li>
+                </ul>
+                
             </li>
         </ul>
     </nav>
