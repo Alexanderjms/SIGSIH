@@ -5,6 +5,6 @@
 @endsection
 
 @section('content')
-    <p class="text-lg font-semibold serif-regular">Bienvenido al panel de administración. Aquí puedes ver estadísticas, accesos rápidos y más.</p>
+    <p class="text-lg font-semibold nunito-regular">Bienvenido al panel de administración. Aquí puedes ver estadísticas, accesos rápidos y más.</p>
     <!-- Widgets, gráficas, etc. -->
 @endsection
