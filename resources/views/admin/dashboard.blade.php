@@ -94,48 +94,48 @@
 <!-- Script para los gráficos -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const usersChart = document.getElementById('usersChart').getContext('2d');
-new Chart(usersChart, {
-    type: 'line',
-    data: {
-        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
-        datasets: [{
-            label: 'Usuarios',
-            data: [120, 150, 180, 200, 250, 300, 350],
-            borderColor: '#3b82f6',
-            backgroundColor: 'rgba(59,130,246,0.1)',
-            fill: true,
-            tension: 0.4
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false
+    const usersChart = document.getElementById('usersChart').getContext('2d');
+    new Chart(usersChart, {
+        type: 'line',
+        data: {
+            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+                label: 'Usuarios',
+                data: [120, 150, 180, 200, 250, 300, 350],
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59,130,246,0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
             }
         }
-    }
-});
+    });
 
-const ticketsChart = document.getElementById('ticketsChart').getContext('2d');
-new Chart(ticketsChart, {
-    type: 'doughnut',
-    data: {
-        labels: ['Abiertos', 'En Proceso', 'Cerrados'],
-        datasets: [{
-            data: [120, 80, 112],
-            backgroundColor: ['#f59e42', '#3b82f6', '#22c55e']
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'bottom'
+    const ticketsChart = document.getElementById('ticketsChart').getContext('2d');
+    new Chart(ticketsChart, {
+        type: 'doughnut',
+        data: {
+            labels: ['Abiertos', 'En Proceso', 'Cerrados'],
+            datasets: [{
+                data: [120, 80, 112],
+                backgroundColor: ['#f59e42', '#3b82f6', '#22c55e']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
             }
         }
-    }
-});
+    });
 </script>
 @endsection
