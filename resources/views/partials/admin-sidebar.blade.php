@@ -1,4 +1,4 @@
-<aside :class="sidebarOpen ? 'w-64' : 'w-20'"
+<aside :class="sidebarOpen ? 'w-70' : 'w-2000'"
     class="bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto scrollbar-hidden transition-all duration-300 ease-in-out">
 
 
@@ -14,7 +14,8 @@
                     <span :class="!sidebarOpen && 'hidden'" class="nunito-bold">Dashboard</span>
                 </a>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('seguridad')">
+            <li class="mt-4"
+                x-data="sidebarDropdown('seguridad', '{{ request()->routeIs('admin.gestion-usuarios') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -28,8 +29,8 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
-                        <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                        <a href="{{ route('admin.gestion-usuarios') }}"
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.gestion-usuarios') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-user text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestión de Usuarios</span>
                         </a>
@@ -85,7 +86,7 @@
                     <div class="flex items-center gap-3">
                         <i class="fas fa-tasks w-5 text-center"></i>
                         <span :class="!sidebarOpen && 'hidden'"
-                            class="text-sm nunito-bold uppercase text-left">Solicitudes y Orden de Servicio</span>
+                            class="text-sm nunito-bold uppercase text-left">Solicitudes</span>
                     </div>
                     <svg :class="{'rotate-90': open, 'hidden': !sidebarOpen}"
                         class="w-6 h-4 ml-2 transition-transform align-middle" fill="none" stroke="currentColor"
@@ -104,15 +105,34 @@
                     <li>
                         <a href="#"
                             class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <i class="fas fa-clipboard-list text-sm w-4 text-center"></i>
-                            <span class="list-sub-modules nunito-regular">Ordenes de Servicio</span>
+                            <i class="fas fa-building text-sm w-4 text-center"></i>
+                            <span class="list-sub-modules nunito-regular">Empresas</span>
                         </a>
                     </li>
+                </ul>
+            </li>
+
+            <!-- Nuevo módulo: Ordenes de Servicio -->
+            <li class="mt-4" x-data="sidebarDropdown('ordenes-servicio')">
+                <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
+                    class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span :class="!sidebarOpen && 'hidden'" class="text-sm nunito-bold uppercase text-left">Ordenes
+                            de Servicio</span>
+                    </div>
+                    <svg :class="{'rotate-90': open, 'hidden': !sidebarOpen}"
+                        class="w-6 h-4 ml-2 transition-transform align-middle" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
                             class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
-                            <i class="fas fa-building text-sm w-4 text-center"></i>
-                            <span class="list-sub-modules nunito-regular">Empresas</span>
+                            <i class="fas fa-clipboard-list text-sm w-4 text-center"></i>
+                            <span class="list-sub-modules nunito-regular">Ordenes de Servicio</span>
                         </a>
                     </li>
                 </ul>
@@ -285,7 +305,7 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
-                        <a href="#"
+                        <a href="{{ route('admin.gestion-usuarios') }}"
                             class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
                             <i class="fas fa-user-cog text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestión de usuarios</span>

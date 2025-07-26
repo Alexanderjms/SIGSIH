@@ -24,6 +24,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('usuarios', function () {
         return view('admin.usuarios');
     })->name('usuarios');
+
+    Route::get('gestion-usuarios', function () {
+        return view('admin.gestion-usuarios');
+    })->name('gestion-usuarios');
 });
 
 // Login route

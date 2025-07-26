@@ -1,9 +1,8 @@
 document.addEventListener('alpine:init', () => {
-    window.sidebarDropdown = (key) => ({
-    open: localStorage.getItem('sidebar-' + key) === 'true' ? true : false,
+    window.sidebarDropdown = (key, active = false) => ({
+        open: active,
         toggle() {
             this.open = !this.open;
-            localStorage.setItem('sidebar-' + key, this.open);
         }
     });
 });

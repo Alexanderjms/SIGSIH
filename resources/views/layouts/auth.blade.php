@@ -7,26 +7,27 @@
     <title>Iniciar Sesión – SIGSIH</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-    // Configurar Tailwind para modo oscuro con la clase 'dark'
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {}
-        },
-        variants: {
-            extend: {}
-        },
-        plugins: []
-    }
+        // Configurar Tailwind para modo oscuro con la clase 'dark'
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            },
+            variants: {
+                extend: {}
+            },
+            plugins: []
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-    input[type="password"]::-ms-reveal,
-    input[type="password"]::-ms-clear {
-        display: none;
-    }
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
     </style>
+    @livewireStyles
 </head>
 
 <body class="min-h-screen transition-colors duration-300 bg-gray-50 dark:bg-gray-900">
@@ -181,56 +182,57 @@
     </div>
 
     <script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('authPage', () => ({
-            isLogin: true,
-            showPassword: false,
-            showConfirmPassword: false,
-            username: '',
-            password: '',
-            confirmPassword: '',
-            name: '',
-            loading: false,
-            isDark: false,
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('authPage', () => ({
+                isLogin: true,
+                showPassword: false,
+                showConfirmPassword: false,
+                username: '',
+                password: '',
+                confirmPassword: '',
+                name: '',
+                loading: false,
+                isDark: false,
 
-            initTheme() {
-                // Leer tema guardado en localStorage
-                this.isDark = localStorage.getItem('sigTheme') === 'dark';
-            },
-            toggleTheme() {
-                this.isDark = !this.isDark;
-                localStorage.setItem('sigTheme', this.isDark ? 'dark' : 'light');
-            },
-            validatePassword(password) {
-                return password.length >= 8;
-            },
-            validateConfirmPassword() {
-                return this.password === this.confirmPassword;
-            },
-            handleSubmit() {
-                this.loading = true;
-                setTimeout(() => {
-                    this.loading = false;
-                    if (this.isLogin) {
-                        if (this.username === 'admin' && this.password === 'admin123') {
-                            window.location.href = '/admin/dashboard#';
+                initTheme() {
+                    // Leer tema guardado en localStorage
+                    this.isDark = localStorage.getItem('sigTheme') === 'dark';
+                },
+                toggleTheme() {
+                    this.isDark = !this.isDark;
+                    localStorage.setItem('sigTheme', this.isDark ? 'dark' : 'light');
+                },
+                validatePassword(password) {
+                    return password.length >= 8;
+                },
+                validateConfirmPassword() {
+                    return this.password === this.confirmPassword;
+                },
+                handleSubmit() {
+                    this.loading = true;
+                    setTimeout(() => {
+                        this.loading = false;
+                        if (this.isLogin) {
+                            if (this.username === 'admin' && this.password === 'admin123') {
+                                window.location.href = '/admin/dashboard#';
+                            } else {
+                                alert('Usuario o contraseña incorrectos');
+                            }
                         } else {
-                            alert('Usuario o contraseña incorrectos');
+                            alert('¡Cuenta creada con éxito!');
                         }
-                    } else {
-                        alert('¡Cuenta creada con éxito!');
-                    }
-                }, 800);
-            },
-            handleGoogle() {
-                alert('Redirigiendo a Google Sign-In…');
-            },
-            handleRecover() {
-                alert('Redirigiendo a recuperar contraseña…');
-            }
-        }));
-    });
+                    }, 800);
+                },
+                handleGoogle() {
+                    alert('Redirigiendo a Google Sign-In…');
+                },
+                handleRecover() {
+                    alert('Redirigiendo a recuperar contraseña…');
+                }
+            }));
+        });
     </script>
+    @livewireScripts
 </body>
 
 </html>
