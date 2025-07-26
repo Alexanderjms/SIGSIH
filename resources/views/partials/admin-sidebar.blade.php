@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="mt-4"
-                x-data="sidebarDropdown('seguridad', '{{ request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') ? true : false }}')">
+                x-data="sidebarDropdown('seguridad', '{{ request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') || request()->routeIs('admin.configuracion-acceso') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -36,22 +36,23 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/roles-permisos"
+                        <a href="{{ route('admin.roles-permisos') }}"
                             class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.roles-permisos') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-user-shield text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestión de roles y permisos</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                        <a href="{{ route('admin.configuracion-acceso') }}"
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.configuracion-acceso') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-key text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Configuración de accesos al sistema</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('clientes')">
+
+            <li class="mt-4" x-data="sidebarDropdown('clientes', '{{ request()->routeIs('admin.empresas') || request()->routeIs('admin.cotizaciones') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -66,21 +67,21 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.empresas') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-building text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestión de Empresas</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.cotizaciones') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-file-invoice text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Cotizaciones</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('solicitudes')">
+            <li class="mt-4" x-data="sidebarDropdown('solicitudes', '{{ request()->routeIs('admin.solicitudes.index') || request()->routeIs('admin.solicitudes.empresas') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -97,14 +98,14 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.solicitudes.index') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-envelope-open-text text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Solicitudes</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.solicitudes.empresas') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-building text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Empresas</span>
                         </a>
@@ -113,7 +114,7 @@
             </li>
 
             <!-- Nuevo módulo: Ordenes de Servicio -->
-            <li class="mt-4" x-data="sidebarDropdown('ordenes-servicio')">
+            <li class="mt-4" x-data="sidebarDropdown('ordenes-servicio', '{{ request()->routeIs('admin.ordenes-servicio*') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -130,14 +131,14 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.ordenes-servicio*') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-clipboard-list text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Ordenes de Servicio</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('proyectos')">
+            <li class="mt-4" x-data="sidebarDropdown('proyectos', '{{ request()->routeIs('admin.proyectos*') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -151,15 +152,15 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
-                        <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                        <a href="{{ route('admin.proyectos') }}"
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.proyectos*') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-tasks text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestion de proyectos</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('tickets')">
+            <li class="mt-4" x-data="sidebarDropdown('tickets', '{{ request()->routeIs('admin.tickets*') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -174,14 +175,14 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.tickets*') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-ticket-alt text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestion de tickets</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('calendario')">
+            <li class="mt-4" x-data="sidebarDropdown('calendario', '{{ request()->routeIs('admin.agencias') || request()->routeIs('admin.calendario') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -196,21 +197,21 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.agencias') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-map-marker-alt text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Agencias</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.calendario') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-calendar-alt text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Calendario</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('facturacion')">
+            <li class="mt-4" x-data="sidebarDropdown('facturacion', '{{ request()->routeIs('admin.facturas') || request()->routeIs('admin.cai') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -225,21 +226,21 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.facturas') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-file-invoice-dollar text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Facturas</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.cai') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-barcode text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">CAI</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('reportes')">
+            <li class="mt-4" x-data="sidebarDropdown('reportes', '{{ request()->routeIs('admin.reportes*') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -254,14 +255,14 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.reportes*') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-chart-line text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestion de Reportes</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('inventario')">
+            <li class="mt-4" x-data="sidebarDropdown('inventario', '{{ request()->routeIs('admin.productos') || request()->routeIs('admin.kardex') ? true : false }}')">
                 <button @click="toggle()"
                     class="w-full flex items-center justify-between px-6 py-2 text-gray-400 cursor-pointer focus:outline-none">
                     <div class="flex items-center gap-3">
@@ -276,21 +277,21 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.productos') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-box text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Productos</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.kardex') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-archive text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Kardex</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('administracion')">
+            <li class="mt-4" x-data="sidebarDropdown('administracion', '{{ request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.cambio-contrasena') || request()->routeIs('admin.bitacora') || request()->routeIs('admin.gestion-db') ? true : false }}')">
                 <button @click="toggle()"
                     class="w-full flex items-center justify-between px-6 py-2 text-gray-400 cursor-pointer focus:outline-none">
                     <div class="flex items-center gap-3">
@@ -306,37 +307,37 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="{{ route('admin.gestion-usuarios') }}"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.gestion-usuarios') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-user-cog text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestión de usuarios</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.cambio-contrasena') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-unlock-alt text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Cambio de contraseña</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.bitacora') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-book text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Bitácora</span>
                         </a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.gestion-db') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-database text-sm w-4 text-center"></i>
                             <span class="list-sub-modules nunito-regular">Gestion de Base de Datos</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="mt-4" x-data="sidebarDropdown('mantenimiento')">
+            <li class="mt-4" x-data="sidebarDropdown('mantenimiento', '{{ request()->routeIs('admin.mantenimiento.tickets') ? true : false }}')">
                 <button @click="toggle()"
-                    class="w-full flex items-center justify-between px-6 py-2 text-gray-400 cursor-pointer focus:outline-none">
+                    class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
                         <i class="fas fa-tools w-5 text-center"></i>
                         <span :class="!sidebarOpen && 'hidden'"
@@ -350,7 +351,7 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
                     <li>
                         <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.mantenimiento.tickets') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <span class="text-sm nunito-regular">Gestion de tickets</span>
                         </a>
                     </li>

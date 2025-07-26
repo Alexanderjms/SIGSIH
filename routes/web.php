@@ -32,6 +32,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('roles-permisos', function () {
         return view('admin.roles-permisos');
     })->name('roles-permisos');
+
+    Route::get('configuracion-acceso', function () {
+        return view('admin.configuracion-acceso');
+    })->name('configuracion-acceso');
+
+    Route::get('proyectos', function () {
+        return view('admin.proyectos');
+    })->name('proyectos');
 });
 
 // Login route
