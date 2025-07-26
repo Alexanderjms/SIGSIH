@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('page-header')
-@include('partials.admin-header')
 @endsection
 
 @section('content')

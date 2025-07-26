@@ -28,6 +28,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('gestion-usuarios', function () {
         return view('admin.gestion-usuarios');
     })->name('gestion-usuarios');
+
+    Route::get('roles-permisos', function () {
+        return view('admin.roles-permisos');
+    })->name('roles-permisos');
 });
 
 // Login route

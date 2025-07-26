@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="mt-4"
-                x-data="sidebarDropdown('seguridad', '{{ request()->routeIs('admin.gestion-usuarios') ? true : false }}')">
+                x-data="sidebarDropdown('seguridad', '{{ request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -36,10 +36,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="flex items-center gap-2 py-2 px-4 rounded hover:bg-gray-800 hover:text-blue-400 transition-colors">
+                        <a href="/admin/roles-permisos"
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.roles-permisos') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
                             <i class="fas fa-user-shield text-sm w-4 text-center"></i>
-                            <span class="list-sub-modules nunito-regular">Gestión de roles y permiso</span>
+                            <span class="list-sub-modules nunito-regular">Gestión de roles y permisos</span>
                         </a>
                     </li>
                     <li>

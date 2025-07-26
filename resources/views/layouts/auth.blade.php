@@ -210,18 +210,16 @@
                 },
                 handleSubmit() {
                     this.loading = true;
-                    setTimeout(() => {
-                        this.loading = false;
-                        if (this.isLogin) {
-                            if (this.username === 'admin' && this.password === 'admin123') {
-                                window.location.href = '/admin/dashboard#';
-                            } else {
-                                alert('Usuario o contraseña incorrectos');
-                            }
+                    if (this.isLogin) {
+                        if (this.username === 'admin' && this.password === 'admin123') {
+                            window.location.href = '/admin/dashboard#';
                         } else {
-                            alert('¡Cuenta creada con éxito!');
+                            alert('Usuario o contraseña incorrectos');
                         }
-                    }, 800);
+                    } else {
+                        alert('¡Cuenta creada con éxito!');
+                    }
+                    this.loading = false;
                 },
                 handleGoogle() {
                     alert('Redirigiendo a Google Sign-In…');
