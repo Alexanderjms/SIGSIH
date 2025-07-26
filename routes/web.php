@@ -18,10 +18,6 @@ Route::redirect('/', '/admin/dashboard');
 
 // Admin routes group
 Route::prefix('admin')->name('admin.')->group(function () {
-    // Gestión de tickets (Mantenimiento)
-    Route::get('mantenimiento/tickets', function () {
-        return view('admin.mantenimiento-tickets');
-    })->name('mantenimiento.tickets');
 
     // Dashboard
     Route::get('dashboard', function () {
@@ -118,6 +114,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.cambio-contrasena');
     })->name('cambio-contrasena');
 
+    // Gestión Mantenimiento
+    Route::get('mantenimiento/tickets', function () {
+        return view('admin.mantenimiento-tickets');
+    })->name('mantenimiento.tickets');
 
 });
 

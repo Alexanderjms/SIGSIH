@@ -5,7 +5,6 @@
 
 @section('content')
 <div class="bg-white rounded-lg shadow p-6 mb-8 transition-colors" x-data="rolesTable()">
-    <!-- Header visual fijo -->
     <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <h2 class="text-2xl font-bold text-gray-800">Gestión de Roles</h2>
         <div class="flex flex-col sm:flex-row gap-2 flex-1 md:ml-6">

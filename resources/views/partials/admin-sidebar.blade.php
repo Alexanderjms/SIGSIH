@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="mt-4"
-                x-data="sidebarDropdown('seguridad', '{{ request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') || request()->routeIs('admin.configuracion-acceso') ? true : false }}')">
+                x-data="sidebarDropdown('seguridad', {{ (request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') || request()->routeIs('admin.configuracion-acceso')) ? 'true' : 'false' }})">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
@@ -138,7 +138,7 @@
             </ul>
         </li>
 
-            <li class="mt-4" x-data="sidebarDropdown('proyectos', '{{ request()->routeIs('admin.proyectos*') ? true : false }}')">
+            <li class="mt-4" x-data="sidebarDropdown('proyectos', {{ request()->routeIs('admin.proyectos*') ? 'true' : 'false' }})">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
                     <div class="flex items-center gap-3">
