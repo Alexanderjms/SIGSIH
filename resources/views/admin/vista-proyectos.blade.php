@@ -10,6 +10,13 @@
             <h2 class="text-xl nunito-bold">Proyecto BAC</h2>
             <button class="p-2 rounded hover:bg-gray-200"><i class="fas fa-chevron-right"></i></button>
         </div>
+       <div class="bg-transparent items-center justify-center flex">
+        <button class="flex items-center gap-2 px-6 py-2 border-2 border-emerald-500 rounded-md text-emerald-500 nunito-bold text-sm hover:bg-emerald-500 hover:text-white transition-colors duration-300 w-full min-w-[170px] justify-center">
+            <i class="fas fa-file-pdf"></i>
+            Generar PDF
+        </button>
+</div>
+
     </div>
     {{-- Tarjetas de estadísticas --}}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 nunito-bold">
