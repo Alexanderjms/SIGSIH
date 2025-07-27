@@ -69,6 +69,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.proyectos');
     })->name('proyectos');
 
+    Route::get('vista-proyectos', function () {
+        return view('admin.vista-proyectos');
+    })->name('vista-proyectos');
+
     // Tickets
     Route::get('tickets', function () {
         return view('admin.tickets');

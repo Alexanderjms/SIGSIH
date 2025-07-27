@@ -133,28 +133,53 @@
             </ul>
         </li>
 
-            <li class="mt-4" x-data="sidebarDropdown('proyectos', {{ request()->routeIs('admin.proyectos*') ? 'true' : 'false' }})">
-                <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
-                    class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
+            <li class="mt-4" x-data="sidebarDropdown('proyectos', {{ request()->routeIs(['admin.proyectos*', 'admin.vista-proyectos']) ? 'true' : 'false' }})">
+                <button
+                    @click="toggle()"
+                    :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
+                    class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors"
+                >
                     <div class="flex items-center gap-3">
                         <i class="fas fa-project-diagram w-5 text-center"></i>
                         <span :class="!sidebarOpen && 'hidden'" class="text-sm nunito-bold uppercase">Proyectos</span>
                     </div>
-                    <svg :class="{'rotate-90': open, 'hidden': !sidebarOpen}" class="w-4 h-4 ml-2 transition-transform"
-                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg
+                        :class="{'rotate-90': open, 'hidden': !sidebarOpen}"
+                        class="w-4 h-4 ml-2 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                    >
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
-                <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
+                <ul
+                    x-show="open && sidebarOpen"
+                    x-transition
+                    class="space-y-1 ml-4 mt-2"
+                >
+                    <li>
+                        <a href="{{ route('admin.vista-proyectos') }}"
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors
+                            {{ request()->routeIs('admin.vista-proyectos') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}"
+                        >
+                            <i class="fas fa-eye text-sm w-4 text-center"></i>
+                            <span class="list-sub-modules nunito-regular">Vista de proyectos</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('admin.proyectos') }}"
-                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.proyectos*') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
-                            <i class="fas fa-tasks text-sm w-4 text-center"></i>
-                            <span class="list-sub-modules nunito-regular">Gestion de proyectos</span>
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors
+                            {{ request()->routeIs('admin.proyectos*') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}"
+                        >
+                            <i class="fas fa-cogs text-sm w-4 text-center"></i>
+                            <span class="list-sub-modules nunito-regular">Gestión de proyectos</span>
                         </a>
                     </li>
                 </ul>
             </li>
+
 
             <li class="mt-4" x-data="sidebarDropdown('tickets', {{ request()->routeIs('admin.tickets*') ? 'true' : 'false' }})">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
