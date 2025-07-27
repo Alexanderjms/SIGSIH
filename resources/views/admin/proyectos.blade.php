@@ -9,53 +9,70 @@
             <li @click="tab='movimientos'" :class="tab==='movimientos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="pb-2">Movimientos</li>
         </ul>
         <div x-show="tab==='proyectos'" class="overflow-x-auto" x-data="{ isModalOpen: false }">
-    <div class="rounded-xl bg-white shadow-sm mt-6">
-    <button @click="isModalOpen = true" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 nunito-bold">Nuevo proyecto</button>
+    <div class="bg-white rounded-lg shadow p-6 mt-6">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <h2 class="text-2xl text-gray-800 nunito-bold">Proyectos</h2>
+            <div class="flex flex-col sm:flex-row gap-2 flex-1 md:ml-6 nunito-bold">
+                <input type="text" placeholder="Buscar proyecto..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+                <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                    <option class="nunito-bold" value="">Todos los estados</option>
+                    <option class="nunito-bold">En Proceso</option>
+                    <option class="nunito-bold">Finalizado</option>
+                    <option class="nunito-bold">Pendiente</option>
+                    <option class="nunito-bold">Cancelado</option>
+                </select>
+            </div>
+            <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo proyecto</button>
+        </div>
 
-    <table class="min-w-full border-collapse border border-blue-200 mt-6">
-        <thead class="bg-blue-100 text-blue-500 nunito-bold">
+    <table class="min-w-full text-sm">
+        <thead class="bg-gray-100 nunito-bold">
             <tr>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">ID</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Nombre</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Fecha Inicial del Proyecto</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Fecha Estimada de Finalización</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Fecha de Finalización</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Descripción</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Actividades</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Orden de Servicio</th>
-                <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Estado de Proyecto</th>
-                <th class="border border-blue-200 px-4 py-3 text-center tracking-wider">Acciones</th>
+                <th class="py-2 px-4 text-left">ID</th>
+                <th class="py-2 px-4 text-left">Nombre</th>
+                <th class="py-2 px-4 text-left">Fecha Inicial</th>
+                <th class="py-2 px-4 text-left">Fecha Fin Estimada</th>
+                <th class="py-2 px-4 text-left">Fecha Fin Real</th>
+                <th class="py-2 px-4 text-left">Descripción</th>
+                <th class="py-2 px-4 text-left">Actividades</th>
+                <th class="py-2 px-4 text-left">Orden de Servicio</th>
+                <th class="py-2 px-4 text-left">Estado</th>
+                <th class="py-2 px-4 text-left">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="text-sm text-black nunito-regular">
-                <td class="border border-blue-200 px-4 py-3">1</td>
-                <td class="border border-blue-200 px-4 py-3">Proyecto Alpha</td>
-                <td class="border border-blue-200 px-4 py-3">2025-01-15</td>
-                <td class="border border-blue-200 px-4 py-3">2025-07-30</td>
-                <td class="border border-blue-200 px-4 py-3">2025-07-29</td>
-                <td class="border border-blue-200 px-4 py-3">Implementación inicial del sistema</td>
-                <td class="border border-blue-200 px-4 py-3">5 tareas</td>
-                <td class="border border-blue-200 px-4 py-3">OS-00123</td>
-                <td class="border border-blue-200 px-4 py-3">Finalizado</td>
-                <td class="border border-blue-200 px-4 py-3 text-center space-x-4">
-                    <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
+            <tr class="border-b nunito-regular">
+                <td class="py-2 px-4">1</td>
+                <td class="py-2 px-4">Proyecto Alpha</td>
+                <td class="py-2 px-4">2025-01-15</td>
+                <td class="py-2 px-4">2025-07-30</td>
+                <td class="py-2 px-4">2025-07-29</td>
+                <td class="py-2 px-4">Implementación inicial del sistema</td>
+                <td class="py-2 px-4">5 tareas</td>
+                <td class="py-2 px-4">OS-00123</td>
+                <td class="py-2 px-4">
+                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Finalizado</span>
+                </td>
+                <td class="py-2 px-4 flex gap-2">
+                    <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
-            <tr class="text-sm text-black nunito-regular">
-                <td class="border border-blue-200 px-4 py-3">2</td>
-                <td class="border border-blue-200 px-4 py-3">Proyecto Beta</td>
-                <td class="border border-blue-200 px-4 py-3">2025-02-01</td>
-                <td class="border border-blue-200 px-4 py-3">2025-08-20</td>
-                <td class="border border-blue-200 px-4 py-3">-</td>
-                <td class="border border-blue-200 px-4 py-3">Planificación y diseño preliminar</td>
-                <td class="border border-blue-200 px-4 py-3">3 tareas</td>
-                <td class="border border-blue-200 px-4 py-3">OS-00124</td>
-                <td class="border border-blue-200 px-4 py-3">En Proceso</td>
-                <td class="border border-blue-200 px-4 py-3 text-center space-x-4">
-                    <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                    <a href="#" class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
+            <tr class="border-b nunito-regular">
+                <td class="py-2 px-4">2</td>
+                <td class="py-2 px-4">Proyecto Beta</td>
+                <td class="py-2 px-4">2025-02-01</td>
+                <td class="py-2 px-4">2025-08-20</td>
+                <td class="py-2 px-4">-</td>
+                <td class="py-2 px-4">Planificación y diseño preliminar</td>
+                <td class="py-2 px-4">3 tareas</td>
+                <td class="py-2 px-4">OS-00124</td>
+                <td class="py-2 px-4">
+                    <span class="bg-green-100 text-green-700 px-2 py-1 rounded">En Proceso</span>
+                </td>
+                <td class="py-2 px-4 flex gap-2">
+                    <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
         </tbody>
@@ -141,33 +158,37 @@
 </div>
 
         <div x-show="tab==='categorias'" class="overflow-x-auto">
-            <div class="rounded-xl bg-white shadow-sm mt-6">
-                <table class="min-w-full border-collapse border border-blue-200">
-                    <thead class="bg-blue-100 text-blue-500 nunito-bold">
+            <div class="bg-white rounded-lg shadow p-6 mt-6">
+                <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <h2 class="text-2xl text-gray-800 nunito-bold">Categorías</h2>
+                    <a href="#" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar categoría</a>
+                </div>
+                <table class="min-w-full text-sm">
+                    <thead class="bg-gray-100 nunito-bold">
                         <tr>
-                            <th class="border border-blue-200 px-4 py-3 text-center tracking-wider">ID de la Categoría</th>
-                            <th class="border border-blue-200 px-4 py-3 text-center tracking-wider">Tipo de Categoría</th>
-                            <th class="border border-blue-200 px-4 py-3 text-center tracking-wider">Nombre de la categoría</th>
-                            <th class="border border-blue-200 px-4 py-3 text-center  tracking-wider">Acciones</th>
+                            <th class="py-2 px-4 text-left">ID</th>
+                            <th class="py-2 px-4 text-left">Tipo</th>
+                            <th class="py-2 px-4 text-left">Nombre</th>
+                            <th class="py-2 px-4 text-left">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-sm text-black nunito-regular">
-                            <td class="border border-blue-200 px-4 py-3">1</td>
-                            <td class="border border-blue-200 px-4 py-3">Ingreso</td>
-                            <td class="border border-blue-200 px-4 py-3">Salarios</td>
-                            <td class="border border-blue-200 px-4 py-3 text-center text-sm space-x-4">
-                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                                <a href="#" class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
+                        <tr class="border-b nunito-regular">
+                            <td class="py-2 px-4">1</td>
+                            <td class="py-2 px-4">Ingreso</td>
+                            <td class="py-2 px-4">Salarios</td>
+                            <td class="py-2 px-4 flex gap-2">
+                                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
-                        <tr class="text-sm text-black nunito-regular">
-                            <td class="border border-blue-200 px-4 py-3">2</td>
-                            <td class="border border-blue-200 px-4 py-3">Gasto</td>
-                            <td class="border border-blue-200 px-4 py-3">Alquiler</td>
-                            <td class="border border-blue-200 px-4 py-3 text-center text-sm space-x-4">
-                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                                <a href="#" class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
+                        <tr class="border-b nunito-regular">
+                            <td class="py-2 px-4">2</td>
+                            <td class="py-2 px-4">Gasto</td>
+                            <td class="py-2 px-4">Alquiler</td>
+                            <td class="py-2 px-4 flex gap-2">
+                                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -178,83 +199,79 @@
 
         <div x-show="tab==='movimientos'" class="space-y-6">
             <div class="flex space-x-4 pt-4">
-                <a href="#" class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-700 nunito-bold">Agregar Ingreso</a>
-                <a href="#" class="bg-red-900 text-white px-4 py-2 rounded hover:bg-red-800 nunito-bold">Agregar Gasto</a>
+                <a href="#" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar Ingreso</a>
+                <a href="#" class="bg-red-800 hover:bg-red-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar Gasto</a>
             </div>
 
             {{-- Tabla de Ingresos --}}
-            <div>
-                <h3 class="text-xl nunito-bold text-gray-700 mb-2">Ingresos</h3>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Ingresos</h3>
                 <div class="overflow-x-auto">
-                    <div class="rounded-xl bg-white shadow-sm">
-                        <table class="min-w-full border-collapse border border-blue-200">
-                            <thead class="bg-blue-100 text-blue-500 nunito-bold">
-                                <tr>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">ID Ingreso</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Proyecto</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Nombre del Ingreso</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Fecha</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Monto</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Categoría</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Descripción</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-right tracking-wider">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-sm text-black nunito-regular">
-                                    <td class="border border-blue-200 px-4 py-3">1</td>
-                                    <td class="border border-blue-200 px-4 py-3">Proyecto BAC</td>
-                                    <td class="border border-blue-200 px-4 py-3">Pago inicial</td>
-                                    <td class="border border-blue-200 px-4 py-3">2025-07-20</td>
-                                    <td class="border border-blue-200 px-4 py-3">L. 15,000.00</td>
-                                    <td class="border border-blue-200 px-4 py-3">Salarios</td>
-                                    <td class="border border-blue-200 px-4 py-3">Primer pago del Proyecto BAC</td>
-                                    <td class="border border-blue-200 px-4 py-3 text-center text-sm space-x-4">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="min-w-full text-sm">
+                        <thead class="bg-gray-100 nunito-bold">
+                            <tr>
+                                <th class="py-2 px-4 text-left">ID</th>
+                                <th class="py-2 px-4 text-left">Proyecto</th>
+                                <th class="py-2 px-4 text-left">Nombre</th>
+                                <th class="py-2 px-4 text-left">Fecha</th>
+                                <th class="py-2 px-4 text-left">Monto</th>
+                                <th class="py-2 px-4 text-left">Categoría</th>
+                                <th class="py-2 px-4 text-left">Descripción</th>
+                                <th class="py-2 px-4 text-left">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b nunito-regular">
+                                <td class="py-2 px-4">1</td>
+                                <td class="py-2 px-4">Proyecto BAC</td>
+                                <td class="py-2 px-4">Pago inicial</td>
+                                <td class="py-2 px-4">2025-07-20</td>
+                                <td class="py-2 px-4">L. 15,000.00</td>
+                                <td class="py-2 px-4">Salarios</td>
+                                <td class="py-2 px-4">Primer pago del Proyecto BAC</td>
+                                <td class="py-2 px-4 flex gap-2">
+                                    <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                    <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
             {{-- Tabla de Gastos --}}
-            <div>
-                <h3 class="text-xl nunito-bold text-gray-700 mb-2">Gastos</h3>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Gastos</h3>
                 <div class="overflow-x-auto">
-                    <div class="rounded-xl bg-white shadow-sm">
-                        <table class="min-w-full border-collapse border border-blue-200">
-                            <thead class="bg-blue-100 text-blue-500 nunito-bold">
-                                <tr>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">ID Gasto</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Proyecto</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Nombre del Gasto</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Fecha</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Monto</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Categoría</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-left tracking-wider">Descripción</th>
-                                    <th class="border border-blue-200 px-4 py-3 text-right tracking-wider">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-sm text-black nunito-regular">
-                                    <td class="border border-blue-200 px-4 py-3">1</td>
-                                    <td class="border border-blue-200 px-4 py-3">Proyecto BAC</td>
-                                    <td class="border border-blue-200 px-4 py-3">Compra de software</td>
-                                    <td class="border border-blue-200 px-4 py-3">2025-07-22</td>
-                                    <td class="border border-blue-200 px-4 py-3">L. 5,500.00</td>
-                                    <td class="border border-blue-200 px-4 py-3">Licencias</td>
-                                    <td class="border border-blue-200 px-4 py-3">Licencias de software de desarrollo</td>
-                                    <td class="border border-blue-200 px-4 py-3 text-center text-sm space-x-4">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="min-w-full text-sm">
+                        <thead class="bg-gray-100 nunito-bold">
+                            <tr>
+                                <th class="py-2 px-4 text-left">ID</th>
+                                <th class="py-2 px-4 text-left">Proyecto</th>
+                                <th class="py-2 px-4 text-left">Nombre</th>
+                                <th class="py-2 px-4 text-left">Fecha</th>
+                                <th class="py-2 px-4 text-left">Monto</th>
+                                <th class="py-2 px-4 text-left">Categoría</th>
+                                <th class="py-2 px-4 text-left">Descripción</th>
+                                <th class="py-2 px-4 text-left">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b nunito-regular">
+                                <td class="py-2 px-4">1</td>
+                                <td class="py-2 px-4">Proyecto BAC</td>
+                                <td class="py-2 px-4">Compra de software</td>
+                                <td class="py-2 px-4">2025-07-22</td>
+                                <td class="py-2 px-4">L. 5,500.00</td>
+                                <td class="py-2 px-4">Licencias</td>
+                                <td class="py-2 px-4">Licencias de software de desarrollo</td>
+                                <td class="py-2 px-4 flex gap-2">
+                                    <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                    <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
