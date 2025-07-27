@@ -4,10 +4,11 @@
         <h2 class="text-2xl font-bold text-gray-800">
             {{ $titulo }}
         </h2>
-        <div class="flex flex-col sm:flex-row flex-wrap gap-2 flex-1 lg:ml-6">
+        <div class="flex flex-col sm:flex-row gap-2 flex-1 md:ml-6">
             {{ $filtros }}
         </div>
-        <div class="w-full lg:w-auto">
+        @isset($boton)
+        <div>
             {{ $boton }}
         </div>
     </div>
