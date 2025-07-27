@@ -123,7 +123,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.mantenimiento-tickets');
     })->name('mantenimiento.tickets');
 
-    // ejemplo
+    // ejemplo2
 
 });
 
