@@ -1,16 +1,11 @@
-<aside :class="sidebarOpen ? 'w-70' : 'w-2000'"
+<aside :class="sidebarOpen ? 'w-72' : 'w-20'"
     class="bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto scrollbar-hidden transition-all duration-300 ease-in-out">
-
-
     <nav class="flex-1 flex flex-col py-6">
         <ul class="space-y-4 flex-1">
-            <li>
+           <li>
                 <a href="{{ route('admin.dashboard') }}"
-                    class="flex items-center gap-3 py-2 px-6 rounded-l-full {{ request()->routeIs('admin.dashboard') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400 transition-colors' }}">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6m-6 0H7m6 0v6m0 0H7m6 0h6" />
-                    </svg>
+                class="flex items-center gap-3 py-2 px-6 rounded-l-full {{ request()->routeIs('admin.dashboard') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400 transition-colors' }}">
+                    <i class="fa-solid fa-house w-5 text-center"></i>
                     <span :class="!sidebarOpen && 'hidden'" class="nunito-bold">Dashboard</span>
                 </a>
             </li>
