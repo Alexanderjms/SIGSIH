@@ -2,91 +2,104 @@
 
 @section('content')
     {{-- Pestañas --}}
-    <div x-data="{ tab: 'proyectos', isModalOpen: false, isCategoriaModalOpen: false, isEditCategoriaModalOpen: false, categoriaToEdit: null, isIngresoModalOpen: false, isGastoModalOpen: false, isEditIngresoModalOpen: false, isEditGastoModalOpen: false, ingresoToEdit: null, gastoToEdit: null, isDeleteProjectModalOpen: false, projectToDelete: null, isDeleteCategoriaModalOpen: false, categoriaToDelete: null, isDeleteIngresoModalOpen: false, ingresoToDelete: null, isDeleteGastoModalOpen: false, gastoToDelete: null, isEditProjectModalOpen: false, projectToEdit: null }">
+    <div x-data="{ tab: 'proyectos', minIngresoMonto: '', maxIngresoMonto: '', minGastoMonto: '', maxGastoMonto: '', isModalOpen: false, isCategoriaModalOpen: false, isEditCategoriaModalOpen: false, categoriaToEdit: null, isIngresoModalOpen: false, isGastoModalOpen: false, isEditIngresoModalOpen: false, isEditGastoModalOpen: false, ingresoToEdit: null, gastoToEdit: null, isDeleteProjectModalOpen: false, projectToDelete: null, isDeleteCategoriaModalOpen: false, categoriaToDelete: null, isDeleteIngresoModalOpen: false, ingresoToDelete: null, isDeleteGastoModalOpen: false, gastoToDelete: null, isEditProjectModalOpen: false, projectToEdit: null, isEstadoModalOpen: false, isEditEstadoModalOpen: false, isDeleteEstadoModalOpen: false, estadoToEdit: null, estadoToDelete: null }">
         <ul class="flex border-b nunito-bold">
             <li @click="tab='proyectos'" :class="tab==='proyectos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Proyectos</li>
             <li @click="tab='categorias'" :class="tab==='categorias' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Categorías</li>
-            <li @click="tab='movimientos'" :class="tab==='movimientos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="pb-2">Movimientos</li>
+            <li @click="tab='movimientos'" :class="tab==='movimientos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Movimientos</li>
+            <li @click="tab='estados'" :class="tab==='estados' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="pb-2">Estados</li>
         </ul>
         <div x-show="tab==='proyectos'" class="overflow-x-auto">
-    <div class="bg-white rounded-lg shadow p-6 mt-6">
-        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 class="text-2xl text-gray-800 nunito-bold">Proyectos</h2>
-            <div class="flex flex-col sm:flex-row gap-2 flex-1 md:ml-6 nunito-bold">
-                <input type="text" placeholder="Buscar proyecto..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-                <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
-                    <option class="nunito-bold" value="">Todos los estados</option>
-                    <option class="nunito-bold">En Proceso</option>
-                    <option class="nunito-bold">Finalizado</option>
-                    <option class="nunito-bold">Pendiente</option>
-                    <option class="nunito-bold">Cancelado</option>
-                </select>
-            </div>
-            <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo proyecto</button>
+            <x-tabla-crud>
+                <x-slot name="titulo">
+                    <h2 class="text-2xl text-gray-800 nunito-bold">Proyectos</h2>
+                </x-slot>
+                <x-slot name="filtros">
+                    <input type="text" placeholder="Buscar proyecto..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+                    <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                        <option class="nunito-bold" value="">Todos los estados</option>
+                        <option class="nunito-bold">En Proceso</option>
+                        <option class="nunito-bold">Finalizado</option>
+                        <option class="nunito-bold">Pendiente</option>
+                        <option class="nunito-bold">Cancelado</option>
+                    </select>
+                </x-slot>
+                <x-slot name="boton">
+                    <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo proyecto</button>
+                </x-slot>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm">
+                        <thead class="bg-gray-100 nunito-bold">
+                            <tr>
+                                <th class="py-2 px-4 text-left">ID</th>
+                                <th class="py-2 px-4 text-left">Nombre</th>
+                                <th class="py-2 px-4 text-left">Fecha Inicial</th>
+                                <th class="py-2 px-4 text-left">Fecha Fin Estimada</th>
+                                <th class="py-2 px-4 text-left">Fecha Fin Real</th>
+                                <th class="py-2 px-4 text-left">Descripción</th>
+                                <th class="py-2 px-4 text-left">Actividades</th>
+                                <th class="py-2 px-4 text-left">Orden de Servicio</th>
+                                <th class="py-2 px-4 text-left">Estado</th>
+                                <th class="py-2 px-4 text-left">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b nunito-regular">
+                                <td class="py-2 px-4">1</td>
+                                <td class="py-2 px-4">Proyecto Alpha</td>
+                                <td class="py-2 px-4">2025-01-15</td>
+                                <td class="py-2 px-4">2025-07-30</td>
+                                <td class="py-2 px-4">2025-07-29</td>
+                                <td class="py-2 px-4">Implementación inicial del sistema</td>
+                                <td class="py-2 px-4">5 tareas</td>
+                                <td class="py-2 px-4">OS-00123</td>
+                                <td class="py-2 px-4">
+                                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Finalizado</span>
+                                </td>
+                                <td class="py-2 px-4 flex gap-2">
+                                    <a href="#" @click="isEditProjectModalOpen = true; projectToEdit = {id: 1, nombre: 'Proyecto Alpha', fecha_inicio: '2025-01-15', fecha_estimada_fin: '2025-07-30', fecha_fin: '2025-07-29', descripcion: 'Implementación inicial del sistema', actividades: '5 tareas', orden_servicio: 'OS-00123', estado: 'Finalizado'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                    <a href="#" @click="isDeleteProjectModalOpen = true; projectToDelete = {id: 1, nombre: 'Proyecto Alpha'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr class="border-b nunito-regular">
+                                <td class="py-2 px-4">2</td>
+                                <td class="py-2 px-4">Proyecto Beta</td>
+                                <td class="py-2 px-4">2025-02-01</td>
+                                <td class="py-2 px-4">2025-08-20</td>
+                                <td class="py-2 px-4">-</td>
+                                <td class="py-2 px-4">Planificación y diseño preliminar</td>
+                                <td class="py-2 px-4">3 tareas</td>
+                                <td class="py-2 px-4">OS-00124</td>
+                                <td class="py-2 px-4">
+                                    <span class="bg-green-100 text-green-700 px-2 py-1 rounded">En Proceso</span>
+                                </td>
+                                <td class="py-2 px-4 flex gap-2">
+                                    <a href="#" @click="isEditProjectModalOpen = true; projectToEdit = {id: 2, nombre: 'Proyecto Beta', fecha_inicio: '2025-02-01', fecha_estimada_fin: '2025-08-20', fecha_fin: '', descripcion: 'Planificación y diseño preliminar', actividades: '3 tareas', orden_servicio: 'OS-00124', estado: 'En Proceso'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                    <a href="#" @click="isDeleteProjectModalOpen = true; projectToDelete = {id: 2, nombre: 'Proyecto Beta'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </x-tabla-crud>
         </div>
-
-    <table class="min-w-full text-sm">
-        <thead class="bg-gray-100 nunito-bold">
-            <tr>
-                <th class="py-2 px-4 text-left">ID</th>
-                <th class="py-2 px-4 text-left">Nombre</th>
-                <th class="py-2 px-4 text-left">Fecha Inicial</th>
-                <th class="py-2 px-4 text-left">Fecha Fin Estimada</th>
-                <th class="py-2 px-4 text-left">Fecha Fin Real</th>
-                <th class="py-2 px-4 text-left">Descripción</th>
-                <th class="py-2 px-4 text-left">Actividades</th>
-                <th class="py-2 px-4 text-left">Orden de Servicio</th>
-                <th class="py-2 px-4 text-left">Estado</th>
-                <th class="py-2 px-4 text-left">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="border-b nunito-regular">
-                <td class="py-2 px-4">1</td>
-                <td class="py-2 px-4">Proyecto Alpha</td>
-                <td class="py-2 px-4">2025-01-15</td>
-                <td class="py-2 px-4">2025-07-30</td>
-                <td class="py-2 px-4">2025-07-29</td>
-                <td class="py-2 px-4">Implementación inicial del sistema</td>
-                <td class="py-2 px-4">5 tareas</td>
-                <td class="py-2 px-4">OS-00123</td>
-                <td class="py-2 px-4">
-                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Finalizado</span>
-                </td>
-                <td class="py-2 px-4 flex gap-2">
-                    <a href="#" @click="isEditProjectModalOpen = true; projectToEdit = {id: 1, nombre: 'Proyecto Alpha', fecha_inicio: '2025-01-15', fecha_estimada_fin: '2025-07-30', fecha_fin: '2025-07-29', descripcion: 'Implementación inicial del sistema', actividades: '5 tareas', orden_servicio: 'OS-00123', estado: 'Finalizado'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                    <a href="#" @click="isDeleteProjectModalOpen = true; projectToDelete = {id: 1, nombre: 'Proyecto Alpha'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                </td>
-            </tr>
-            <tr class="border-b nunito-regular">
-                <td class="py-2 px-4">2</td>
-                <td class="py-2 px-4">Proyecto Beta</td>
-                <td class="py-2 px-4">2025-02-01</td>
-                <td class="py-2 px-4">2025-08-20</td>
-                <td class="py-2 px-4">-</td>
-                <td class="py-2 px-4">Planificación y diseño preliminar</td>
-                <td class="py-2 px-4">3 tareas</td>
-                <td class="py-2 px-4">OS-00124</td>
-                <td class="py-2 px-4">
-                    <span class="bg-green-100 text-green-700 px-2 py-1 rounded">En Proceso</span>
-                </td>
-                <td class="py-2 px-4 flex gap-2">
-                    <a href="#" @click="isEditProjectModalOpen = true; projectToEdit = {id: 2, nombre: 'Proyecto Beta', fecha_inicio: '2025-02-01', fecha_estimada_fin: '2025-08-20', fecha_fin: '', descripcion: 'Planificación y diseño preliminar', actividades: '3 tareas', orden_servicio: 'OS-00124', estado: 'En Proceso'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                    <a href="#" @click="isDeleteProjectModalOpen = true; projectToDelete = {id: 2, nombre: 'Proyecto Beta'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-</div>
     <div>
         <div x-show="tab==='categorias'" class="overflow-x-auto">
-            <div class="bg-white rounded-lg shadow p-6 mt-6">
-                <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <x-tabla-crud>
+                <x-slot name="titulo">
                     <h2 class="text-2xl text-gray-800 nunito-bold">Categorías</h2>
+                </x-slot>
+                <x-slot name="filtros">
+                    <input type="text" placeholder="Buscar categoría..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+                    <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                        <option class="nunito-bold" value="">Todos los tipos</option>
+                        <option class="nunito-bold">Ingreso</option>
+                        <option class="nunito-bold">Gasto</option>
+                    </select>
+                </x-slot>
+                <x-slot name="boton">
                     <button @click="isCategoriaModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar categoría</button>
-                </div>
+                </x-slot>
                 <table class="min-w-full text-sm">
                     <thead class="bg-gray-100 nunito-bold">
                         <tr>
@@ -117,19 +130,34 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </x-tabla-crud>
         </div>
 
 
         <div x-show="tab==='movimientos'" class="space-y-6">
-            <div class="flex space-x-4 pt-4">
-                <button @click="isIngresoModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar Ingreso</button>
-                <button @click="isGastoModalOpen = true" class="bg-red-800 hover:bg-red-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar Gasto</button>
-            </div>
-
-            {{-- Tabla de Ingresos --}}
-            <div class="bg-white rounded-lg shadow p-6">
-                <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Ingresos</h3>
+            <x-tabla-crud>
+                <x-slot name="titulo">
+                    <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Ingresos</h3>
+                </x-slot>
+                <x-slot name="filtros">
+                    <div class="flex flex-wrap gap-2">
+                        <input type="text" placeholder="Buscar ingreso..." class="border rounded px-3 py-2 text-sm w-full sm:w-40" />
+                        <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                            <option class="nunito-bold" value="">Todos los proyectos</option>
+                            <option class="nunito-bold">Proyecto Alpha</option>
+                            <option class="nunito-bold">Proyecto Beta</option>
+                            <option class="nunito-bold">Proyecto BAC</option>
+                        </select>
+                        <div class="flex items-center gap-2">
+                            <input type="number" x-model="minIngresoMonto" placeholder="Monto mín." class="border rounded px-3 py-2 text-sm w-28" />
+                            <span class="text-gray-500">-</span>
+                            <input type="number" x-model="maxIngresoMonto" placeholder="Monto máx." class="border rounded px-3 py-2 text-sm w-28" />
+                        </div>
+                    </div>
+                </x-slot>
+                <x-slot name="boton">
+                    <button @click="isIngresoModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar Ingreso</button>
+                </x-slot>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-sm">
                         <thead class="bg-gray-100 nunito-bold">
@@ -161,11 +189,31 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </x-tabla-crud>
 
-            {{-- Tabla de Gastos --}}
-            <div class="bg-white rounded-lg shadow p-6">
-                <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Gastos</h3>
+            <x-tabla-crud>
+                <x-slot name="titulo">
+                    <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Gastos</h3>
+                </x-slot>
+                <x-slot name="filtros">
+                    <div class="flex flex-wrap gap-2">
+                        <input type="text" placeholder="Buscar gasto..." class="border rounded px-3 py-2 text-sm w-full sm:w-40" />
+                        <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                            <option class="nunito-bold" value="">Todos los proyectos</option>
+                            <option class="nunito-bold">Proyecto Alpha</option>
+                            <option class="nunito-bold">Proyecto Beta</option>
+                            <option class="nunito-bold">Proyecto BAC</option>
+                        </select>
+                        <div class="flex items-center gap-2">
+                            <input type="number" x-model="minGastoMonto" placeholder="Monto mín." class="border rounded px-3 py-2 text-sm w-28" />
+                            <span class="text-gray-500">-</span>
+                            <input type="number" x-model="maxGastoMonto" placeholder="Monto máx." class="border rounded px-3 py-2 text-sm w-28" />
+                        </div>
+                    </div>
+                </x-slot>
+                <x-slot name="boton">
+                    <button @click="isGastoModalOpen = true" class="bg-red-800 hover:bg-red-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar Gasto</button>
+                </x-slot>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-sm">
                         <thead class="bg-gray-100 nunito-bold">
@@ -197,7 +245,42 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </x-tabla-crud>
+        </div>
+
+        <div x-show="tab==='estados'" class="overflow-x-auto">
+            <x-tabla-crud>
+                <x-slot name="titulo">
+                    <h2 class="text-2xl text-gray-800 nunito-bold">Estados de Proyecto</h2>
+                </x-slot>
+                <x-slot name="filtros">
+                    <input type="text" placeholder="Buscar estado..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+                </x-slot>
+                <x-slot name="boton">
+                    <button @click="isEstadoModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo Estado</button>
+                </x-slot>
+                <table class="min-w-full text-sm">
+                    <thead class="bg-gray-100 nunito-bold">
+                        <tr>
+                            <th class="py-2 px-4 text-left">ID</th>
+                            <th class="py-2 px-4 text-left">Nombre</th>
+                            <th class="py-2 px-4 text-left">Descripción</th>
+                            <th class="py-2 px-4 text-left">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b nunito-regular">
+                            <td class="py-2 px-4">1</td>
+                            <td class="py-2 px-4">En Proceso</td>
+                            <td class="py-2 px-4">El proyecto se encuentra actualmente en desarrollo</td>
+                            <td class="py-2 px-4 flex gap-2">
+                                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {id: 1, nombre: 'En Proceso', descripcion: 'El proyecto se encuentra actualmente en desarrollo'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 1, nombre: 'En Proceso'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </x-tabla-crud>
         </div>
     </div>
 
@@ -457,6 +540,7 @@
         </div>
     </div>
 </x-admin.form-modal>
+
 <!-- Modal Confirmar Eliminación Proyecto -->
 <x-admin.confirmation-modal
     modalName="isDeleteProjectModalOpen"
@@ -539,5 +623,49 @@
         </div>
     </div>
 </x-admin.edit-modal>
+
+<!-- Modal Nuevo Estado -->
+<x-admin.form-modal 
+    modalName="isEstadoModalOpen" 
+    title="Nuevo Estado" 
+    submitLabel="Guardar Estado">
+    <div class="space-y-4">
+        <div>
+            <label for="nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del Estado</label>
+            <input type="text" id="nombre_estado" name="nombre_estado"
+                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+            <label for="descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
+            <textarea id="descripcion_estado" name="descripcion_estado" rows="3"
+                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+        </div>
+    </div>
+</x-admin.form-modal>
+
+<!-- Modal Editar Estado -->
+<x-admin.edit-modal 
+    modalName="isEditEstadoModalOpen" 
+    title="Editar Estado" 
+    itemToEdit="estadoToEdit">
+    <div>
+        <label for="edit_nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del Estado</label>
+        <input type="text" id="edit_nombre_estado" name="edit_nombre_estado" :value="estadoToEdit.nombre"
+            class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+    </div>
+    <div class="mt-4">
+        <label for="edit_descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
+        <textarea id="edit_descripcion_estado" name="edit_descripcion_estado" rows="3" 
+            class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2" 
+            x-text="estadoToEdit.descripcion"></textarea>
+    </div>
+</x-admin.edit-modal>
+
+<!-- Modal Confirmar Eliminación Estado -->
+<x-admin.confirmation-modal
+    modalName="isDeleteEstadoModalOpen"
+    itemToDelete="estadoToDelete"
+    message="¿Estás seguro de que quieres eliminar el estado"
+/>
 </div>
 @endsection
