@@ -96,6 +96,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.cai');
     })->name('cai');
 
+    // Reportes
+    Route::get('reportes', function () {
+        return view('admin.reportes');
+    })->name('reportes');
+
     // Inventario
     Route::get('productos', function () {
         return view('admin.productos');

@@ -265,6 +265,29 @@
                 </ul>
             </li>
 
+            <li class="mt-4" x-data="sidebarDropdown('reportes', {{ request()->routeIs('admin.reportes*') ? 'true' : 'false' }})">
+                <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
+                    class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-chart-bar w-5 text-center"></i>
+                        <span :class="!sidebarOpen && 'hidden'" class="text-sm nunito-bold uppercase">Reportes</span>
+                    </div>
+                    <svg :class="{'rotate-90': open, 'hidden': !sidebarOpen}" class="w-4 h-4 ml-2 transition-transform"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <ul x-show="open && sidebarOpen" x-transition class="space-y-1 ml-4 mt-2">
+                    <li>
+                        <a href="{{ route('admin.reportes') }}"
+                            class="flex items-center gap-2 py-2 px-4 rounded transition-colors {{ request()->routeIs('admin.reportes') ? 'bg-gray-800 text-blue-400' : 'hover:bg-gray-800 hover:text-blue-400' }}">
+                            <i class="fas fa-file-alt text-sm w-4 text-center"></i>
+                            <span class="list-sub-modules nunito-regular">Gestión de Reportes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="mt-4" x-data="sidebarDropdown('inventario', '{{ request()->routeIs('admin.productos') || request()->routeIs('admin.kardex') ? true : false }}')">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-6 py-2 cursor-pointer focus:outline-none transition-colors">
