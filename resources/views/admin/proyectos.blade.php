@@ -10,7 +10,7 @@
             <li @click="tab='estados'" :class="tab==='estados' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="pb-2">Estados</li>
         </ul>
         <div x-show="tab==='proyectos'" class="overflow-x-auto">
-            <x-tabla-crud>
+            <x-admin.tabla-crud>
                 <x-slot name="titulo">
                     <h2 class="text-2xl text-gray-800 nunito-bold">Proyectos</h2>
                 </x-slot>
@@ -81,11 +81,11 @@
                         </tbody>
                     </table>
                 </div>
-            </x-tabla-crud>
+            </x-admin.tabla-crud>
         </div>
     <div>
         <div x-show="tab==='categorias'" class="overflow-x-auto">
-            <x-tabla-crud>
+            <x-admin.tabla-crud>
                 <x-slot name="titulo">
                     <h2 class="text-2xl text-gray-800 nunito-bold">Categorías</h2>
                 </x-slot>
@@ -130,12 +130,12 @@
                         </tr>
                     </tbody>
                 </table>
-            </x-tabla-crud>
+            </x-admin.tabla-crud>
         </div>
 
 
         <div x-show="tab==='movimientos'" class="space-y-6">
-            <x-tabla-crud>
+            <x-admin.tabla-crud>
                 <x-slot name="titulo">
                     <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Ingresos</h3>
                 </x-slot>
@@ -189,9 +189,9 @@
                         </tbody>
                     </table>
                 </div>
-            </x-tabla-crud>
+            </x-admin.tabla-crud>
 
-            <x-tabla-crud>
+            <x-admin.tabla-crud>
                 <x-slot name="titulo">
                     <h3 class="text-2xl text-gray-800 mb-4 border-b pb-4 nunito-bold">Gastos</h3>
                 </x-slot>
@@ -245,11 +245,11 @@
                         </tbody>
                     </table>
                 </div>
-            </x-tabla-crud>
+            </x-admin.tabla-crud>
         </div>
 
         <div x-show="tab==='estados'" class="overflow-x-auto">
-            <x-tabla-crud>
+            <x-admin.tabla-crud>
                 <x-slot name="titulo">
                     <h2 class="text-2xl text-gray-800 nunito-bold">Estados de Proyecto</h2>
                 </x-slot>
@@ -263,7 +263,7 @@
                     <thead class="bg-gray-100 nunito-bold">
                         <tr>
                             <th class="py-2 px-4 text-left">ID</th>
-                            <th class="py-2 px-4 text-left">Nombre</th>
+                            <th class="py-2 px-4 text-left">Nombre</th> 
                             <th class="py-2 px-4 text-left">Descripción</th>
                             <th class="py-2 px-4 text-left">Acciones</th>
                         </tr>
@@ -280,7 +280,7 @@
                         </tr>
                     </tbody>
                 </table>
-            </x-tabla-crud>
+            </x-admin.tabla-crud>
         </div>
     </div>
 
