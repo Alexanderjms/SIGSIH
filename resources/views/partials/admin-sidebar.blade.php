@@ -15,7 +15,7 @@
       </li>
 
       {{-- Seguridad --}}
-      <li class="mt-2" x-data="sidebarDropdown('seguridad', {{ (request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') || request()->routeIs('admin.configuracion-acceso')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('seguridad', {{ (request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') || request()->routeIs('admin.configuracion-acceso')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -58,7 +58,7 @@
       </li>
 
       {{-- Clientes --}}
-      <li class="mt-2" x-data="sidebarDropdown('clientes', {{ (request()->routeIs('admin.gestion-empresas') || request()->routeIs('admin.cotizaciones')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('clientes', {{ (request()->routeIs('admin.gestion-empresas') || request()->routeIs('admin.cotizaciones')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -92,7 +92,7 @@
       </li>
 
       {{-- Solicitudes --}}
-      <li class="mt-2" x-data="sidebarDropdown('solicitudes', {{ (request()->routeIs('admin.solicitudes.index') || request()->routeIs('admin.solicitudes.empresas')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('solicitudes', {{ (request()->routeIs('admin.solicitudes.index') || request()->routeIs('admin.solicitudes.empresas')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -126,7 +126,7 @@
       </li>
 
       {{-- Órdenes de Servicio --}}
-      <li class="mt-2" x-data="sidebarDropdown('ordenes-servicio', {{ request()->routeIs('admin.ordenes-servicio*') ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('ordenes-servicio', {{ request()->routeIs('admin.ordenes-servicio*') ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3 min-w-0">
@@ -151,7 +151,7 @@
       </li>
 
       {{-- Proyectos --}}
-      <li class="mt-2" x-data="sidebarDropdown('proyectos', {{ (request()->routeIs('admin.proyectos*') || request()->routeIs('admin.vista-proyectos')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('proyectos', {{ (request()->routeIs('admin.proyectos*') || request()->routeIs('admin.vista-proyectos')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -185,7 +185,7 @@
       </li>
 
       {{-- Tickets --}}
-      <li class="mt-2" x-data="sidebarDropdown('tickets', {{ request()->routeIs('admin.tickets*') ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('tickets', {{ request()->routeIs('admin.tickets*') ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -210,7 +210,7 @@
       </li>
 
       {{-- Calendario --}}
-      <li class="mt-2" x-data="sidebarDropdown('calendario', {{ (request()->routeIs('admin.agencias') || request()->routeIs('admin.calendario')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('calendario', {{ (request()->routeIs('admin.agencias') || request()->routeIs('admin.calendario')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -244,7 +244,7 @@
       </li>
 
       {{-- Facturación --}}
-      <li class="mt-2" x-data="sidebarDropdown('facturacion', {{ (request()->routeIs('admin.facturas') || request()->routeIs('admin.cai')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('facturacion', {{ (request()->routeIs('admin.facturas') || request()->routeIs('admin.cai')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -278,7 +278,7 @@
       </li>
 
       {{-- Reportes --}}
-      <li class="mt-2" x-data="sidebarDropdown('reportes', {{ request()->routeIs('admin.reportes*') ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('reportes', {{ request()->routeIs('admin.reportes*') ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -303,7 +303,7 @@
       </li>
 
       {{-- Inventario --}}
-      <li class="mt-2" x-data="sidebarDropdown('inventario', {{ (request()->routeIs('admin.productos') || request()->routeIs('admin.kardex')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('inventario', {{ (request()->routeIs('admin.productos') || request()->routeIs('admin.kardex')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -337,7 +337,7 @@
       </li>
 
       {{-- Administración --}}
-      <li class="mt-2" x-data="sidebarDropdown('administracion', {{ (request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.cambio-contrasena') || request()->routeIs('admin.bitacora') || request()->routeIs('admin.gestion-db')) ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('administracion', {{ (request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.cambio-contrasena') || request()->routeIs('admin.bitacora') || request()->routeIs('admin.gestion-db')) ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">
@@ -389,7 +389,7 @@
       </li>
 
       {{-- Mantenimiento --}}
-      <li class="mt-2" x-data="sidebarDropdown('mantenimiento', {{ request()->routeIs('admin.mantenimiento.tickets') ? 'true' : 'false' }})">
+      <li class="mt-2" x-data="sidebarDropdown('mantenimiento', {{ request()->routeIs('admin.mantenimiento.tickets') ? 'true' : 'false' }})" x-init="init()">
         <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                 class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
           <div class="flex items-center gap-3">

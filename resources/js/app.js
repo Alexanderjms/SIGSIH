@@ -48,10 +48,53 @@ document.addEventListener("alpine:init", () => {
 
                         document.querySelector("main").innerHTML = newContent;
                         window.history.pushState({}, "", url);
+
+                        // Actualizar el estado activo de los enlaces en la barra lateral
+                        this.updateActiveLinks(url);
                     });
             } finally {
                 this.isTransitioning = false;
             }
+        },
+
+        // Método para actualizar los enlaces activos en la barra lateral
+        updateActiveLinks(url) {
+            // Eliminar la clase activa de todos los enlaces
+            document.querySelectorAll(".sidebar-link").forEach((link) => {
+                link.classList.remove("bg-gray-800", "text-blue-400");
+                link.classList.add("hover:bg-gray-800", "hover:text-blue-400");
+            });
+
+            // Encontrar y marcar el enlace activo actual
+            document.querySelectorAll(".sidebar-link").forEach((link) => {
+                if (link.getAttribute("href") === url) {
+                    link.classList.add("bg-gray-800", "text-blue-400");
+                    link.classList.remove(
+                        "hover:bg-gray-800",
+                        "hover:text-blue-400"
+                    );
+
+                    // Encontrar y abrir el menú padre si existe
+                    const parentDropdown = link.closest(
+                        '[x-data^="sidebarDropdown"]'
+                    );
+                    if (parentDropdown) {
+                        const dropdownKey = parentDropdown
+                            .getAttribute("x-data")
+                            .match(/sidebarDropdown\('([^']+)'/)[1];
+                        localStorage.setItem(`sidebar-${dropdownKey}`, "true");
+
+                        // Forzar actualización del menú desplegable
+                        const event = new CustomEvent(
+                            "update-sidebar-dropdown",
+                            {
+                                detail: { key: dropdownKey, open: true },
+                            }
+                        );
+                        document.dispatchEvent(event);
+                    }
+                }
+            });
         },
     });
 });
