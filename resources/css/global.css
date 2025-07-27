@@ -1,45 +1,65 @@
 .logo {
-  height: 10rem; /* h-16 de Tailwind */
-  width: auto;
-  position: relative;
-  max-width: 100%;
-  object-fit: contain;
+    height: 10rem; /* h-16 de Tailwind */
+    width: auto;
+    position: relative;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .serif-regular {
-  font-family: "PT Serif", serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "PT Serif", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .serif-bold {
-  font-family: "PT Serif", serif;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "PT Serif", serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .nunito-regular {
-  font-family: "Nunito", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .nunito-bold {
-  font-family: "Nunito", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
 }
 
-.list-sub-modules{
+.list-sub-modules {
     font-size: 15px;
 }
 
 .scrollbar-hidden {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE y Edge */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE y Edge */
 }
 .scrollbar-hidden::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Opera */
+    display: none; /* Chrome, Safari y Opera */
+}
+
+.page-transition-enter-active,
+.page-transition-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.page-transition-enter,
+.page-transition-leave-to {
+    opacity: 0;
+}
+
+.no-flash {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
 }
