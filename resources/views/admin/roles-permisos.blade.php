@@ -5,9 +5,9 @@
 
 @section('content')
 <div x-data="rolesTable()">
-    <x-tabla-crud :titulo="'Gestión de Roles'">
+    <x-admin.tabla-crud :titulo="'Gestión de Roles'">
         <x-slot name="filtros">
-            @include('admin.partials.filtros-generales', [
+            @include('partials.filtros-generales', [
             'searchModel' => 'search',
             'filtrosSelect' => [
             'filtroPermiso' => [
@@ -23,7 +23,7 @@
             ])
         </x-slot>
         <x-slot name="boton">
-            @include('admin.partials.boton-generico', [
+            @include('partials.boton-buscar', [
             'texto' => 'Agregar rol',
             'ruta' => '#',
             'onclick' => "document.getElementById('modal-nuevo-rol').showModal()"
@@ -57,7 +57,7 @@
                 </template>
             </tbody>
         </table>
-    </x-tabla-crud>
+        </x-tabla-crud>
 </div>
 <script>
     function rolesTable() {
