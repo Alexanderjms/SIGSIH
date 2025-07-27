@@ -33,13 +33,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.gestion-usuarios');
     })->name('gestion-usuarios');
 
-
+    // Roles y Permisos
     Route::get('roles-permisos', function () {
         return view('admin.roles-permisos');
     })->name('roles-permisos');
 
-
-
+    // Configuración de Acceso
     Route::get('configuracion-acceso', function () {
         return view('admin.configuracion-acceso');
     })->name('configuracion-acceso');
@@ -130,7 +129,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('mantenimiento/tickets', function () {
         return view('admin.mantenimiento-tickets');
     })->name('mantenimiento.tickets');
-
 });
 
 // Login route
