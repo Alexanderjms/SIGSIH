@@ -7,7 +7,7 @@
 <div x-data="usuariosTable()">
     <x-tabla-crud :titulo="'Lista de Usuarios'">
         <x-slot name="filtros">
-            @include('admin.partials.filtros-generales', [
+            @include('partials.filtros-generales', [
             'searchModel' => 'search',
             'filtrosSelect' => [
             'filtroPerfil' => [
@@ -25,7 +25,7 @@
         </x-slot>
 
         <x-slot name="boton">
-            @include('admin.partials.boton-generico', [
+            @include('partials.boton-generico', [
             'texto' => 'Agregar usuario',
             'ruta' => '#',
             'onclick' => "alert('Aquí abrirías un modal o redirigirías')"
