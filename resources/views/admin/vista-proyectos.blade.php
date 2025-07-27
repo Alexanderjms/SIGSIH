@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody class="nunito-regular">
-                    <tr class="bg-blue-100">
+                    <tr class="bg-emerald-300">
                         <td class="py-2 px-4 border border-gray-600">Pago inicial</td>
                         <td class="py-2 px-4 border border-gray-600">2025-07-20</td>
                         <td class="py-2 px-4 border border-gray-600">L. 15,000.00</td>
@@ -50,7 +50,7 @@
                         <td class="py-2 px-4 border border-gray-600">Primer pago del Proyecto Alpha</td>
                         <td class="py-2 px-4 border border-gray-600">Ingreso</td>
                     </tr>
-                    <tr class="bg-red-400">
+                    <tr class="bg-slate-400">
                         <td class="py-2 px-4 border border-gray-600">Compra de software</td>
                         <td class="py-2 px-4 border border-gray-600">2025-07-22</td>
                         <td class="py-2 px-4 border border-gray-600">L. 5,500.00</td>
@@ -58,7 +58,7 @@
                         <td class="py-2 px-4 border border-gray-600">Licencias de software de desarrollo</td>
                         <td class="py-2 px-4 border border-gray-600">Gasto</td>
                     </tr>
-                    <tr class="bg-blue-100">
+                    <tr class="bg-emerald-300">
                         <td class="py-2 px-4 border border-gray-600">Segundo pago</td>
                         <td class="py-2 px-4 border border-gray-600">2025-07-25</td>
                         <td class="py-2 px-4 border border-gray-600">L. 14,230.00</td>
@@ -66,7 +66,7 @@
                         <td class="py-2 px-4 border border-gray-600">Segundo pago del Proyecto Beta</td>
                         <td class="py-2 px-4 border border-gray-600">Ingreso</td>
                     </tr>
-                     <tr class="bg-red-400">
+                     <tr class="bg-slate-400">
                         <td class="py-2 px-4 border border-gray-600">Alquiler de oficina</td>
                         <td class="py-2 px-4 border border-gray-600">2025-07-26</td>
                         <td class="py-2 px-4 border border-gray-600">L. 10,483.00</td>
