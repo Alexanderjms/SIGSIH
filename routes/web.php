@@ -33,9 +33,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.gestion-usuarios');
     })->name('gestion-usuarios');
 
+
     Route::get('roles-permisos', function () {
         return view('admin.roles-permisos');
     })->name('roles-permisos');
+
+
 
     Route::get('configuracion-acceso', function () {
         return view('admin.configuracion-acceso');
