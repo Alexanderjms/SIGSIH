@@ -129,6 +129,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('mantenimiento/tickets', function () {
         return view('admin.mantenimiento-tickets');
     })->name('mantenimiento.tickets');
+
+    // Detalle Cotización
+    Route::get('detalle-cotizacion', function () {
+        return view('admin.detalle-cotizacion');
+    })->name('detalle-cotizacion');
 });
 
 // Login route

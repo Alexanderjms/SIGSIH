@@ -44,11 +44,11 @@
                         <td class="px-4 py-3 border-t border-gray-200">$10,500.00</td>
                         <td class="px-4 py-3 border-t border-gray-200">$12,180.00</td>
                         <td class="px-4 py-3 border-t border-gray-200">
-                            <button
-                              class="text-xs w-20 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2"
+                            <a href="{{ route('admin.detalle-cotizacion') }}" target="_blank"
+                              class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2"
                             >
-                              <i class="fas fa-eye"></i> Ver detalles
-                            </button>
+                              <i class="fas fa-eye mr-1"></i> Ver detalles
+                            </a>
                             <a href="#" class="text-blue-500 hover:text-blue-700 mr-2">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -65,11 +65,11 @@
                         <td class="px-4 py-3 border-t border-gray-200">$8,750.00</td>
                         <td class="px-4 py-3 border-t border-gray-200">$10,150.00</td>
                         <td class="px-4 py-3 border-t border-gray-200">
-                            <button
-                              class="text-xs w-20 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2"
+                            <a href="{{ route('admin.detalle-cotizacion') }}" target="_blank"
+                              class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2"
                             >
-                              <i class="fas fa-eye"></i> Ver detalles
-                            </button>
+                              <i class="fas fa-eye mr-1"></i> Ver detalles
+                            </a>
                             <a href="#" class="text-blue-500 hover:text-blue-700 mr-2">
                                 <i class="fas fa-edit"></i>
                             </a>
