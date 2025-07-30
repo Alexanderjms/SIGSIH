@@ -20,7 +20,7 @@
     <div class="flex h-screen min-h-0">
         @include('partials.admin-sidebar')
 
-       <main class="flex-1 p-6 overflow-y-auto h-screen bg-white text-gray-900 transition-opacity duration-200">
+        <main class="flex-1 p-6 overflow-y-auto h-screen bg-white text-gray-900 transition-opacity duration-200">
             @include('partials.admin-header')
             @hasSection('page-header')
             <div class="bg-white p-4 rounded shadow mb-6">
