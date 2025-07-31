@@ -167,6 +167,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('gestion-personas');
     });
 
+    // Gestión de Órdenes de Servicio
+      Route::get('gestion-ordenes', function () {
+          return view('admin.gestion-ordenes');
+      })->name('gestion-ordenes');
+  });
+
+
 // Login route
 Route::get('/login', function () {
     return view('auth.login');
