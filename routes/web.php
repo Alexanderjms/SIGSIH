@@ -33,7 +33,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.gestion-usuarios');
     })->name('gestion-usuarios');
 
-
     // Roles y Permisos
     Route::get('roles-permisos', function () {
         return view('admin.roles-permisos');
@@ -72,7 +71,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.solicitudes-empresas');
     })->name('solicitudes.empresas');
 
-    // Ordenes de Servicio
+    // Órdenes de Servicio
     Route::get('ordenes-servicio', function () {
         return view('admin.ordenes-servicio');
     })->name('ordenes-servicio.index');
@@ -156,11 +155,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.detalle-cotizacion');
     })->name('detalle-cotizacion');
 
-    // Formato Factura
-    Route::get('formato-factura', function () {
-        return view('admin.formato-factura');
-    })->name('formato-factura');
-});
     // Parámetros
     Route::get('parametros', function () {
         return view('admin.parametros');
@@ -170,14 +164,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('gestion-personas', function () {
         return view('admin.gestion-personas');
     })->name('gestion-personas');
-    });
 
     // Gestión de Órdenes de Servicio
-      Route::get('gestion-ordenes', function () {
-          return view('admin.gestion-ordenes');
-      })->name('gestion-ordenes');
-  });
+    Route::get('gestion-ordenes', function () {
+        return view('admin.gestion-ordenes');
+    })->name('gestion-ordenes');
 
+});
 
 // Login route
 Route::get('/login', function () {
