@@ -4,7 +4,7 @@
 @section('content')
 
 <div x-data="{
-        tab: 'tipo_persona',
+        tab: 'Personas',
         isModalOpenPersonas: false, isEditModalOpenPersonas: false, isDeleteModalOpenPersonas: false,
         isModalOpenTipoPersona: false, isEditModalOpenTipoPersona: false, isDeleteModalOpenTipoPersona: false,
         isModalOpenGenero: false, isEditModalOpenGenero: false, isDeleteModalOpenGenero: false,
