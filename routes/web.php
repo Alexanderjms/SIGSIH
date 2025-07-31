@@ -39,6 +39,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.roles-permisos');
     })->name('roles-permisos');
 
+    // Vista PDF de Proyecto
+    Route::get('proyecto/pdf', function () {
+        return view('admin.proyecto-pdf');
+    })->name('proyecto-pdf');
+
     // Gestión de Objetos
     Route::get('gestion-objetos', function () {
         return view('admin.gestion-objetos');
