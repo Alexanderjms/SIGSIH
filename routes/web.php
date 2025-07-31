@@ -109,6 +109,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.cai');
     })->name('cai');
 
+    // Formato Factura
+    Route::get('formato-factura', function () {
+        return view('admin.formato-factura');
+    })->name('formato-factura');
+
     // Reportes
     Route::get('reportes', function () {
         return view('admin.reportes');
@@ -160,12 +165,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('gestion-personas', function () {
         return view('admin.gestion-personas');
     })->name('gestion-personas');
+    });
 
     // Gestión de Órdenes de Servicio
-    Route::get('gestion-ordenes', function () {
-        return view('admin.gestion-ordenes');
-    })->name('gestion-ordenes');
-});
+      Route::get('gestion-ordenes', function () {
+          return view('admin.gestion-ordenes');
+      })->name('gestion-ordenes');
+  });
+
 
 // Login route
 Route::get('/login', function () {
