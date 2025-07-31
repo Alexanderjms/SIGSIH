@@ -57,13 +57,13 @@
                 </div>
 
                 <form @submit.prevent="handleSubmit">
-                    <!-- Nombre (solo registro) -->
+                    <!-- Nombre_usuario (solo registro) -->
                     <div x-show="!isLogin" class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nombre
-                            completo</label>
-                        <input type="text" name="name" x-model="name" :required="!isLogin"
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nombre de Usuario
+                        </label>
+                        <input type="text" name="nombre_usuario" x-model="nombre_usuario" :required="!isLogin"
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
-                            placeholder="Juan Pérez" />
+                            placeholder="Juan Orlando" />
                     </div>
 
                     <!-- Usuario -->
@@ -71,9 +71,18 @@
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Usuario</label>
                         <input type="text" name="username" x-model="username" required
                             class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
-                            placeholder="admin" />
+                            placeholder="Juanchi" />
                     </div>
 
+
+                    <!-- Correo electrónico (solo registro) -->
+                    <div x-show="!isLogin" class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Correo
+                            electrónico</label>
+                        <input type="email" name="email" x-model="email" :required="!isLogin"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"
+                            placeholder="correo@ejemplo.com" />
+                    </div>
                     <!-- Contraseña -->
                     <div class="mb-2">
                         <label
@@ -105,7 +114,7 @@
                     <!-- Confirmar contraseña (solo registro) -->
                     <div x-show="!isLogin" class="mb-6">
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Confirmar
-                            contraseña</label>
+                            Contraseña</label>
                         <div class="relative">
                             <input :type="showConfirmPassword ? 'text' : 'password'" name="confirmPassword"
                                 x-model="confirmPassword" :required="!isLogin"
@@ -191,11 +200,11 @@
                 password: '',
                 confirmPassword: '',
                 name: '',
+                email: '',
                 loading: false,
                 isDark: false,
 
                 initTheme() {
-                    // Leer tema guardado en localStorage
                     this.isDark = localStorage.getItem('sigTheme') === 'dark';
                 },
                 toggleTheme() {
@@ -216,10 +225,19 @@
                         } else {
                             alert('Usuario o contraseña incorrectos');
                         }
+                        this.loading = false;
                     } else {
-                        alert('¡Cuenta creada con éxito!');
+                        const alerta = document.createElement('div');
+                        alerta.id = 'registro-alerta';
+                        alerta.className =
+                            'fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-100 border border-green-400 text-green-800 px-6 py-3 rounded-xl shadow-lg z-50';
+                        alerta.innerText = '✅ ¡Cuenta creada con éxito!';
+                        document.body.appendChild(alerta);
+                        setTimeout(() => {
+                            document.body.removeChild(alerta);
+                            window.location.href = '/admin/perfil';
+                        }, 2500);
                     }
-                    this.loading = false;
                 },
                 handleGoogle() {
                     alert('Redirigiendo a Google Sign-In…');

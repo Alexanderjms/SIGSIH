@@ -34,12 +34,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('gestion-usuarios');
 
 
+    // Roles y Permisos
     Route::get('roles-permisos', function () {
         return view('admin.roles-permisos');
     })->name('roles-permisos');
 
+    // Vista PDF de Proyecto
+    Route::get('proyecto/pdf', function () {
+        return view('admin.proyecto-pdf');
+    })->name('proyecto-pdf');
 
+    // Gestión de Objetos
+    Route::get('gestion-objetos', function () {
+        return view('admin.gestion-objetos');
+    })->name('gestion-objetos');
 
+    // Configuración de Acceso
     Route::get('configuracion-acceso', function () {
         return view('admin.configuracion-acceso');
     })->name('configuracion-acceso');
@@ -126,11 +136,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.cambio-contrasena');
     })->name('cambio-contrasena');
 
+    // Perfil
+    Route::get('perfil', function () {
+        return view('admin.perfil');
+    })->name('perfil');
+
     // Gestión Mantenimiento
     Route::get('mantenimiento/tickets', function () {
         return view('admin.mantenimiento-tickets');
     })->name('mantenimiento.tickets');
 
+    // Detalle Cotización
+    Route::get('detalle-cotizacion', function () {
+        return view('admin.detalle-cotizacion');
+    })->name('detalle-cotizacion');
 });
 
 // Login route

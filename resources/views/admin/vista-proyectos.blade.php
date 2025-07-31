@@ -10,6 +10,13 @@
             <h2 class="text-xl nunito-bold">Proyecto BAC</h2>
             <button class="p-2 rounded hover:bg-gray-200"><i class="fas fa-chevron-right"></i></button>
         </div>
+       <div class="bg-transparent items-center justify-center flex">
+        <a href="{{ route('admin.proyecto-pdf') }}" target="_blank" class="flex items-center gap-2 px-6 py-2 border-2 border-emerald-500 rounded-md text-emerald-500 nunito-bold text-sm hover:bg-emerald-500 hover:text-white transition-colors duration-300 w-full min-w-[170px] justify-center">
+            <i class="fas fa-file-pdf"></i>
+            Generar PDF
+        </a>
+</div>
+
     </div>
     {{-- Tarjetas de estadísticas --}}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 nunito-bold">
@@ -29,50 +36,50 @@
 
     {{-- Tabla de Movimientos --}}
     <div class="overflow-x-auto mt-6">
-        <div class="rounded-xl bg-white shadow-sm">
-            <table class="min-w-full border-collapse border border-black">
-                <thead class="bg-blue-200 text-blue-500 nunito-bold">
+        <div class="bg-white rounded-lg shadow p-6">
+            <table class="min-w-full text-sm border-collapse border border-gray-600">
+                <thead class="bg-gray-100 nunito-bold">
                     <tr>
-                        <th class="border border-gray-500 px-4 py-3 text-left tracking-wider">Nombre</th>
-                        <th class="border border-gray-500 px-4 py-3 text-left tracking-wider">Fecha</th>
-                        <th class="border border-gray-500 px-4 py-3 text-left tracking-wider">Monto</th>
-                        <th class="border border-gray-500 px-4 py-3 text-left tracking-wider">Categoría</th>
-                        <th class="border border-gray-500 px-4 py-3 text-left tracking-wider">Descripción</th>
-                        <th class="border border-gray-500 px-4 py-3 text-left tracking-wider">Movimiento</th>
+                        <th class="py-2 px-4 text-left border border-gray-600">Nombre</th>
+                        <th class="py-2 px-4 text-left border border-gray-600">Fecha</th>
+                        <th class="py-2 px-4 text-left border border-gray-600">Monto</th>
+                        <th class="py-2 px-4 text-left border border-gray-600">Categoría</th>
+                        <th class="py-2 px-4 text-left border border-gray-600">Descripción</th>
+                        <th class="py-2 px-4 text-left border border-gray-600">Movimiento</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="bg-blue-100 text-sm text-black nunito-regular">
-                        <td class="border border-gray-500 px-4 py-3">Pago inicial</td>
-                        <td class="border border-gray-500 px-4 py-3">2025-07-20</td>
-                        <td class="border border-gray-500 px-4 py-3">L. 15,000.00</td>
-                        <td class="border border-gray-500 px-4 py-3">Ingreso</td>
-                        <td class="border border-gray-500 px-4 py-3">Primer pago del Proyecto Alpha</td>
-                        <td class="border border-gray-500 px-4 py-3">Ingreso</td>
+                <tbody class="nunito-regular">
+                    <tr class="bg-emerald-300">
+                        <td class="py-2 px-4 border border-gray-600">Pago inicial</td>
+                        <td class="py-2 px-4 border border-gray-600">2025-07-20</td>
+                        <td class="py-2 px-4 border border-gray-600">L. 15,000.00</td>
+                        <td class="py-2 px-4 border border-gray-600">Ingreso</td>
+                        <td class="py-2 px-4 border border-gray-600">Primer pago del Proyecto Alpha</td>
+                        <td class="py-2 px-4 border border-gray-600">Ingreso</td>
                     </tr>
-                    <tr class="bg-red-400 text-sm text-black nunito-regular">
-                        <td class="border border-gray-500 px-4 py-3">Compra de software</td>
-                        <td class="border border-gray-500 px-4 py-3">2025-07-22</td>
-                        <td class="border border-gray-500 px-4 py-3">L. 5,500.00</td>
-                        <td class="border border-gray-500 px-4 py-3">Gasto</td>
-                        <td class="border border-gray-500 px-4 py-3">Licencias de software de desarrollo</td>
-                        <td class="border border-gray-500 px-4 py-3">Gasto</td>
+                    <tr class="bg-slate-400">
+                        <td class="py-2 px-4 border border-gray-600">Compra de software</td>
+                        <td class="py-2 px-4 border border-gray-600">2025-07-22</td>
+                        <td class="py-2 px-4 border border-gray-600">L. 5,500.00</td>
+                        <td class="py-2 px-4 border border-gray-600">Gasto</td>
+                        <td class="py-2 px-4 border border-gray-600">Licencias de software de desarrollo</td>
+                        <td class="py-2 px-4 border border-gray-600">Gasto</td>
                     </tr>
-                    <tr class="bg-blue-100 text-sm text-black nunito-regular">
-                        <td class="border border-gray-500 px-4 py-3">Segundo pago</td>
-                        <td class="border border-gray-500 px-4 py-3">2025-07-25</td>
-                        <td class="border border-gray-500 px-4 py-3">L. 14,230.00</td>
-                        <td class="border border-gray-500 px-4 py-3">Ingreso</td>
-                        <td class="border border-gray-500 px-4 py-3">Segundo pago del Proyecto Beta</td>
-                        <td class="border border-gray-500 px-4 py-3">Ingreso</td>
+                    <tr class="bg-emerald-300">
+                        <td class="py-2 px-4 border border-gray-600">Segundo pago</td>
+                        <td class="py-2 px-4 border border-gray-600">2025-07-25</td>
+                        <td class="py-2 px-4 border border-gray-600">L. 14,230.00</td>
+                        <td class="py-2 px-4 border border-gray-600">Ingreso</td>
+                        <td class="py-2 px-4 border border-gray-600">Segundo pago del Proyecto Beta</td>
+                        <td class="py-2 px-4 border border-gray-600">Ingreso</td>
                     </tr>
-                     <tr class="bg-red-400 text-sm text-black nunito-regular">
-                        <td class="border border-gray-500 px-4 py-3">Alquiler de oficina</td>
-                        <td class="border border-gray-500 px-4 py-3">2025-07-26</td>
-                        <td class="border border-gray-500 px-4 py-3">L. 10,483.00</td>
-                        <td class="border border-gray-500 px-4 py-3">Gasto</td>
-                        <td class="border border-gray-500 px-4 py-3">Pago de alquiler mensual</td>
-                        <td class="border border-gray-500 px-4 py-3">Gasto</td>
+                     <tr class="bg-slate-400">
+                        <td class="py-2 px-4 border border-gray-600">Alquiler de oficina</td>
+                        <td class="py-2 px-4 border border-gray-600">2025-07-26</td>
+                        <td class="py-2 px-4 border border-gray-600">L. 10,483.00</td>
+                        <td class="py-2 px-4 border border-gray-600">Gasto</td>
+                        <td class="py-2 px-4 border border-gray-600">Pago de alquiler mensual</td>
+                        <td class="py-2 px-4 border border-gray-600">Gasto</td>
                     </tr>
                 </tbody>
             </table>
