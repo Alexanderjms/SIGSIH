@@ -1,61 +1,375 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container mx-auto px-4 sm:px-8">
-        <div class="py-8">
+<div
+    x-data="{ tab: 'solicitudes', isModalOpen: false, isEditModalOpen: false, solicitudToEdit: null, isDeleteModalOpen: false, solicitudToDelete: null, isEstadoModalOpen: false, isEditEstadoModalOpen: false, estadoToEdit: null, isDeleteEstadoModalOpen: false, estadoToDelete: null }">
+    <ul class="flex border-b nunito-bold">
+        <li @click="tab='solicitudes'"
+            :class="tab==='solicitudes' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
+            class="mr-6 pb-2">Solicitudes</li>
+        <li @click="tab='estados'"
+            :class="tab==='estados' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
+            class="mr-6 pb-2">Estados de Solicitud</li>
+        <li @click="tab='contactos'"
+            :class="tab==='contactos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
+            class="mr-6 pb-2">Contactos</li>
+    </ul>
+    <div x-show="tab==='contactos'" class="overflow-x-auto mt-6">
+        <x-admin.tabla-crud>
+            <x-slot name="titulo">
+                <h2 class="text-2xl text-gray-800 nunito-bold">Contactos</h2>
+            </x-slot>
+            <x-slot name="filtros">
+                <input type="text" placeholder="Buscar contacto..."
+                    class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+            </x-slot>
+            <x-slot name="boton">
+                <button @click="isContactoModalOpen = true"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo
+                    Contacto</button>
+            </x-slot>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead class="bg-gray-100 nunito-bold">
+                        <tr>
+                            <th class="py-2 px-4 text-left">ID Contacto</th>
+                            <th class="py-2 px-4 text-left">Tipo de Contacto</th>
+                            <th class="py-2 px-4 text-left">Valor Contacto</th>
+                            <th class="py-2 px-4 text-left">ID Persona</th>
+                            <th class="py-2 px-4 text-left">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b nunito-regular">
+                            <td class="py-2 px-4">1</td>
+                            <td class="py-2 px-4">Teléfono</td>
+                            <td class="py-2 px-4">+9907-7134</td>
+                            <td class="py-2 px-4">P-001</td>
+                            <td class="py-2 px-4 flex gap-2">
+                                <a href="#" @click="isEditContactoModalOpen = true; contactoToEdit = {id: 1}"
+                                    class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                <a href="#" @click="isDeleteContactoModalOpen = true; contactoToDelete = {id: 1}"
+                                    class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </x-admin.tabla-crud>
+    </div>
+
+    <!-- Modal Nuevo Contacto -->
+    <x-admin.form-modal modalName="isContactoModalOpen" title="Nuevo Contacto" submitLabel="Guardar Contacto"
+        maxWidth="max-w-2xl">
+        <div class="grid grid-cols-1 gap-4">
             <div>
-                <h2 class="text-2xl font-semibold leading-tight nunito-bold">Solicitudes</h2>
+                <label for="tipo_contacto" class="block text-sm font-medium text-gray-700">Tipo de Contacto</label>
+                <input type="text" id="tipo_contacto" name="tipo_contacto"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
-            <div class="my-2 flex sm:flex-row flex-col">
-                <div class="block relative">
-                    <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
-                        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
-                            <path d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"></path>
-                        </svg>
-                    </span>
-                    <input placeholder="Buscar solicitud"
-                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
-                </div>
+            <div>
+                <label for="valor_contacto" class="block text-sm font-medium text-gray-700">Valor Contacto</label>
+                <input type="text" id="valor_contacto" name="valor_contacto"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    <table class="min-w-full leading-normal">
-                        <thead>
-                            <tr>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Número</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Empresa</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Fecha</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Estado</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">S-2025-001</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">Empresa Ejemplo S.A.</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">26/07/2025</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <span class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
-                                        <span aria-hidden class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Enviada</span>
-                                    </span>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                    <button class="text-blue-500 hover:text-blue-700">Ver</button>
-                                    <button class="text-green-500 hover:text-green-700 ml-3">Editar</button>
-                                    <button class="text-red-500 hover:text-red-700 ml-3">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div>
+                <label for="id_persona" class="block text-sm font-medium text-gray-700">ID Persona</label>
+                <input type="text" id="id_persona" name="id_persona"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
         </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Editar Contacto -->
+    <x-admin.edit-modal modalName="isEditContactoModalOpen" title="Editar Contacto" itemToEdit="contactoToEdit"
+        maxWidth="max-w-2xl">
+        <div class="grid grid-cols-1 gap-4">
+            <div>
+                <label for="edit_tipo_contacto" class="block text-sm font-medium text-gray-700">Tipo de Contacto</label>
+                <input type="text" id="edit_tipo_contacto" name="edit_tipo_contacto"
+                    :value="contactoToEdit.tipo_contacto"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_valor_contacto" class="block text-sm font-medium text-gray-700">Valor Contacto</label>
+                <input type="text" id="edit_valor_contacto" name="edit_valor_contacto"
+                    :value="contactoToEdit.valor_contacto"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_id_persona" class="block text-sm font-medium text-gray-700">ID Persona</label>
+                <input type="text" id="edit_id_persona" name="edit_id_persona" :value="contactoToEdit.id_persona"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+        </div>
+    </x-admin.edit-modal>
+
+    <!-- Modal Confirmar Eliminación Contacto -->
+    <x-admin.confirmation-modal modalName="isDeleteContactoModalOpen" itemToDelete="contactoToDelete"
+        message="¿Estás seguro de que quieres eliminar el contacto?" />
+    </ul>
+    <div x-show="tab==='estados'" class="overflow-x-auto mt-6">
+        <x-admin.tabla-crud>
+            <x-slot name="titulo">
+                <h2 class="text-2xl text-gray-800 nunito-bold">Estados de Solicitud</h2>
+            </x-slot>
+            <x-slot name="filtros">
+                <input type="text" placeholder="Buscar estado..."
+                    class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+            </x-slot>
+            <x-slot name="boton">
+                <button @click="isEstadoModalOpen = true"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo
+                    Estado</button>
+            </x-slot>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead class="bg-gray-100 nunito-bold">
+                        <tr>
+                            <th class="py-2 px-4 text-left">ID Estado</th>
+                            <th class="py-2 px-4 text-left">Nombre del Estado</th>
+                            <th class="py-2 px-4 text-left">Descripción</th>
+                            <th class="py-2 px-4 text-left">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b nunito-regular">
+                            <td class="py-2 px-4">1</td>
+                            <td class="py-2 px-4">Abierta</td>
+                            <td class="py-2 px-4">Solicitud creada y pendiente de atención</td>
+                            <td class="py-2 px-4 flex gap-2">
+                                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {id: 1}"
+                                    class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 1}"
+                                    class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </x-admin.tabla-crud>
     </div>
+
+    <!-- Modal Nuevo Estado -->
+    <x-admin.form-modal modalName="isEstadoModalOpen" title="Nuevo Estado de Solicitud" submitLabel="Guardar Estado"
+        maxWidth="max-w-2xl">
+        <div class="grid grid-cols-1 gap-4">
+            <div>
+                <label for="nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del Estado</label>
+                <input type="text" id="nombre_estado" name="nombre_estado"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
+                <textarea id="descripcion_estado" name="descripcion_estado" rows="2"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+            </div>
+        </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Editar Estado -->
+    <x-admin.edit-modal modalName="isEditEstadoModalOpen" title="Editar Estado de Solicitud" itemToEdit="estadoToEdit"
+        maxWidth="max-w-2xl">
+        <div class="grid grid-cols-1 gap-4">
+            <div>
+                <label for="edit_nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del
+                    Estado</label>
+                <input type="text" id="edit_nombre_estado" name="edit_nombre_estado" :value="estadoToEdit.nombre_estado"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
+                <textarea id="edit_descripcion_estado" name="edit_descripcion_estado" rows="2"
+                    x-text="estadoToEdit.descripcion_estado"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+            </div>
+        </div>
+    </x-admin.edit-modal>
+
+    <!-- Modal Confirmar Eliminación Estado -->
+    <x-admin.confirmation-modal modalName="isDeleteEstadoModalOpen" itemToDelete="estadoToDelete"
+        message="¿Estás seguro de que quieres eliminar el estado?" />
+    </ul>
+    <div x-show="tab==='solicitudes'" class="overflow-x-auto">
+        <x-admin.tabla-crud>
+            <x-slot name="titulo">
+                <h2 class="text-2xl text-gray-800 nunito-bold">Gestión de Solicitudes</h2>
+            </x-slot>
+            <x-slot name="filtros">
+                <input type="text" placeholder="Buscar solicitud..."
+                    class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+                <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                    <option class="nunito-bold" value="">Todos los estados</option>
+                    <option class="nunito-bold">Abierta</option>
+                    <option class="nunito-bold">En Proceso</option>
+                    <option class="nunito-bold">Cerrada</option>
+                </select>
+            </x-slot>
+            <x-slot name="boton">
+                <button @click="isModalOpen = true"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nueva
+                    Solicitud</button>
+            </x-slot>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead class="bg-gray-100 nunito-bold">
+                        <tr>
+                            <th class="py-2 px-4 text-left">ID Solicitud</th>
+                            <th class="py-2 px-4 text-left">ID Cliente</th>
+                            <th class="py-2 px-4 text-left">N° Solicitud ACF</th>
+                            <th class="py-2 px-4 text-left">N° Solicitud Cliente</th>
+                            <th class="py-2 px-4 text-left">Descripción del Problema</th>
+                            <th class="py-2 px-4 text-left">Fecha de Creación</th>
+                            <th class="py-2 px-4 text-left">Fecha de Modificación</th>
+                            <th class="py-2 px-4 text-left">Estado</th>
+                            <th class="py-2 px-4 text-left">ID Contacto</th>
+                            <th class="py-2 px-4 text-left">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b nunito-regular">
+                            <td class="py-2 px-4">1</td>
+                            <td class="py-2 px-4">C-001</td>
+                            <td class="py-2 px-4">ACF-123</td>
+                            <td class="py-2 px-4">CL-456</td>
+                            <td class="py-2 px-4">No enciende el equipo</td>
+                            <td class="py-2 px-4">2025-07-01</td>
+                            <td class="py-2 px-4">2025-07-02</td>
+                            <td class="py-2 px-4"><span
+                                    class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Abierta</span></td>
+                            <td class="py-2 px-4">CT-001</td>
+                            <td class="py-2 px-4 flex gap-2">
+                                <a href="#" @click="isEditModalOpen = true; solicitudToEdit = {id: 1}"
+                                    class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                                <a href="#" @click="isDeleteModalOpen = true; solicitudToDelete = {id: 1}"
+                                    class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </x-admin.tabla-crud>
+    </div>
+
+    <!-- Modal Nueva Solicitud -->
+    <x-admin.form-modal modalName="isModalOpen" title="Nueva Solicitud" submitLabel="Guardar Solicitud"
+        maxWidth="max-w-4xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="id_cliente" class="block text-sm font-medium text-gray-700">ID Cliente</label>
+                <input type="text" id="id_cliente" name="id_cliente"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="num_solicitud_acf" class="block text-sm font-medium text-gray-700">N° Solicitud ACF</label>
+                <input type="text" id="num_solicitud_acf" name="num_solicitud_acf"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="num_solicitud_cliente" class="block text-sm font-medium text-gray-700">N° Solicitud
+                    Cliente</label>
+                <input type="text" id="num_solicitud_cliente" name="num_solicitud_cliente"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div class="col-span-2">
+                <label for="descripcion_problema" class="block text-sm font-medium text-gray-700">Descripción del
+                    Problema</label>
+                <textarea id="descripcion_problema" name="descripcion_problema" rows="2"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+            </div>
+            <div>
+                <label for="fecha_creacion" class="block text-sm font-medium text-gray-700">Fecha de Creación</label>
+                <input type="date" id="fecha_creacion" name="fecha_creacion"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="fecha_modificacion" class="block text-sm font-medium text-gray-700">Fecha de
+                    Modificación</label>
+                <input type="date" id="fecha_modificacion" name="fecha_modificacion"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="estado_solicitud" class="block text-sm font-medium text-gray-700">Estado de la
+                    Solicitud</label>
+                <select id="estado_solicitud" name="estado_solicitud"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+                    <option>Abierta</option>
+                    <option>En Proceso</option>
+                    <option>Cerrada</option>
+                </select>
+            </div>
+            <div>
+                <label for="id_contacto" class="block text-sm font-medium text-gray-700">ID Contacto</label>
+                <input type="text" id="id_contacto" name="id_contacto"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+        </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Editar Solicitud -->
+    <x-admin.edit-modal modalName="isEditModalOpen" title="Editar Solicitud" itemToEdit="solicitudToEdit"
+        maxWidth="max-w-4xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="edit_id_cliente" class="block text-sm font-medium text-gray-700">ID Cliente</label>
+                <input type="text" id="edit_id_cliente" name="edit_id_cliente" :value="solicitudToEdit.id_cliente"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_num_solicitud_acf" class="block text-sm font-medium text-gray-700">N° Solicitud
+                    ACF</label>
+                <input type="text" id="edit_num_solicitud_acf" name="edit_num_solicitud_acf"
+                    :value="solicitudToEdit.num_solicitud_acf"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_num_solicitud_cliente" class="block text-sm font-medium text-gray-700">N° Solicitud
+                    Cliente</label>
+                <input type="text" id="edit_num_solicitud_cliente" name="edit_num_solicitud_cliente"
+                    :value="solicitudToEdit.num_solicitud_cliente"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div class="col-span-2">
+                <label for="edit_descripcion_problema" class="block text-sm font-medium text-gray-700">Descripción del
+                    Problema</label>
+                <textarea id="edit_descripcion_problema" name="edit_descripcion_problema" rows="2"
+                    x-text="solicitudToEdit.descripcion_problema"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+            </div>
+            <div>
+                <label for="edit_fecha_creacion" class="block text-sm font-medium text-gray-700">Fecha de
+                    Creación</label>
+                <input type="date" id="edit_fecha_creacion" name="edit_fecha_creacion"
+                    :value="solicitudToEdit.fecha_creacion"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_fecha_modificacion" class="block text-sm font-medium text-gray-700">Fecha de
+                    Modificación</label>
+                <input type="date" id="edit_fecha_modificacion" name="edit_fecha_modificacion"
+                    :value="solicitudToEdit.fecha_modificacion"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_estado_solicitud" class="block text-sm font-medium text-gray-700">Estado de la
+                    Solicitud</label>
+                <select id="edit_estado_solicitud" name="edit_estado_solicitud"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+                    <option :selected="solicitudToEdit.estado_solicitud === 'Abierta'">Abierta</option>
+                    <option :selected="solicitudToEdit.estado_solicitud === 'En Proceso'">En Proceso</option>
+                    <option :selected="solicitudToEdit.estado_solicitud === 'Cerrada'">Cerrada</option>
+                </select>
+            </div>
+            <div>
+                <label for="edit_id_contacto" class="block text-sm font-medium text-gray-700">ID Contacto</label>
+                <input type="text" id="edit_id_contacto" name="edit_id_contacto" :value="solicitudToEdit.id_contacto"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+        </div>
+    </x-admin.edit-modal>
+
+    <!-- Modal Confirmar Eliminación Solicitud -->
+    <x-admin.confirmation-modal modalName="isDeleteModalOpen" itemToDelete="solicitudToDelete"
+        message="¿Estás seguro de que quieres eliminar la solicitud?" />
+</div>
 @endsection
