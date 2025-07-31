@@ -145,6 +145,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('detalle-cotizacion', function () {
         return view('admin.detalle-cotizacion');
     })->name('detalle-cotizacion');
+
+    // Parámetros
+    Route::get('parametros', function () {
+        return view('admin.parametros');
+    })->name('parametros');
+
+    // Gestión de Personas
+    Route::get('gestion-personas', function () {
+        return view('admin.gestion-personas');
+    })->name('gestion-personas');
 });
 
 // Login route
