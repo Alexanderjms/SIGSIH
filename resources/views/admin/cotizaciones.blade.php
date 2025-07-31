@@ -3,10 +3,8 @@
 @section('content')
     <div x-data="{ deleteModal: false, selectedItem: null, generateCotizacionModal: false, editModal: false, itemToEdit: null, showFilters: false }">
         <x-admin.tabla-crud titulo="Cotizaciones">
-            <!-- Usamos una sección custom para los filtros -->
             <x-slot:filtros>
                 <div class="w-full">
-                    <!-- Fila 1: Barra de búsqueda principal y botón de filtros -->
                     <div class="flex mb-4">
                         <div class="flex-1 relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -36,11 +34,8 @@
                 </button>
             </x-slot:boton>
 
-            <!-- Filtros desplegables fuera del header pero dentro del componente -->
             <div x-show="showFilters" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" class="bg-gray-50 p-4 rounded-md shadow-sm mb-4">
-                <!-- Fila 1: Rango de fechas y cliente -->
                 <div class="flex flex-wrap md:flex-nowrap gap-4 mb-4">
-                    <!-- Rango de fechas -->
                     <div class="w-full md:w-1/2">
                         <label class="block text-sm font-medium text-gray-700 mb-1 nunito-bold">Rango de fechas</label>
                         <div class="flex space-x-2">
@@ -56,12 +51,10 @@
                             <option value="">Todos los clientes</option>
                             <option value="CLI-1234">Juan Orlando Hernandez</option>
                             <option value="CLI-5678">Rocky</option>
-                            <!-- Opciones dinámicas -->
                         </select>
                     </div>
                 </div>
                 
-                <!-- Fila 2: Rango de montos -->
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1 nunito-bold">Rango de montos</label>
                     <div class="flex flex-wrap md:flex-nowrap space-x-0 md:space-x-2 space-y-2 md:space-y-0">
@@ -70,7 +63,6 @@
                     </div>
                 </div>
                 
-                <!-- Botones alineados a la derecha en su propia fila -->
                 <div class="flex justify-end space-x-2">
                     <button class="px-4 py-1 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 text-sm">
                         Limpiar
