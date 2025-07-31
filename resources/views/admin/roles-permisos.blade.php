@@ -44,19 +44,25 @@
                         <th class="py-2 px-4 text-left">Rol</th>
                         <th class="py-2 px-4 text-left">Descripción</th>
                         <th class="py-2 px-4 text-left">Permisos</th>
+                        <th class="py-2 px-4 text-left">Objeto</th>
+                        <th class="py-2 px-4 text-left">Creado por</th>
+                        <th class="py-2 px-4 text-left">Fecha creación</th>
                         <th class="py-2 px-4 text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <template x-for="role in [
-                        {rol: 'Administrador', descripcion_rol: 'Acceso total al sistema', permisos: ['Crear', 'Editar', 'Eliminar', 'Ver']},
-                        {rol: 'Técnico', descripcion_rol: 'Gestión de tickets', permisos: ['Ver', 'Editar']},
-                        {rol: 'Cliente', descripcion_rol: 'Solo lectura de sus tickets', permisos: ['Ver']}
+                        {rol: 'Administrador', descripcion_rol: 'Acceso total al sistema', permisos: ['Crear', 'Editar', 'Eliminar', 'Ver'], objeto: 'Sistema', creado_por: 'admin', fecha_creacion: '2025-07-30 10:00:00'},
+                        {rol: 'Técnico', descripcion_rol: 'Gestión de tickets', permisos: ['Ver', 'Editar'], objeto: 'Tickets', creado_por: 'soporte', fecha_creacion: '2025-07-25 09:30:00'},
+                        {rol: 'Cliente', descripcion_rol: 'Solo lectura de sus tickets', permisos: ['Ver'], objeto: 'Tickets', creado_por: 'admin', fecha_creacion: '2025-07-20 08:15:00'}
                     ]" :key="role.rol">
                         <tr>
                             <td class="py-2 px-4" x-text="role.rol"></td>
                             <td class="py-2 px-4" x-text="role.descripcion_rol"></td>
                             <td class="py-2 px-4" x-text="role.permisos.join(', ')"></td>
+                            <td class="py-2 px-4" x-text="role.objeto"></td>
+                            <td class="py-2 px-4" x-text="role.creado_por"></td>
+                            <td class="py-2 px-4" x-text="role.fecha_creacion"></td>
                             <td class="py-2 px-4 flex gap-2">
                                 <a href="#" @click="isEditRoleModalOpen = true; roleToEdit = role"
                                     class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
@@ -131,18 +137,22 @@
                     <tr class="bg-gray-100">
                         <th class="py-2 px-4 text-left">Rol</th>
                         <th class="py-2 px-4 text-left">Descripción</th>
+                        <th class="py-2 px-4 text-left">Creado por</th>
+                        <th class="py-2 px-4 text-left">Fecha de creación</th>
                         <th class="py-2 px-4 text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <template x-for="role in [
-                        {rol: 'Administrador', descripcion_rol: 'Acceso total al sistema'},
-                        {rol: 'Técnico', descripcion_rol: 'Gestión de tickets'},
-                        {rol: 'Cliente', descripcion_rol: 'Solo lectura de sus tickets'}
+                        {rol: 'Administrador', descripcion_rol: 'Acceso total al sistema', creado_por: 'admin', fecha_creacion: '2025-07-30 10:00:00'},
+                        {rol: 'Técnico', descripcion_rol: 'Gestión de tickets', creado_por: 'soporte', fecha_creacion: '2025-07-25 09:30:00'},
+                        {rol: 'Cliente', descripcion_rol: 'Solo lectura de sus tickets', creado_por: 'admin', fecha_creacion: '2025-07-20 08:15:00'}
                     ]" :key="role.rol">
                         <tr>
                             <td class="py-2 px-4" x-text="role.rol"></td>
                             <td class="py-2 px-4" x-text="role.descripcion_rol"></td>
+                            <td class="py-2 px-4" x-text="role.creado_por"></td>
+                            <td class="py-2 px-4" x-text="role.fecha_creacion"></td>
                             <td class="py-2 px-4 flex gap-2">
                                 <a href="#" @click="isEditRoleModalOpen = true; roleToEdit = role"
                                     class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
@@ -187,7 +197,8 @@
         <x-admin.tabla-crud :titulo="'Asignación de Roles a Usuarios'">
             <x-slot name="filtros">
                 <div class="flex flex-wrap gap-4 mb-4 items-center">
-                    <input type="text" class="border rounded px-3 py-2 flex-1 min-w-[200px]" placeholder="Buscar usuario..." />
+                    <input type="text" class="border rounded px-3 py-2 flex-1 min-w-[200px]"
+                        placeholder="Buscar usuario..." />
                     <select class="border rounded px-3 py-2">
                         <option value="">Todos los roles</option>
                         <option>Administrador</option>
@@ -197,28 +208,36 @@
                 </div>
             </x-slot>
             <x-slot name="boton">
-                <button @click="isModalOpen = true" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Asignar Rol</button>
+                <button @click="isModalOpen = true"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Asignar
+                    Rol</button>
             </x-slot>
             <table class="min-w-full text-sm">
                 <thead>
                     <tr class="bg-gray-100">
                         <th class="py-2 px-4 text-left">Usuario</th>
                         <th class="py-2 px-4 text-left">Rol</th>
+                        <th class="py-2 px-4 text-left">Creado por</th>
+                        <th class="py-2 px-4 text-left">Fecha de creación</th>
                         <th class="py-2 px-4 text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <template x-for="asignacion in [
-                        {usuario: 'juan.perez', rol: 'Administrador'},
-                        {usuario: 'ana.lopez', rol: 'Supervisor'},
-                        {usuario: 'admin', rol: 'Cliente'}
+                        {usuario: 'juan.perez', rol: 'Administrador', creado_por: 'admin', fecha_creacion: '2025-07-30 10:00:00'},
+                        {usuario: 'ana.lopez', rol: 'Supervisor', creado_por: 'soporte', fecha_creacion: '2025-07-25 09:30:00'},
+                        {usuario: 'admin', rol: 'Cliente', creado_por: 'admin', fecha_creacion: '2025-07-20 08:15:00'}
                     ]" :key="asignacion.usuario + '-' + asignacion.rol">
                         <tr>
                             <td class="py-2 px-4" x-text="asignacion.usuario"></td>
                             <td class="py-2 px-4" x-text="asignacion.rol"></td>
+                            <td class="py-2 px-4" x-text="asignacion.creado_por"></td>
+                            <td class="py-2 px-4" x-text="asignacion.fecha_creacion"></td>
                             <td class="py-2 px-4 flex gap-2">
-                                <a href="#" @click="isEditRoleModalOpen = true; roleToEdit = asignacion" class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                                <a href="#" @click="isDeleteRoleModalOpen = true; roleToDelete = asignacion" class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
+                                <a href="#" @click="isEditRoleModalOpen = true; roleToEdit = asignacion"
+                                    class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
+                                <a href="#" @click="isDeleteRoleModalOpen = true; roleToDelete = asignacion"
+                                    class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     </template>
@@ -226,7 +245,8 @@
             </table>
         </x-admin.tabla-crud>
         <!-- Modal Asignar Rol -->
-        <x-admin.form-modal modalName="isModalOpen" title="Asignar Rol a Usuario" submitLabel="Asignar Rol" maxWidth="max-w-md">
+        <x-admin.form-modal modalName="isModalOpen" title="Asignar Rol a Usuario" submitLabel="Asignar Rol"
+            maxWidth="max-w-md">
             <div class="mb-4">
                 <label class="block text-sm font-medium mb-1">Usuario</label>
                 <select class="w-full border rounded px-3 py-2">
@@ -245,10 +265,12 @@
             </div>
         </x-admin.form-modal>
         <!-- Modal Editar Asignación -->
-        <x-admin.edit-modal modalName="isEditRoleModalOpen" title="Editar Asignación" itemToEdit="roleToEdit" maxWidth="max-w-md">
+        <x-admin.edit-modal modalName="isEditRoleModalOpen" title="Editar Asignación" itemToEdit="roleToEdit"
+            maxWidth="max-w-md">
             <div class="mb-4">
                 <label class="block text-sm font-medium mb-1">Usuario</label>
-                <input type="text" class="w-full border rounded px-3 py-2 bg-gray-100" :value="roleToEdit?.usuario" readonly />
+                <input type="text" class="w-full border rounded px-3 py-2 bg-gray-100" :value="roleToEdit?.usuario"
+                    readonly />
             </div>
             <div class="mb-4">
                 <label class="block text-sm font-medium mb-1">Rol</label>
@@ -259,7 +281,8 @@
                 </select>
             </div>
         </x-admin.edit-modal>
-        <x-admin.confirmation-modal modalName="isDeleteRoleModalOpen" itemToDelete="roleToDelete" message="¿Estás seguro de que quieres eliminar la asignación?" />
+        <x-admin.confirmation-modal modalName="isDeleteRoleModalOpen" itemToDelete="roleToDelete"
+            message="¿Estás seguro de que quieres eliminar la asignación?" />
     </div>
 </div>
 

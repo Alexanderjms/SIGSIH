@@ -63,3 +63,24 @@
     backface-visibility: hidden;
     perspective: 1000;
 }
+
+aside::-webkit-scrollbar {
+    width: 10px;
+    background: #1f2937;
+}
+aside::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid #1f2937;
+    min-height: 40px;
+}
+aside::-webkit-scrollbar-thumb:hover {
+    background: #fde047;
+}
+aside::-webkit-scrollbar-track {
+    background: #1f2937;
+    border-radius: 8px;
+}
+aside {
+    scrollbar-width: thin;
+    scrollbar-color: #facc15 #1f2937;
+}

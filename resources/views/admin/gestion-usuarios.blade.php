@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 
-@section('page-header')
-@endsection
 
 @section('content')
 <div
@@ -40,6 +38,8 @@
                     <th class="py-2 px-4 text-left">Usuario</th>
                     <th class="py-2 px-4 text-left">Correo Electrónico</th>
                     <th class="py-2 px-4 text-left">Estado</th>
+                    <th class="py-2 px-4 text-left">Creado por</th>
+                    <th class="py-2 px-4 text-left">Fecha de creación</th>
                     <th class="py-2 px-4 text-left">Acciones</th>
                 </tr>
             </thead>
@@ -51,6 +51,8 @@
                     <td class="py-2 px-4">
                         <span class="bg-green-100 text-green-700 px-2 py-1 rounded">Activo</span>
                     </td>
+                    <td class="py-2 px-4">admin</td>
+                    <td class="py-2 px-4">2025-07-30 10:00:00</td>
                     <td class="py-2 px-4 flex gap-2">
                         <a href="#"
                             @click="isEditUserModalOpen = true; userToEdit = {nombre: 'Juan Pérez', usuario: 'jperez', correo: 'juan.perez@example.com', estado: 'Activo'}"
@@ -66,6 +68,8 @@
                     <td class="py-2 px-4">
                         <span class="bg-green-100 text-green-700 px-2 py-1 rounded">Activo</span>
                     </td>
+                    <td class="py-2 px-4">soporte</td>
+                    <td class="py-2 px-4">2025-07-25 09:30:00</td>
                     <td class="py-2 px-4 flex gap-2">
                         <a href="#"
                             @click="isEditUserModalOpen = true; userToEdit = {nombre: 'Ana López', usuario: 'alopez', correo: 'ana.lopez@example.com', estado: 'Activo'}"
@@ -81,6 +85,8 @@
                     <td class="py-2 px-4">
                         <span class="bg-red-100 text-red-700 px-2 py-1 rounded">Inactivo</span>
                     </td>
+                    <td class="py-2 px-4">admin</td>
+                    <td class="py-2 px-4">2025-07-20 08:15:00</td>
                     <td class="py-2 px-4 flex gap-2">
                         <a href="#"
                             @click="isEditUserModalOpen = true; userToEdit = {nombre: 'Carlos Ruiz', usuario: 'cruiz', correo: 'carlos.ruiz@example.com', estado: 'Inactivo'}"
@@ -96,6 +102,8 @@
                     <td class="py-2 px-4">
                         <span class="bg-green-100 text-green-700 px-2 py-1 rounded">Activo</span>
                     </td>
+                    <td class="py-2 px-4">admin</td>
+                    <td class="py-2 px-4">2025-07-18 11:45:00</td>
                     <td class="py-2 px-4 flex gap-2">
                         <a href="#"
                             @click="isEditUserModalOpen = true; userToEdit = {nombre: 'María Torres', usuario: 'mtorres', correo: 'maria.torres@example.com', estado: 'Activo'}"
@@ -111,6 +119,8 @@
                     <td class="py-2 px-4">
                         <span class="bg-red-100 text-red-700 px-2 py-1 rounded">Inactivo</span>
                     </td>
+                    <td class="py-2 px-4">soporte</td>
+                    <td class="py-2 px-4">2025-07-15 14:20:00</td>
                     <td class="py-2 px-4 flex gap-2">
                         <a href="#"
                             @click="isEditUserModalOpen = true; userToEdit = {nombre: 'Pedro Gómez', usuario: 'pgomez', correo: 'pedro.gomez@example.com', estado: 'Inactivo'}"
@@ -126,6 +136,8 @@
                     <td class="py-2 px-4">
                         <span class="bg-green-100 text-green-700 px-2 py-1 rounded">Activo</span>
                     </td>
+                    <td class="py-2 px-4">admin</td>
+                    <td class="py-2 px-4">2025-07-10 16:05:00</td>
                     <td class="py-2 px-4 flex gap-2">
                         <a href="#"
                             @click="isEditUserModalOpen = true; userToEdit = {nombre: 'Lucía Fernández', usuario: 'lfernandez', correo: 'lucia.fernandez@example.com', estado: 'Activo'}"

@@ -3,9 +3,10 @@
         $el.classList.add('pointer-events-none', 'opacity-50');
     }
   "
-    class="bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto scrollbar-hidden transition-all duration-300 ease-in-out relative">
+    class="bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto transition-all duration-300 ease-in-out relative"
+    style="scrollbar-width: thin; scrollbar-color: #4B5563 #1F2937;">
+    
 
-    <!-- BLOQUEO VISUAL -->
     <template x-if="$store.perfil.firstTime">
         <div class="absolute inset-0 z-50 bg-black bg-opacity-60 flex flex-col items-center justify-center">
             <div class="bg-white rounded-lg shadow p-6 text-center">
@@ -65,6 +66,15 @@
                             Gestión de Objetos
                         </x-admin.sidebar-link>
                     </li>
+
+
+                    <li>
+                        <x-admin.sidebar-link :href="route('admin.parametros')"
+                            :active="request()->routeIs('admin.parametros')" class="py-1 px-3">
+                            <i class="fas fa-sliders-h text-sm w-4 text-center"></i>
+                            Parámetros
+                        </x-admin.sidebar-link>
+                    </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.configuracion-acceso')"
                             :active="request()->routeIs('admin.configuracion-acceso')" class="py-1 px-3">
@@ -72,6 +82,7 @@
                             Configuración de accesos al sistema
                         </x-admin.sidebar-link>
                     </li>
+
                 </ul>
             </li>
 
@@ -165,6 +176,15 @@
                             Órdenes de Servicio
                         </x-admin.sidebar-link>
                     </li>
+
+                    <li>
+                        <x-admin.sidebar-link :href="route('admin.gestion-ordenes')"
+                            :active="request()->routeIs('admin.gestion-ordenes')" class="py-1 px-3">
+                            <i class="fas fa-plus text-sm w-4 text-center"></i>
+                            Gestion Ordenes de Servicios
+                        </x-admin.sidebar-link>
+                    </li>
+
                 </ul>
             </li>
 
@@ -370,10 +390,10 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.gestion-usuarios')"
-                            :active="request()->routeIs('admin.gestion-usuarios')" class="py-1 px-3">
+                        <x-admin.sidebar-link :href="route('admin.gestion-personas')"
+                            :active="request()->routeIs('admin.gestion-personas')" class="py-1 px-3">
                             <i class="fas fa-user-cog text-sm w-4 text-center"></i>
-                            Gestión de usuarios
+                            Gestión de personas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
@@ -423,14 +443,14 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
-                <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
+                <!-- <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.mantenimiento.tickets')"
                             :active="request()->routeIs('admin.mantenimiento.tickets')" class="py-1 px-3">
                             Gestión de tickets
                         </x-admin.sidebar-link>
                     </li>
-                </ul>
+                </ul> -->
             </li>
         </ul>
     </nav>
