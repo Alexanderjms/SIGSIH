@@ -156,6 +156,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.detalle-cotizacion');
     })->name('detalle-cotizacion');
 
+    // Formato Factura
+    Route::get('formato-factura', function () {
+        return view('admin.formato-factura');
+    })->name('formato-factura');
+});
     // Parámetros
     Route::get('parametros', function () {
         return view('admin.parametros');
