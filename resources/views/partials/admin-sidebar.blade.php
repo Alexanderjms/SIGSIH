@@ -175,6 +175,15 @@
                             Órdenes de Servicio
                         </x-admin.sidebar-link>
                     </li>
+
+                    <li>
+                        <x-admin.sidebar-link :href="route('admin.gestion-ordenes')"
+                            :active="request()->routeIs('admin.gestion-ordenes')" class="py-1 px-3">
+                            <i class="fas fa-plus text-sm w-4 text-center"></i>
+                            Gestion Ordenes de Servicios
+                        </x-admin.sidebar-link>
+                    </li>
+
                 </ul>
             </li>
 

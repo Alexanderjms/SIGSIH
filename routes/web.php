@@ -160,6 +160,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('gestion-personas', function () {
         return view('admin.gestion-personas');
     })->name('gestion-personas');
+
+    // Gestión de Órdenes de Servicio
+    Route::get('gestion-ordenes', function () {
+        return view('admin.gestion-ordenes');
+    })->name('gestion-ordenes');
 });
 
 // Login route
