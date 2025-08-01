@@ -29,29 +29,6 @@
             --border-color: #003B6D;
         }
 
-        /* --- Cabecera con Logo --- */
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            gap: 20px;
-        }
-
-        .logo-img {
-            width: 220px;
-            /* Ancho ajustado para el logo real */
-            height: auto;
-        }
-
-        .company-details {
-            font-weight: bold;
-            font-size: 11px;
-        }
-
-        .company-details p {
-            margin: 4px 0;
-        }
-
         /* --- Título Principal --- */
         .main-title {
             text-align: center;
@@ -60,50 +37,49 @@
             margin: 30px 0;
         }
 
-        /* --- Contenedores Flex y Grid --- */
+        /* --- Contenedores Flex --- */
         .flex-container {
             display: flex;
             gap: 15px;
             margin-bottom: 15px;
             align-items: stretch;
         }
-
-        .grid-container {
-            display: grid;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* --- Estilo de Campo Individual (Header azul + contenido) --- */
-        .field-group {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
+        
+        /* --- Estilos de Campos (aplicables en varias partes) --- */
         .field-header {
             background-color: var(--primary-blue);
             color: var(--text-light);
             padding: 4px 8px;
             font-weight: bold;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
         }
 
         .field-content {
             border: 1px solid var(--border-color);
             border-top: none;
             height: 25px;
-            /* Altura fija para los campos de una línea */
             padding: 5px;
             box-sizing: border-box;
-            border-bottom-left-radius: 3px;
-            border-bottom-right-radius: 3px;
         }
 
         .field-content-large {
             height: 100px;
-            /* Altura para textareas */
+            background-color: #fff;
+            background-image: repeating-linear-gradient(#fff,
+                    #fff 32px,
+                    #000 32px,
+                    #000 33px);
+            background-size: 100% 34px;
+        }
+
+        .field-content-lines {
+            height: 60px;
+            background-color: #fff;
+            background-image: repeating-linear-gradient(#fff,
+                    #fff 18px,
+                    #000 18px,
+                    #000 19px);
+            background-size: 100% 19px;
+            border-bottom: none;
         }
 
         .field-content-checkboxes {
@@ -121,45 +97,6 @@
         }
 
         /* --- Layouts Específicos --- */
-        .top-fields {
-            justify-content: flex-end;
-            /* Alinea los campos a la derecha */
-        }
-
-        .date-fields {
-            flex-direction: column;
-            width: 40%;
-        }
-
-        .status-field {
-            width: 60%;
-            align-self: flex-start;
-        }
-
-        .status-field .field-content {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .status-field label {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .client-info-grid {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .span-2 {
-            grid-column: span 2;
-        }
-
-        .span-4 {
-            grid-column: span 4;
-        }
-
         .signature-fields {
             justify-content: space-between;
         }
@@ -218,37 +155,14 @@
             font-weight: bold;
         }
 
-        .dates-table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 390px;
-            /* Igual que tu min-width anterior */
-            margin: 0;
-        }
-
-        .dates-table th,
-        .dates-table td {
-            border: 1px solid #000;
-            padding: 6px 8px;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .dates-table th {
-            background-color: #003B6D;
-            color: #fff;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-
-        /* --- Estado de la Orden --- */
+        /* Estilos para la tabla de estado */
         .estado-tabla {
             border-collapse: separate;
             border-spacing: 0;
-            width: 500px;
-            font-family: 'Arial Black', Arial, Helvetica, sans-serif;
-            font-size: 2rem;
+            width: 30em;
+            height: 3em;
+            font-family: Arial, sans-serif;
+            font-size: 9px;
             margin-top: 10px;
             box-sizing: border-box;
         }
@@ -257,90 +171,113 @@
             background: #24497A;
             color: #fff;
             text-align: center;
-            font-size: 2rem;
-            font-family: 'Arial Black', Arial, Helvetica, sans-serif;
-            border: 2px solid #000;
-            padding: 6px 0 4px 0;
-            letter-spacing: 1px;
+            font-size: 10px;
+            border: 1px solid #000;
+            letter-spacing: 0.5px;
         }
 
         .estado-tabla td {
             background: #fff;
-            text-align: left;
-            font-size: 1.6rem;
-            font-family: 'Arial Black', Arial, Helvetica, sans-serif;
-            border: 2px solid #000;
-            height: 45px;
+            text-align: center;
+            font-size: 9px;
+            border: 1px solid #000;
+            height: 20px;
             vertical-align: middle;
-            padding: 0 0 0 14px;
+            padding: 2px;
         }
 
         .estado-tabla .bold {
             font-weight: bold;
-            font-family: 'Arial Black', Arial, Helvetica, sans-serif;
         }
 
         .estado-tabla .empty {
-            background: #fff;
-            border: 2px solid #000;
-            width: 40px;
+            width: 20px;
             padding: 0;
         }
 
-        .estado-tabla .center {
-            text-align: center;
-            padding-left: 0;
-        }
-
-        /* Ajusta el ancho de las celdas según imagen */
-        .estado-tabla .col-izq {
-            width: 200px;
-        }
-
+        .estado-tabla .col-izq,
         .estado-tabla .col-der {
-            width: 200px;
+            width: 60px;
         }
 
-        /* Sin bordes redondeados, bien cuadrados */
-        .estado-tabla,
-        .estado-tabla th,
-        .estado-tabla td {
-            border-radius: 0;
-        }
+        /* --- Estilos para la Tabla de Fechas --- */
+.dates-table {
+    border-collapse: collapse; /* Solución clave: Fusiona los bordes en uno solo. */
+    width: 390px; /* Ancho fijo para mantener el diseño. */
+}
+
+.dates-table th, .dates-table td {
+    border: 1px solid #003B6D; /* Borde único y fino para todas las celdas. */
+    padding: 6px 10px;
+    text-align: center;
+}
+
+.dates-table th {
+    background-color: #003B6D;
+    color: #fff;
+    font-weight: bold;
+}
+
+.dates-table td {
+    height: 25px; /* Altura para las celdas vacías. */
+}
+
+/* --- Estilos para la Tabla de Estado de la Orden --- */
+.estado-tabla {
+    border-collapse: collapse; /* Solución clave: También aquí para bordes finos. */
+    border: 1px solid #003B6D; /* Borde exterior único para la tabla. */
+    margin-top: 10px; /* Alinea la tabla con la segunda fila de la tabla de fechas. */
+}
+
+.estado-tabla th, .estado-tabla td {
+    border: 1px solid #003B6D; /* Borde único y fino. */
+    text-align: center;
+}
+
+.estado-tabla th {
+    background-color: #003B6D;
+    color: #fff;
+    padding: 6px;
+    font-size: 10px;
+}
+
+.estado-tabla td {
+    font-weight: bold;
+    padding: 6px;
+    height: 28px;
+    width: 80px; /* Ancho para las celdas de texto. */
+}
+
+.estado-tabla .checkbox-cell {
+    width: 30px; /* Ancho reducido para las celdas de checkbox. */
+    font-weight: normal;
+}
     </style>
 </head>
 
 <body>
 
     <div class="container">
-        <!-- HEADER: solo logo + datos -->
+        <!-- HEADER -->
         <header style="margin-bottom:10px;">
             <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                 <tr>
-                    <!-- 1) Logo -->
                     <td style="width:220px; vertical-align:middle; padding:0;">
-                        <img src="{{ asset('images/LOGO_ACF.jpg') }}" alt="Logo"
-                            style="width:220px; height:auto; display:block;">
+                        <img src="https://i.imgur.com/your-logo.png" alt="Logo" style="width:220px; height:auto; display:block;">
                     </td>
-
-                    <!-- 2) Texto de la empresa, limitamos a 400px -->
-                    <td style="width:400px; text-align:center; vertical-align:middle; 
-                 font-weight:bold; font-size:13px; padding:0 5px;">
+                    <td style="width:400px; text-align:center; vertical-align:middle; font-weight:bold; font-size:13px; padding:0 5px;">
                         Col. Las Mercedes, Av. Los Espliegos y Calle<br>
                         Los Eucaliptos N°10, San Salvador, El Salvador,<br>
                         Tel. +503 2209-9400<br>
                         supportlat@acftechnologies.com<br>
                         www.acftechnologies.com
                     </td>
-
-                    <!-- 3) Celda “fantasma” para reservar espacio -->
                     <td style="width:270px; padding:0;"></td>
                 </tr>
             </table>
         </header>
 
-
-        <!-- CAJITA Nº SOLICITUD: debajo del header -->
+        <!-- Nº SOLICITUD -->
         <div style="display:flex; justify-content:flex-end; margin-bottom:15px;">
             <table class="solicitud-table">
                 <thead>
@@ -358,197 +295,151 @@
             </table>
         </div>
 
-
         <!-- TÍTULO PRINCIPAL -->
         <div class="main-title" style="margin:-10px 0 30px;">
             ORDEN DE SERVICIO
         </div>
 
         <!-- FECHAS Y ESTADO -->
-        <div style="display:flex; justify-content:flex-start; gap:60px; margin-bottom:30px;">
-            <table style="border-collapse:collapse; border-spacing:0; min-width:390px;">
-                <tr>
-                    <td
-                        style="background:#003B6D; color:#fff; font-weight:bold; text-align:center; padding:6px 10px; border-top-left-radius:3px; border-right:1px solid #003B6D;">
-                        FECHA DE RECEPCION
-                    </td>
-                    <td
-                        style="background:#003B6D; color:#fff; font-weight:bold; text-align:center; padding:6px 10px; border-top-right-radius:3px;">
-                        HORA DE RECEPCION
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        style="border-left:1px solid #003B6D; border-bottom:1px solid #003B6D; border-right:1px solid #003B6D; height:25px; background:#fff;">
-                    </td>
-                    <td style="border-right:1px solid #003B6D; border-bottom:1px solid #003B6D; background:#fff;">
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        style="background:#003B6D; color:#fff; font-weight:bold; text-align:center; padding:6px 10px; border-right:1px solid #003B6D;">
-                        FECHA DE INICIO
-                    </td>
-                    <td style="background:#003B6D; color:#fff; font-weight:bold; text-align:center;">
-                        HORA DE INICIO
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        style="border-left:1px solid #003B6D; border-bottom:1px solid #003B6D; border-right:1px solid #003B6D; height:25px; background:#fff;">
-                    </td>
-                    <td style="border-right:1px solid #003B6D; border-bottom:1px solid #003B6D; background:#fff;">
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        style="background:#003B6D; color:#fff; font-weight:bold; text-align:center; padding:6px 10px; border-bottom-left-radius:3px; border-right:1px solid #003B6D;">
-                        FECHA DE CULMINACION
-                    </td>
-                    <td
-                        style="background:#003B6D; color:#fff; font-weight:bold; text-align:center; border-bottom-right-radius:3px;">
-                        HORA DE CULMINACION
-                    </td>
-                </tr>
-                <tr>
-                    <td
-                        style="border-left:1px solid #003B6D; border-bottom:1px solid #003B6D; border-right:1px solid #003B6D; height:25px; background:#fff; border-bottom-left-radius:3px;">
-                    </td>
-                    <td
-                        style="border-right:1px solid #003B6D; border-bottom:1px solid #003B6D; background:#fff; border-bottom-right-radius:3px;">
-                    </td>
-                </tr>
-            </table>
+        <!-- INICIO: SECCIÓN DE FECHAS Y ESTADO CORREGIDA -->
+<div style="display:flex; justify-content:flex-start; gap:19em; align-items:flex-start; margin-bottom:30px;">
+    
+    <!-- Tabla de Fechas -->
+    <table class="dates-table">
+        <tr>
+            <th>FECHA DE RECEPCION</th>
+            <th>HORA DE RECEPCION</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>FECHA DE INICIO</th>
+            <th>HORA DE INICIO</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>FECHA DE CULMINACION</th>
+            <th>HORA DE CULMINACION</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 
+    <!-- Tabla de Estado -->
+    <table class="estado-tabla">
+        <thead>
+            <tr>
+                <th colspan="4">ESTADO DE LA ORDEN</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ABIERTA</td>
+                <td class="checkbox-cell"></td>
+                <td>CERRADA</td>
+                <td class="checkbox-cell"></td>
+            </tr>
+        </tbody>
+    </table>
 
-            <!-- Estado de la Orden: sustituye aquí tu código anterior -->
-            <div style="flex:1; display:flex; justify-content:flex-end;">
-                <table class="estado-tabla">
-                    <tr>
-                        <th colspan="4" style="font-size:2rem;">ESTADO DE LA ORDEN</th>
-                    </tr>
-                    <tr>
-                        <td class="bold col-izq">ABIERTA</td>
-                        <td class="empty"></td>
-                        <td class="bold col-der">CERRADA</td>
-                        <td class="empty"></td>
-                    </tr>
-                </table>
-            </div>
-
-
-
-
-
-        </div>
+</div>
+<!-- FIN: SECCIÓN DE FECHAS Y ESTADO CORREGIDA -->
 
         <!-- DATOS DEL CLIENTE -->
-        <div class="grid-container client-info-grid">
-            <div class="field-group span-2">
-                <div class="field-header">CLIENTE:</div>
-                <div class="field-content"></div>
-            </div>
-            <div class="field-group span-2">
-                <div class="field-header">CONTACTO</div>
-                <div class="field-content"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-header">CIUDAD</div>
-                <div class="field-content"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-header">OFICINA</div>
-                <div class="field-content"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-header">TELEFONOS</div>
-                <div class="field-content"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-header">CORREO ELECTRONICO</div>
-                <div class="field-content"></div>
-            </div>
-            <div class="field-group span-4">
-                <div class="field-header">DIRECCION</div>
-                <div class="field-content"></div>
-            </div>
-        </div>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <td colspan="2" style="padding: 0; vertical-align: top; border: 1px solid var(--border-color); border-right: none;"><div class="field-header">CLIENTE:</div><div style="height: 25px;"></div></td>
+                    <td colspan="2" style="padding: 0; vertical-align: top; border: 1px solid var(--border-color);"><div class="field-header">CONTACTO</div><div style="height: 25px;"></div></td>
+                </tr>
+                <tr>
+                    <td style="width: 25%; padding: 0; vertical-align: top; border: 1px solid var(--border-color); border-top: none; border-right: none;"><div class="field-header">CIUDAD</div><div style="height: 25px;"></div></td>
+                    <td style="width: 25%; padding: 0; vertical-align: top; border: 1px solid var(--border-color); border-top: none; border-right: none;"><div class="field-header">OFICINA</div><div style="height: 25px;"></div></td>
+                    <td style="width: 25%; padding: 0; vertical-align: top; border: 1px solid var(--border-color); border-top: none; border-right: none;"><div class="field-header">TELEFONOS</div><div style="height: 25px;"></div></td>
+                    <td style="width: 25%; padding: 0; vertical-align: top; border: 1px solid var(--border-color); border-top: none;"><div class="field-header">CORREO ELECTRONICO</div><div style="height: 25px;"></div></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="padding: 0; vertical-align: top; border: 1px solid var(--border-color); border-top: none;"><div class="field-header">DIRECCION</div><div style="height: 25px;"></div></td>
+                </tr>
+            </tbody>
+        </table>
 
-        <!-- DESCRIPCIONES -->
-        <div class="field-group" style="margin-bottom:15px;">
-            <div class="field-header">DESCRIPCION DEL SERVICIO / FALLA (CLIENTE):</div>
-            <div class="field-content field-content-large"></div>
-        </div>
-        <div class="field-group" style="margin-bottom:15px;">
-            <div class="field-header">DESCRIPCION DEL SERVICIO / FALLA (PERSONAL ACF):</div>
-            <div class="field-content field-content-large"></div>
-        </div>
-        <div class="field-group" style="margin-bottom:15px;">
-            <div class="field-header">ACTIVIDAD REALIZADA PARA LA SOLUCIÓN (ADJUNTAR FOTOS/VIDEO DE LA ACTIVIDAD):</div>
-            <div class="field-content field-content-large"></div>
-        </div>
-
-        <!-- REPUESTOS Y CALIFICACIÓN -->
-        <div class="field-group" style="margin-bottom:15px;">
-            <div class="field-header">SE INSTALO ALGUN REPUESTO:</div>
-            <div class="field-content field-content-checkboxes">
-                <label><input type="checkbox"> SI</label>
-                <label><input type="checkbox"> NO</label>
-                <label>CUAL: <span style="border-bottom:1px solid #333; flex-grow:1; margin-left:5px;"></span></label>
-            </div>
-        </div>
-        <div class="field-group" style="margin-bottom:15px;">
-            <div class="field-header">CALIFICACION DEL SERVICIO</div>
-            <div class="field-content field-content-checkboxes">
-                <label><input type="checkbox"> EXCELENTE</label>
-                <label><input type="checkbox"> BUENO</label>
-                <label><input type="checkbox"> REGULAR</label>
-                <label><input type="checkbox"> DEFICIENTE</label>
-            </div>
-        </div>
+        <!-- INICIO: BLOQUE UNIFICADO DE DESCRIPCIONES Y CALIFICACIÓN -->
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border-color); margin-bottom: 15px;">
+            <tbody>
+                <!-- Descripcion Cliente -->
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 0;">
+                        <div class="field-header">DESCRIPCION DEL SERVICIO / FALLA (CLIENTE):</div>
+                        <div class="field-content-large"></div>
+                    </td>
+                </tr>
+                <!-- Descripcion Personal ACF -->
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 0;">
+                        <div class="field-header">DESCRIPCION DEL SERVICIO / FALLA (PERSONAL ACF):</div>
+                        <div class="field-content-large"></div>
+                    </td>
+                </tr>
+                <!-- Actividad Realizada -->
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 0;">
+                        <div class="field-header">ACTIVIDAD REALIZADA PARA LA SOLUCIÓN (ADJUNTAR FOTOS/VIDEO DE LA ACTIVIDAD):</div>
+                        <div class="field-content-large"></div>
+                    </td>
+                </tr>
+                <!-- Instalación de Repuesto -->
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 0;">
+                        <div class="field-header">SE INSTALO ALGUN REPUESTO:</div>
+                        <div class="field-content-checkboxes">
+                            <label><input type="checkbox"> SI</label>
+                            <label><input type="checkbox"> NO</label>
+                            <label style="flex-grow: 1;">CUAL: <span style="border-bottom:1px solid #333; flex-grow:1; margin-left:5px;"></span></label>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Calificación del Servicio -->
+                <tr>
+                    <td style="padding: 0;">
+                        <div class="field-header">CALIFICACION DEL SERVICIO</div>
+                        <div class="field-content-checkboxes">
+                            <label><input type="checkbox"> EXCELENTE</label>
+                            <label><input type="checkbox"> BUENO</label>
+                            <label><input type="checkbox"> REGULAR</label>
+                            <label><input type="checkbox"> DEFICIENTE</label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- FIN: BLOQUE UNIFICADO -->
 
         <!-- FIRMAS -->
         <div class="flex-container signature-fields">
             <div class="signature-block">
                 <div class="field-header">CLIENTE:</div>
                 <div class="signature-block-content">
-                    <div class="field-group">
-                        <div class="field-header">NOMBRE Y APELLIDO</div>
-                        <div class="field-content"></div>
-                    </div>
-                    <div class="field-group">
-                        <div class="field-header">C.I.</div>
-                        <div class="field-content"></div>
-                    </div>
-                    <div class="field-group">
-                        <div class="field-header">CARGO</div>
-                        <div class="field-content"></div>
-                    </div>
-                    <div class="field-group">
-                        <div class="field-header">FIRMA</div>
-                        <div class="field-content" style="height:40px;"></div>
-                    </div>
+                    <div class="field-group"><div class="field-header">NOMBRE Y APELLIDO</div><div class="field-content"></div></div>
+                    <div class="field-group"><div class="field-header">C.I.</div><div class="field-content"></div></div>
+                    <div class="field-group"><div class="field-header">CARGO</div><div class="field-content"></div></div>
+                    <div class="field-group"><div class="field-header">FIRMA</div><div class="field-content field-content-lines"></div></div>
                 </div>
             </div>
             <div class="signature-block">
                 <div class="field-header">ACF TECHNOLOGIES</div>
                 <div class="signature-block-content">
-                    <div class="field-group">
-                        <div class="field-header">NOMBRE Y APELLIDO</div>
-                        <div class="field-content"></div>
-                    </div>
-                    <div class="field-group">
-                        <div class="field-header">C.I.</div>
-                        <div class="field-content"></div>
-                    </div>
-                    <div class="field-group">
-                        <div class="field-header">CARGO</div>
-                        <div class="field-content"></div>
-                    </div>
-                    <div class="field-group">
-                        <div class="field-header">FIRMA</div>
-                        <div class="field-content" style="height:40px;"></div>
-                    </div>
+                    <div class="field-group"><div class="field-header">NOMBRE Y APELLIDO</div><div class="field-content"></div></div>
+                    <div class="field-group"><div class="field-header">C.I.</div><div class="field-content"></div></div>
+                    <div class="field-group"><div class="field-header">CARGO</div><div class="field-content"></div></div>
+                    <div class="field-group"><div class="field-header">FIRMA</div><div class="field-content field-content-lines"></div></div>
                 </div>
             </div>
         </div>
