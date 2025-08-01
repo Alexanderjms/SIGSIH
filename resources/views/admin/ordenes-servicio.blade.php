@@ -244,13 +244,45 @@
 .estado-tabla td {
     font-weight: bold;
     padding: 6px;
-    height: 28px;
+    height: 16px;
     width: 80px; /* Ancho para las celdas de texto. */
 }
 
 .estado-tabla .checkbox-cell {
-    width: 30px; /* Ancho reducido para las celdas de checkbox. */
+    width: 17px; /* Ancho reducido para las celdas de checkbox. */
     font-weight: normal;
+}
+
+/* Nuevo estilo para las tablas de repuestos y calificación */
+.repuesto-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+.repuesto-table th {
+    background-color: #003B6D;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding: 5px 8px;
+    border: 1px solid #000;
+}
+
+.repuesto-table td {
+    padding: 8px;
+    border: 1px solid #000;
+    height: 30px;
+}
+
+.checkbox-label {
+    display: inline-block;
+    margin-right: 25px;
+}
+
+.checkbox-container {
+    display: inline-block;
+    vertical-align: middle;
 }
     </style>
 </head>
@@ -371,7 +403,7 @@
             </tbody>
         </table>
 
-        <!-- INICIO: BLOQUE UNIFICADO DE DESCRIPCIONES Y CALIFICACIÓN -->
+        <!-- INICIO: BLOQUE UNIFICADO DE DESCRIPCIONES -->
         <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border-color); margin-bottom: 15px;">
             <tbody>
                 <!-- Descripcion Cliente -->
@@ -389,38 +421,39 @@
                     </td>
                 </tr>
                 <!-- Actividad Realizada -->
-                <tr style="border-bottom: 1px solid var(--border-color);">
+                <tr>
                     <td style="padding: 0;">
                         <div class="field-header">ACTIVIDAD REALIZADA PARA LA SOLUCIÓN (ADJUNTAR FOTOS/VIDEO DE LA ACTIVIDAD):</div>
                         <div class="field-content-large"></div>
                     </td>
                 </tr>
-                <!-- Instalación de Repuesto -->
-                <tr style="border-bottom: 1px solid var(--border-color);">
-                    <td style="padding: 0;">
-                        <div class="field-header">SE INSTALO ALGUN REPUESTO:</div>
-                        <div class="field-content-checkboxes">
-                            <label><input type="checkbox"> SI</label>
-                            <label><input type="checkbox"> NO</label>
-                            <label style="flex-grow: 1;">CUAL: <span style="border-bottom:1px solid #333; flex-grow:1; margin-left:5px;"></span></label>
-                        </div>
-                    </td>
-                </tr>
-                <!-- Calificación del Servicio -->
-                <tr>
-                    <td style="padding: 0;">
-                        <div class="field-header">CALIFICACION DEL SERVICIO</div>
-                        <div class="field-content-checkboxes">
-                            <label><input type="checkbox"> EXCELENTE</label>
-                            <label><input type="checkbox"> BUENO</label>
-                            <label><input type="checkbox"> REGULAR</label>
-                            <label><input type="checkbox"> DEFICIENTE</label>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
-        <!-- FIN: BLOQUE UNIFICADO -->
+
+        <!-- REPUESTOS (según la segunda imagen) -->
+        <table class="repuesto-table" style="margin-bottom: 0;">
+            <tr>
+                <th style="width: 30%;">SE INSTALO ALGUN REPUESTO:</th>
+                <td>
+                    <span class="checkbox-label">SI <input type="checkbox"></span>
+                    <span class="checkbox-label">NO <input type="checkbox"></span>
+                    <span>CUAL: <span style="border-bottom: 1px solid #000; display: inline-block; width: 70%;">&nbsp;</span></span>
+                </td>
+            </tr>
+        </table>
+
+        <!-- CALIFICACIÓN DEL SERVICIO (según la segunda imagen) -->
+        <table class="repuesto-table" style="margin-bottom: 15px;">
+            <tr>
+                <th style="width: 30%;">CALIFICACION DEL SERVICIO</th>
+                <td>
+                    <span class="checkbox-label">EXCELENTE <input type="checkbox"></span>
+                    <span class="checkbox-label">BUENO <input type="checkbox"></span>
+                    <span class="checkbox-label">REGULAR <input type="checkbox"></span>
+                    <span class="checkbox-label">DEFICIENTE <input type="checkbox"></span>
+                </td>
+            </tr>
+        </table>
 
         <!-- FIRMAS -->
         <div class="flex-container signature-fields">
