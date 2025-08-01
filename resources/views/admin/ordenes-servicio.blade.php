@@ -278,8 +278,15 @@
 
 .checkbox-label {
     display: inline-block;
-    margin-right: 20px; /* reducido de 25px a 20px */
+    margin-right: 20px;
     font-size: 10px;
+    vertical-align: middle;
+}
+
+.checkbox-label input {
+    vertical-align: middle;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* Estilos para la sección de firmas según la primera foto */
@@ -481,8 +488,8 @@
             <tr>
                 <th style="width: 30%;">SE INSTALO ALGUN REPUESTO:</th>
                 <td>
-                    <span class="checkbox-label">SI <input type="checkbox" style="margin:0 3px;"></span>
-                    <span class="checkbox-label">NO <input type="checkbox" style="margin:0 3px;"></span>
+                    <span class="checkbox-label">SI <input type="checkbox" style="vertical-align: middle;"></span>
+                    <span class="checkbox-label">NO <input type="checkbox" style="vertical-align: middle;"></span>
                     <span>CUAL: <span style="display: inline-block; width: 70%;">&nbsp;</span></span>
                 </td>
             </tr>
@@ -496,10 +503,10 @@
             <tr>
                 <th style="width: 30%;">CALIFICACION DEL SERVICIO</th>
                 <td>
-                    <span class="checkbox-label">EXCELENTE <input type="checkbox" style="margin:0 3px;"></span>
-                    <span class="checkbox-label">BUENO <input type="checkbox" style="margin:0 3px;"></span>
-                    <span class="checkbox-label">REGULAR <input type="checkbox" style="margin:0 3px;"></span>
-                    <span class="checkbox-label">DEFICIENTE <input type="checkbox" style="margin:0 3px;"></span>
+                    <span class="checkbox-label">EXCELENTE <input type="checkbox" style="vertical-align: middle;"></span>
+                    <span class="checkbox-label">BUENO <input type="checkbox" style="vertical-align: middle;"></span>
+                    <span class="checkbox-label">REGULAR <input type="checkbox" style="vertical-align: middle;"></span>
+                    <span class="checkbox-label">DEFICIENTE <input type="checkbox" style="vertical-align: middle;"></span>
                 </td>
             </tr>
         </table>
