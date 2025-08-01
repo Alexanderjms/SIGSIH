@@ -341,7 +341,7 @@
             <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
                 <tr>
                     <td style="width:220px; vertical-align:middle; padding:0;">
-                        <img src="https://i.imgur.com/your-logo.png" alt="Logo" style="width:220px; height:auto; display:block;">
+                        <img src="{{ asset('images/LOGO_ACF.jpg') }}" alt="Logo ACF Technologies" style="width:220px; height:auto; display:block;">
                     </td>
                     <td style="width:400px; text-align:center; vertical-align:middle; font-weight:bold; font-size:13px; padding:0 5px;">
                         Col. Las Mercedes, Av. Los Espliegos y Calle<br>
@@ -487,6 +487,9 @@
                 </td>
             </tr>
         </table>
+
+        <!-- Espacio de separación entre tablas -->
+        <div style="height: 15px;"></div>
 
         <!-- CALIFICACIÓN DEL SERVICIO (según la segunda imagen) -->
         <table class="repuesto-table" style="margin-bottom: 15px;">
