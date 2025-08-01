@@ -253,7 +253,7 @@
     font-weight: normal;
 }
 
-/* Nuevo estilo para las tablas de repuestos y calificación */
+/* Nuevo estilo para las tablas de repuestos y calificación - reduciendo altura */
 .repuesto-table {
     width: 100%;
     border-collapse: collapse;
@@ -265,24 +265,70 @@
     color: white;
     font-weight: bold;
     text-align: left;
-    padding: 5px 8px;
+    padding: 2px 8px; /* reducido de 5px a 2px */
     border: 1px solid #000;
+    font-size: 10px; /* tamaño fuente más pequeño */
 }
 
 .repuesto-table td {
-    padding: 8px;
+    padding: 4px 8px; /* reducido de 8px a 4px */
     border: 1px solid #000;
-    height: 30px;
+    height: 20px; /* reducido de 30px a 20px */
 }
 
 .checkbox-label {
     display: inline-block;
-    margin-right: 25px;
+    margin-right: 20px; /* reducido de 25px a 20px */
+    font-size: 10px;
 }
 
-.checkbox-container {
-    display: inline-block;
-    vertical-align: middle;
+/* Estilos para la sección de firmas según la primera foto */
+.firma-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #003B6D;
+}
+
+.firma-table th {
+    background-color: #003B6D;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 3px 8px;
+    font-size: 11px;
+    border-bottom: 0;
+}
+
+.firma-table tr {
+    border: none;
+}
+
+.firma-table td {
+    border: 1px solid #003B6D; /* Borde alrededor de todo el contenido */
+    padding: 0;
+    vertical-align: top;
+}
+
+.firma-row {
+    padding: 0;
+    border-bottom: 1px solid #000;
+}
+
+.firma-label {
+    font-weight: bold;
+    font-size: 10px;
+    margin: 0;
+    padding: 3px 5px;
+}
+
+.firma-space {
+    height: 25px;
+    border-bottom: 1px solid #000;
+}
+
+.firma-space-larger {
+    height: 45px;
+    border-bottom: 0; /* Sin borde en el último espacio */
 }
     </style>
 </head>
@@ -435,9 +481,9 @@
             <tr>
                 <th style="width: 30%;">SE INSTALO ALGUN REPUESTO:</th>
                 <td>
-                    <span class="checkbox-label">SI <input type="checkbox"></span>
-                    <span class="checkbox-label">NO <input type="checkbox"></span>
-                    <span>CUAL: <span style="border-bottom: 1px solid #000; display: inline-block; width: 70%;">&nbsp;</span></span>
+                    <span class="checkbox-label">SI <input type="checkbox" style="margin:0 3px;"></span>
+                    <span class="checkbox-label">NO <input type="checkbox" style="margin:0 3px;"></span>
+                    <span>CUAL: <span style="display: inline-block; width: 70%;">&nbsp;</span></span>
                 </td>
             </tr>
         </table>
@@ -447,35 +493,54 @@
             <tr>
                 <th style="width: 30%;">CALIFICACION DEL SERVICIO</th>
                 <td>
-                    <span class="checkbox-label">EXCELENTE <input type="checkbox"></span>
-                    <span class="checkbox-label">BUENO <input type="checkbox"></span>
-                    <span class="checkbox-label">REGULAR <input type="checkbox"></span>
-                    <span class="checkbox-label">DEFICIENTE <input type="checkbox"></span>
+                    <span class="checkbox-label">EXCELENTE <input type="checkbox" style="margin:0 3px;"></span>
+                    <span class="checkbox-label">BUENO <input type="checkbox" style="margin:0 3px;"></span>
+                    <span class="checkbox-label">REGULAR <input type="checkbox" style="margin:0 3px;"></span>
+                    <span class="checkbox-label">DEFICIENTE <input type="checkbox" style="margin:0 3px;"></span>
                 </td>
             </tr>
         </table>
 
-        <!-- FIRMAS -->
-        <div class="flex-container signature-fields">
-            <div class="signature-block">
-                <div class="field-header">CLIENTE:</div>
-                <div class="signature-block-content">
-                    <div class="field-group"><div class="field-header">NOMBRE Y APELLIDO</div><div class="field-content"></div></div>
-                    <div class="field-group"><div class="field-header">C.I.</div><div class="field-content"></div></div>
-                    <div class="field-group"><div class="field-header">CARGO</div><div class="field-content"></div></div>
-                    <div class="field-group"><div class="field-header">FIRMA</div><div class="field-content field-content-lines"></div></div>
-                </div>
-            </div>
-            <div class="signature-block">
-                <div class="field-header">ACF TECHNOLOGIES</div>
-                <div class="signature-block-content">
-                    <div class="field-group"><div class="field-header">NOMBRE Y APELLIDO</div><div class="field-content"></div></div>
-                    <div class="field-group"><div class="field-header">C.I.</div><div class="field-content"></div></div>
-                    <div class="field-group"><div class="field-header">CARGO</div><div class="field-content"></div></div>
-                    <div class="field-group"><div class="field-header">FIRMA</div><div class="field-content field-content-lines"></div></div>
-                </div>
-            </div>
-        </div>
+        <!-- FIRMAS según la imagen de referencia exacta -->
+<div style="display: flex; justify-content: space-between; gap: 25px; margin-top: 15px; margin-bottom: 15px;">
+    <!-- Firma Cliente -->
+    <table class="firma-table" style="width: 48%;">
+        <tr>
+            <th>CLIENTE:</th>
+        </tr>
+        <tr>
+            <td style="padding: 0;">
+                <div class="firma-label">NOMBRE Y APELLIDO</div>
+                <div class="firma-space"></div>
+                <div class="firma-label">C.I.</div>
+                <div class="firma-space"></div>
+                <div class="firma-label">CARGO</div>
+                <div class="firma-space"></div>
+                <div class="firma-label">FIRMA</div>
+                <div class="firma-space-larger"></div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Firma ACF -->
+    <table class="firma-table" style="width: 48%;">
+        <tr>
+            <th>ACF TECHNOLOGIES</th>
+        </tr>
+        <tr>
+            <td style="padding: 0;">
+                <div class="firma-label">NOMBRE Y APELLIDO</div>
+                <div class="firma-space"></div>
+                <div class="firma-label">C.I.</div>
+                <div class="firma-space"></div>
+                <div class="firma-label">CARGO</div>
+                <div class="firma-space"></div>
+                <div class="firma-label">FIRMA</div>
+                <div class="firma-space-larger"></div>
+            </td>
+        </tr>
+    </table>
+</div>
 
     </div>
 
