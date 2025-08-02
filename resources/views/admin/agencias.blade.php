@@ -1,54 +1,283 @@
+
 @extends('layouts.admin')
 
+@section('title', 'Gestión de Agencias')
+
 @section('content')
-    <div class="container mx-auto px-4 sm:px-8">
-        <div class="py-8">
-            <div>
-                <h2 class="text-2xl font-semibold leading-tight nunito-bold">Agencias</h2>
-            </div>
-            <div class="my-2 flex sm:flex-row flex-col">
-                <div class="block relative">
-                    <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
-                        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
-                            <path d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"></path>
-                        </svg>
-                    </span>
-                    <input placeholder="Buscar agencia"
-                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
-                </div>
-            </div>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    <table class="min-w-full leading-normal">
-                        <thead>
-                            <tr>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nombre</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ubicación</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Teléfono</th>
-                                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">Agencia Central</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">Tegucigalpa, Honduras</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">+504 2222-3333</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                    <button class="text-blue-500 hover:text-blue-700">Ver</button>
-                                    <button class="text-green-500 hover:text-green-700 ml-3">Editar</button>
-                                    <button class="text-red-500 hover:text-red-700 ml-3">Eliminar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div x-data="{ tab: 'agencias', isAgenciaModalOpen: false, isPaisModalOpen: false, isDepartamentoModalOpen: false, isCiudadModalOpen: false, isDireccionModalOpen: false, agenciaToEdit: null, agenciaToDelete: null }">
+  <div class="w-full">
+    <ul class="flex border-b nunito-bold">
+      <li @click="tab='agencias'" :class="tab==='agencias' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Agencias</li>
+      <li @click="tab='pais'" :class="tab==='pais' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">País</li>
+      <li @click="tab='departamento'" :class="tab==='departamento' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Departamento</li>
+      <li @click="tab='ciudad'" :class="tab==='ciudad' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Ciudad</li>
+      <li @click="tab='direccion'" :class="tab==='direccion' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Dirección</li>
+    </ul>
+
+    <div x-show="tab==='agencias'" class="overflow-x-auto w-full">
+      <div class="bg-white rounded-lg shadow p-6 mt-6 w-full">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
+          <h2 class="text-2xl text-gray-800 nunito-bold">Agencias</h2>
+          <div class="flex flex-col sm:flex-row gap-2 flex-1 md:ml-6 nunito-bold">
+            <input type="text" placeholder="Buscar agencia..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+            <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+              <option class="nunito-bold" value="">Todas las ciudades</option>
+              <option class="nunito-bold">Tegucigalpa</option>
+              <option class="nunito-bold">San Pedro Sula</option>
+            </select>
+          </div>
+          <button @click="isAgenciaModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nueva agencia</button>
         </div>
+        <table class="min-w-full text-sm w-full">
+          <thead class="bg-gray-100 nunito-bold">
+            <tr>
+              <th class="py-2 px-4 text-left">Nombre</th>
+              <th class="py-2 px-4 text-left">Horario</th>
+              <th class="py-2 px-4 text-left">Dirección</th>
+              <th class="py-2 px-4 text-left">Ciudad</th>
+              <th class="py-2 px-4 text-left">Departamento</th>
+              <th class="py-2 px-4 text-left">País</th>
+              <th class="py-2 px-4 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">Agencia Central</td>
+              <td class="py-2 px-4">Lunes a Viernes, 8am - 5pm</td>
+              <td class="py-2 px-4">Col. Centro</td>
+              <td class="py-2 px-4">Tegucigalpa</td>
+              <td class="py-2 px-4">Francisco Morazán</td>
+              <td class="py-2 px-4">Honduras</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
+                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <div x-show="tab==='pais'" class="overflow-x-auto w-full">
+      <div class="bg-white rounded-lg shadow p-6 mt-6">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <h2 class="text-2xl text-gray-800 nunito-bold">País</h2>
+          <button @click="isPaisModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo país</button>
+        </div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-100 nunito-bold">
+            <tr>
+              <th class="py-2 px-4 text-left">ID País</th>
+              <th class="py-2 px-4 text-left">Nombre País</th>
+              <th class="py-2 px-4 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">1</td>
+              <td class="py-2 px-4">Honduras</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
+                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div x-show="tab==='departamento'" class="overflow-x-auto w-full">
+      <div class="bg-white rounded-lg shadow p-6 mt-6">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <h2 class="text-2xl text-gray-800 nunito-bold">Departamento</h2>
+          <button @click="isDepartamentoModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo departamento</button>
+        </div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-100 nunito-bold">
+            <tr>
+              <th class="py-2 px-4 text-left">ID Departamento</th>
+              <th class="py-2 px-4 text-left">Nombre Departamento</th>
+              <th class="py-2 px-4 text-left">País</th>
+              <th class="py-2 px-4 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">1</td>
+              <td class="py-2 px-4">Francisco Morazán</td>
+              <td class="py-2 px-4">Honduras</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
+                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div x-show="tab==='ciudad'" class="overflow-x-auto w-full">
+      <div class="bg-white rounded-lg shadow p-6 mt-6">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <h2 class="text-2xl text-gray-800 nunito-bold">Ciudad</h2>
+          <button @click="isCiudadModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nueva ciudad</button>
+        </div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-100 nunito-bold">
+            <tr>
+              <th class="py-2 px-4 text-left">ID Ciudad</th>
+              <th class="py-2 px-4 text-left">Nombre Ciudad</th>
+              <th class="py-2 px-4 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">1</td>
+              <td class="py-2 px-4">Tegucigalpa</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
+                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div x-show="tab==='direccion'" class="overflow-x-auto w-full">
+      <div class="bg-white rounded-lg shadow p-6 mt-6">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <h2 class="text-2xl text-gray-800 nunito-bold">Dirección</h2>
+          <button @click="isDireccionModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nueva dirección</button>
+        </div>
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-100 nunito-bold">
+            <tr>
+              <th class="py-2 px-4 text-left">ID Dirección</th>
+              <th class="py-2 px-4 text-left">Nombre Dirección</th>
+              <th class="py-2 px-4 text-left">Ciudad</th>
+              <th class="py-2 px-4 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">1</td>
+              <td class="py-2 px-4">Col. Centro</td>
+              <td class="py-2 px-4">Tegucigalpa</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
+                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal Nueva Agencia -->
+    <x-admin.form-modal 
+      modalName="isAgenciaModalOpen" 
+      title="Nueva Agencia" 
+      submitLabel="Guardar Agencia"
+      maxWidth="max-w-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="nombre_agencia" class="block text-sm font-medium text-gray-700">Nombre de la agencia</label>
+          <input type="text" id="nombre_agencia" name="nombre_agencia" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+          <label for="horario_agencia" class="block text-sm font-medium text-gray-700">Horario</label>
+          <input type="text" id="horario_agencia" name="horario_agencia" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+          <label for="pais_agencia" class="block text-sm font-medium text-gray-700">País</label>
+          <input type="text" id="pais_agencia" name="pais_agencia" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+          <label for="departamento_agencia" class="block text-sm font-medium text-gray-700">Departamento</label>
+          <input type="text" id="departamento_agencia" name="departamento_agencia" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+          <label for="ciudad_agencia" class="block text-sm font-medium text-gray-700">Ciudad</label>
+          <input type="text" id="ciudad_agencia" name="ciudad_agencia" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+          <label for="direccion_agencia" class="block text-sm font-medium text-gray-700">Dirección</label>
+          <input type="text" id="direccion_agencia" name="direccion_agencia" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+      </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Nuevo País -->
+    <x-admin.form-modal 
+      modalName="isPaisModalOpen" 
+      title="Nuevo País" 
+      submitLabel="Guardar País"
+      maxWidth="max-w-2xl">
+      <div class="grid grid-cols-1 gap-4">
+        <div>
+          <label for="nombre_pais" class="block text-sm font-medium text-gray-700">Nombre País</label>
+          <input type="text" id="nombre_pais" name="nombre_pais" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+      </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Nuevo Departamento -->
+    <x-admin.form-modal 
+      modalName="isDepartamentoModalOpen" 
+      title="Nuevo Departamento" 
+      submitLabel="Guardar Departamento"
+      maxWidth="max-w-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="nombre_departamento" class="block text-sm font-medium text-gray-700">Nombre Departamento</label>
+          <input type="text" id="nombre_departamento" name="nombre_departamento" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+          <label for="pais_departamento" class="block text-sm font-medium text-gray-700">País</label>
+          <input type="text" id="pais_departamento" name="pais_departamento" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+      </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Nueva Ciudad -->
+    <x-admin.form-modal 
+      modalName="isCiudadModalOpen" 
+      title="Nueva Ciudad" 
+      submitLabel="Guardar Ciudad"
+      maxWidth="max-w-2xl">
+      <div class="grid grid-cols-1 gap-4">
+        <div>
+          <label for="nombre_ciudad" class="block text-sm font-medium text-gray-700">Nombre Ciudad</label>
+          <input type="text" id="nombre_ciudad" name="nombre_ciudad" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+      </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Nueva Dirección -->
+    <x-admin.form-modal 
+      modalName="isDireccionModalOpen" 
+      title="Nueva Dirección" 
+      submitLabel="Guardar Dirección"
+      maxWidth="max-w-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="nombre_direccion" class="block text-sm font-medium text-gray-700">Nombre Dirección</label>
+          <input type="text" id="nombre_direccion" name="nombre_direccion" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+        <div>
+          <label for="ciudad_direccion" class="block text-sm font-medium text-gray-700">Ciudad</label>
+          <input type="text" id="ciudad_direccion" name="ciudad_direccion" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+        </div>
+      </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Confirmar Eliminación Agencia -->
+    <x-admin.confirmation-modal
+      modalName="isDeleteAgenciaModalOpen"
+      itemToDelete="agenciaToDelete"
+      message="¿Estás seguro de que quieres eliminar la agencia?"
+    />
+  </div>
+</div>
 @endsection
