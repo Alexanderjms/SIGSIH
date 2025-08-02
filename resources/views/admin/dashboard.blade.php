@@ -220,4 +220,171 @@
             </a>
         </div>
     </div>
+
+    <!-- 🕒 ACTIVIDAD RECIENTE -->
+<div class="mb-12">
+    <h2 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
+        <i class="fas fa-history mr-2"></i>
+        Actividad Reciente
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Últimas órdenes de servicio -->
+        <div class="bg-white rounded-xl shadow-md border border-purple-100">
+            <div class="flex items-center px-4 py-2 bg-purple-50 rounded-t-xl border-b border-purple-100">
+                <i class="fas fa-clipboard-list text-purple-700 mr-2"></i>
+                <h3 class="text-sm font-bold text-purple-700">Últimas órdenes de servicio creadas o modificadas</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="bg-purple-50 text-purple-800">
+                            <th class="py-2 px-3 text-left font-semibold">#</th>
+                            <th class="py-2 px-3 text-left font-semibold">Cliente</th>
+                            <th class="py-2 px-3 text-left font-semibold">Estado</th>
+                            <th class="py-2 px-3 text-left font-semibold">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b hover:bg-purple-50">
+                            <td class="px-3 py-2">OS-1023</td><td class="px-3 py-2">Empresa Alfa</td><td class="px-3 py-2"><span class="text-green-600 font-semibold">Cerrada</span></td><td class="px-3 py-2">02/08/2025</td>
+                        </tr>
+                        <tr class="border-b hover:bg-purple-50">
+                            <td class="px-3 py-2">OS-1022</td><td class="px-3 py-2">Beta S.A.</td><td class="px-3 py-2"><span class="text-yellow-600 font-semibold">En proceso</span></td><td class="px-3 py-2">01/08/2025</td>
+                        </tr>
+                        <tr class="hover:bg-purple-50">
+                            <td class="px-3 py-2">OS-1021</td><td class="px-3 py-2">Gamma Ltda.</td><td class="px-3 py-2"><span class="text-red-600 font-semibold">Pendiente</span></td><td class="px-3 py-2">31/07/2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Últimas cotizaciones -->
+        <div class="bg-white rounded-xl shadow-md border border-indigo-100">
+            <div class="flex items-center px-4 py-2 bg-indigo-50 rounded-t-xl border-b border-indigo-100">
+                <i class="fas fa-file-invoice-dollar text-indigo-700 mr-2"></i>
+                <h3 class="text-sm font-bold text-indigo-700">Últimas cotizaciones generadas</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="bg-indigo-50 text-indigo-800">
+                            <th class="py-2 px-3 text-left font-semibold">#</th>
+                            <th class="py-2 px-3 text-left font-semibold">Cliente</th>
+                            <th class="py-2 px-3 text-left font-semibold">Monto</th>
+                            <th class="py-2 px-3 text-left font-semibold">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b hover:bg-indigo-50">
+                            <td class="px-3 py-2">COT-210</td><td class="px-3 py-2">Empresa Alfa</td><td class="px-3 py-2">$2,500</td><td class="px-3 py-2">02/08/2025</td>
+                        </tr>
+                        <tr class="border-b hover:bg-indigo-50">
+                            <td class="px-3 py-2">COT-209</td><td class="px-3 py-2">Beta S.A.</td><td class="px-3 py-2">$1,200</td><td class="px-3 py-2">01/08/2025</td>
+                        </tr>
+                        <tr class="hover:bg-indigo-50">
+                            <td class="px-3 py-2">COT-208</td><td class="px-3 py-2">Gamma Ltda.</td><td class="px-3 py-2">$3,100</td><td class="px-3 py-2">31/07/2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Últimos reportes de servicio -->
+        <div class="bg-white rounded-xl shadow-md border border-pink-100">
+            <div class="flex items-center px-4 py-2 bg-pink-50 rounded-t-xl border-b border-pink-100">
+                <i class="fas fa-file-alt text-pink-700 mr-2"></i>
+                <h3 class="text-sm font-bold text-pink-700">Últimos reportes de servicio realizados</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="bg-pink-50 text-pink-800">
+                            <th class="py-2 px-3 text-left font-semibold">#</th>
+                            <th class="py-2 px-3 text-left font-semibold">Técnico</th>
+                            <th class="py-2 px-3 text-left font-semibold">Servicio</th>
+                            <th class="py-2 px-3 text-left font-semibold">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b hover:bg-pink-50">
+                            <td class="px-3 py-2">REP-501</td><td class="px-3 py-2">Juan Pérez</td><td class="px-3 py-2">Mantenimiento</td><td class="px-3 py-2">02/08/2025</td>
+                        </tr>
+                        <tr class="border-b hover:bg-pink-50">
+                            <td class="px-3 py-2">REP-500</td><td class="px-3 py-2">Ana Ruiz</td><td class="px-3 py-2">Instalación</td><td class="px-3 py-2">01/08/2025</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50">
+                            <td class="px-3 py-2">REP-499</td><td class="px-3 py-2">Carlos Díaz</td><td class="px-3 py-2">Reparación</td><td class="px-3 py-2">31/07/2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Últimos movimientos de inventario (Kardex) -->
+        <div class="bg-white rounded-xl shadow-md border border-green-100">
+            <div class="flex items-center px-4 py-2 bg-green-50 rounded-t-xl border-b border-green-100">
+                <i class="fas fa-boxes text-green-700 mr-2"></i>
+                <h3 class="text-sm font-bold text-green-700">Últimos movimientos de inventario (Kardex)</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="bg-green-50 text-green-800">
+                            <th class="py-2 px-3 text-left font-semibold">#</th>
+                            <th class="py-2 px-3 text-left font-semibold">Producto</th>
+                            <th class="py-2 px-3 text-left font-semibold">Movimiento</th>
+                            <th class="py-2 px-3 text-left font-semibold">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b hover:bg-green-50">
+                            <td class="px-3 py-2">KDX-301</td><td class="px-3 py-2">Router TP-Link</td><td class="px-3 py-2"><span class="text-green-600 font-semibold">Entrada</span></td><td class="px-3 py-2">02/08/2025</td>
+                        </tr>
+                        <tr class="border-b hover:bg-green-50">
+                            <td class="px-3 py-2">KDX-300</td><td class="px-3 py-2">Cable UTP</td><td class="px-3 py-2"><span class="text-red-600 font-semibold">Salida</span></td><td class="px-3 py-2">01/08/2025</td>
+                        </tr>
+                        <tr class="hover:bg-green-50">
+                            <td class="px-3 py-2">KDX-299</td><td class="px-3 py-2">Switch 24p</td><td class="px-3 py-2"><span class="text-green-600 font-semibold">Entrada</span></td><td class="px-3 py-2">31/07/2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Últimos usuarios registrados o cambios de roles/permisos -->
+        <div class="bg-white rounded-xl shadow-md border border-blue-100">
+            <div class="flex items-center px-4 py-2 bg-blue-50 rounded-t-xl border-b border-blue-100">
+                <i class="fas fa-user-plus text-blue-700 mr-2"></i>
+                <h3 class="text-sm font-bold text-blue-700">Últimos usuarios registrados o cambios de roles/permisos</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="bg-blue-50 text-blue-800">
+                            <th class="py-2 px-3 text-left font-semibold">Usuario</th>
+                            <th class="py-2 px-3 text-left font-semibold">Acción</th>
+                            <th class="py-2 px-3 text-left font-semibold">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b hover:bg-blue-50">
+                            <td class="px-3 py-2">jlopez</td><td class="px-3 py-2"><span class="text-green-600 font-semibold">Registrado</span></td><td class="px-3 py-2">02/08/2025</td>
+                        </tr>
+                        <tr class="border-b hover:bg-blue-50">
+                            <td class="px-3 py-2">aruiz</td><td class="px-3 py-2"><span class="text-blue-600 font-semibold">Rol cambiado: Admin</span></td><td class="px-3 py-2">01/08/2025</td>
+                        </tr>
+                        <tr class="hover:bg-blue-50">
+                            <td class="px-3 py-2">cdiaz</td><td class="px-3 py-2"><span class="text-yellow-600 font-semibold">Permiso modificado</span></td><td class="px-3 py-2">31/07/2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
 @endsection
+
