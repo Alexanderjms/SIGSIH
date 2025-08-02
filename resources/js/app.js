@@ -98,3 +98,124 @@ document.addEventListener("alpine:init", () => {
         },
     });
 });
+
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.color = "#6B7280";
+
+const ordenesCtx = document.getElementById("ordenesChart").getContext("2d");
+new Chart(ordenesCtx, {
+    type: "doughnut",
+    data: {
+        labels: ["Abiertas", "En Proceso", "Cerradas"],
+        datasets: [
+            {
+                data: [45, 123, 1079],
+                backgroundColor: ["#EF4444", "#F59E0B", "#10B981"],
+                borderWidth: 2,
+                borderColor: "#FFFFFF",
+            },
+        ],
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: "bottom",
+                labels: {
+                    padding: 20,
+                    usePointStyle: true,
+                    font: {
+                        size: 12,
+                    },
+                },
+            },
+        },
+    },
+});
+
+const cotizacionesCtx = document
+    .getElementById("cotizacionesChart")
+    .getContext("2d");
+new Chart(cotizacionesCtx, {
+    type: "line",
+    data: {
+        labels: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago"],
+        datasets: [
+            {
+                label: "Cotizaciones",
+                data: [65, 78, 90, 81, 96, 87, 102, 115],
+                borderColor: "#6366F1",
+                backgroundColor: "rgba(99, 102, 241, 0.1)",
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: "#6366F1",
+                pointBorderColor: "#FFFFFF",
+                pointBorderWidth: 2,
+                pointRadius: 5,
+            },
+        ],
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            },
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: "#F3F4F6",
+                },
+            },
+            x: {
+                grid: {
+                    display: false,
+                },
+            },
+        },
+    },
+});
+
+const proyectosCtx = document.getElementById("proyectosChart").getContext("2d");
+new Chart(proyectosCtx, {
+    type: "bar",
+    data: {
+        labels: ["En Proceso", "Finalizados", "Pendientes", "Cancelados"],
+        datasets: [
+            {
+                data: [234, 187, 23, 12],
+                backgroundColor: ["#06B6D4", "#10B981", "#F59E0B", "#EF4444"],
+                borderRadius: 6,
+                borderSkipped: false,
+            },
+        ],
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: "y",
+        plugins: {
+            legend: {
+                display: false,
+            },
+        },
+        scales: {
+            x: {
+                beginAtZero: true,
+                grid: {
+                    color: "#F3F4F6",
+                },
+            },
+            y: {
+                grid: {
+                    display: false,
+                },
+            },
+        },
+    },
+});

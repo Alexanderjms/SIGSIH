@@ -11,7 +11,16 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
+    <script defer>
+            document.addEventListener('alpine:init', () => {
+                Alpine.store('perfil', {
+                    firstTime: false,
+                });
+            });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     @livewireStyles
 </head>
