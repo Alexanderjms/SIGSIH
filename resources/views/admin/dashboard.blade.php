@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="flex items-center my-1">
+    <div class="flex items-center my-1 mb-10">
         <div class="flex-grow border-t border-gray-200"></div>
         <div class="mx-4">
             <div class="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-50 to-indigo-100 rounded-full border border-blue-200 shadow-sm">
@@ -18,11 +18,6 @@
     </div>
 
     <div class="mb-8">
-        <h2 class="text-xl nunito-bold text-gray-800 mb-4 flex items-center">
-            <i class="fas fa-chart-bar mr-2"></i>
-            Indicadores Principales
-        </h2>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
                 <div class="flex items-center justify-between">
@@ -82,13 +77,13 @@
                         </div>
                     </div>
                     <div class="space-y-3">
-                        <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <div class="bg-white rounded-lg p-3 shadow-sm border border-blue-400">
                             <div class="flex justify-between items-center">
                                 <span class="text-2xl nunito-bold text-teal-600">234</span>
                                 <span class="text-xs nunito-regular text-teal-600 bg-teal-100 px-2 py-1 rounded-full">ACTIVOS</span>
                             </div>
                         </div>
-                        <div class="bg-white rounded-lg p-3 shadow-sm">
+                        <div class="bg-white rounded-lg p-3 shadow-sm border border-blue-400">
                             <div class="flex justify-between items-center">
                                 <span class="text-lg nunito-bold text-gray-600">187</span>
                                 <span class="text-xs nunito-regular text-gray-600 bg-gray-100 px-2 py-1 rounded-full">FINALIZADOS</span>
@@ -109,14 +104,14 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
-                        <div class="text-center bg-white rounded-lg p-3 shadow-sm">
+                        <div class="text-center bg-white rounded-lg p-3 shadow-sm border border-orange-400">
                             <div class="text-2xl nunito-bold text-orange-600 mb-1">45</div>
                             <div class="text-xs nunito-regular text-orange-600 uppercase">Abiertos</div>
                             <div class="w-full bg-orange-200 rounded-full h-1 mt-2">
                                 <div class="bg-orange-500 h-1 rounded-full" style="width: 13%"></div>
                             </div>
                         </div>
-                        <div class="text-center bg-white rounded-lg p-3 shadow-sm">
+                        <div class="text-center bg-white rounded-lg p-3 shadow-sm border border-orange-400">
                             <div class="text-2xl nunito-bold text-gray-600 mb-1">312</div>
                             <div class="text-xs nunito-regular text-gray-600 uppercase">Cerrados</div>
                             <div class="w-full bg-gray-200 rounded-full h-1 mt-2">
@@ -136,14 +131,14 @@
                             <i class="fas fa-boxes text-white text-lg"></i>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="bg-white rounded-lg p-4 shadow-sm border border-green-700">
                         <div class="flex items-end justify-between mb-2">
                             <span class="text-3xl nunito-bold text-green-600">3,567</span>
                             <div class="text-right">
                                 <div class="text-xs nunito-regular text-gray-500 uppercase">Total productos</div>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between pt-3 border-t border-gray-600">
+                        <div class="flex items-center justify-between pt-3 border-t border-gray-400">
                         </div>
                     </div>
                 </div>
@@ -159,12 +154,12 @@
                             <i class="fas fa-chart-line text-white text-lg"></i>
                         </div>
                     </div>
-                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="bg-white rounded-lg p-4 shadow-sm border border-pink-600">
                         <div class="text-center mb-3">
                             <span class="text-4xl nunito-bold text-pink-600">1,024</span>
                             <p class="text-xs nunito-regular text-gray-500 uppercase mt-1">Generados</p>
                         </div>
-                        <div class="flex items-center justify-center space-x-2 pt-3 border-t border-pink-100">
+                        <div class="flex items-center justify-center space-x-2 pt-3 border-t border-gray-400">
                         </div>
                     </div>
                 </div>
@@ -185,11 +180,6 @@
     </div>
 
     <div class="mb-8">
-        <h2 class="text-xl nunito-bold text-gray-800 mb-4 flex items-center">
-            <i class="fas fa-rocket mr-2"></i>
-            Accesos Rápidos
-        </h2>
-        
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <a href="#" class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 text-center">
                 <div class="p-3 bg-blue-100 rounded-full w-12 h-12 mx-auto mb-2 flex items-center justify-center">
@@ -248,10 +238,6 @@
     </div>
 
 <div class="mb-12">
-    <h2 class="text-xl nunito-bold text-gray-800 mb-6 flex items-center">
-        <i class="fas fa-chart-pie mr-2"></i>
-        Gráficas y Visualizaciones
-    </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="bg-white rounded-xl shadow-md border border-purple-100">
             <div class="flex items-center px-4 py-3 bg-purple-50 rounded-t-xl border-b border-purple-100">
@@ -296,7 +282,7 @@
         <div class="mx-4">
             <div class="flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-slate-50 via-gray-50 to-zinc-50 rounded-full border border-slate-200 shadow-md">
                 <i class="fas fa-clipboard-check text-slate-600 text-xl"></i>
-                <span class="text-base nunito-bold text-slate-700 uppercase tracking-widest">Auditoría</span>
+                <span class="text-base nunito-bold text-slate-700 uppercase tracking-widest">Bitácora de Actividad</span>
                 <i class="fas fa-shield-alt text-gray-600 text-lg"></i>
             </div>
         </div>
@@ -304,10 +290,6 @@
     </div>
 
     <div class="mb-12">
-        <h2 class="text-xl nunito-bold text-gray-800 mb-6 flex items-center">
-            <i class="fas fa-clipboard-check mr-2"></i>
-            Bitácora de Actividad
-        </h2>
         <div class="bg-white rounded-xl shadow-md border border-slate-100">
             <div class="flex items-center px-4 py-3 bg-slate-50 rounded-t-xl border-b border-slate-100">
                 <i class="fas fa-history text-slate-700 mr-2"></i>
