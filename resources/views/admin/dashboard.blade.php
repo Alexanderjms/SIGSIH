@@ -4,36 +4,86 @@
 @endsection
 
 @section('content')
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
     <!-- Widget: Usuarios -->
     <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition-colors">
         <i class="fas fa-users fa-2x text-blue-500 mb-2"></i>
-        <div class="text-2xl font-bold">1,245</div>
+        <div class="text-2xl font-bold">50</div>
         <div class="text-gray-500">Usuarios registrados</div>
     </div>
     <!-- Widget: Empresas -->
     <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition-colors">
         <i class="fas fa-building fa-2x text-green-500 mb-2"></i>
-        <div class="text-2xl font-bold">87</div>
+        <div class="text-2xl font-bold">20</div>
         <div class="text-gray-500">Empresas activas</div>
     </div>
-    <!-- Widget: Tickets -->
+    <!-- Widget: Órdenes de Servicio -->
     <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition-colors">
-        <i class="fas fa-ticket-alt fa-2x text-yellow-500 mb-2"></i>
-        <div class="text-2xl font-bold">312</div>
-        <div class="text-gray-500">Tickets abiertos</div>
+        <i class="fas fa-file-alt fa-2x text-indigo-500 mb-2"></i>
+        <div class="text-2xl font-bold">30</div>
+        <div class="text-gray-500">Órdenes de servicio</div>
+    </div>
+    <!-- Widget: Cotizaciones -->
+    <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center transition-colors">
+        <i class="fas fa-file-invoice-dollar fa-2x text-pink-500 mb-2"></i>
+        <div class="text-2xl font-bold">32</div>
+        <div class="text-gray-500">Cotizaciones</div>
     </div>
 </div>
 
 <!-- Gráficos -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div x-data x-init="
+    // Esperar a que el DOM esté listo y renderizar los gráficos
+    setTimeout(function() {
+        if (window.Chart) {
+            const ordenesChartEl = document.getElementById('ordenesChart');
+            if (ordenesChartEl) {
+                new Chart(ordenesChartEl.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Abiertas', 'En Proceso', 'Cerradas'],
+                        datasets: [{
+                            data: [20, 18, 16],
+                            backgroundColor: ['#6366f1', '#f59e42', '#22c55e']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { position: 'bottom' } }
+                    }
+                });
+            }
+            const cotizacionesChartEl = document.getElementById('cotizacionesChart');
+            if (cotizacionesChartEl) {
+                new Chart(cotizacionesChartEl.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
+                        datasets: [{
+                            label: 'Cotizaciones',
+                            data: [3, 4, 5, 6, 4, 5, 5],
+                            borderColor: '#ec4899',
+                            backgroundColor: 'rgba(236,72,153,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+        }
+    }, 100);
+" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
     <div class="bg-white rounded-lg shadow p-6 transition-colors">
-        <h3 class="text-lg font-bold mb-4">Usuarios por mes</h3>
-        <canvas id="usersChart" height="120"></canvas>
+        <h3 class="text-lg font-bold mb-4">Órdenes por estado</h3>
+        <canvas id="ordenesChart" height="120"></canvas>
     </div>
     <div class="bg-white rounded-lg shadow p-6 transition-colors">
-        <h3 class="text-lg font-bold mb-4">Tickets por estado</h3>
-        <canvas id="ticketsChart" height="120"></canvas>
+        <h3 class="text-lg font-bold mb-4">Cotizaciones por mes</h3>
+        <canvas id="cotizacionesChart" height="120"></canvas>
     </div>
 </div>
 
@@ -51,18 +101,18 @@
         <tbody>
             <tr>
                 <td class="py-2 px-4">Juan Pérez</td>
-                <td class="py-2 px-4">Creó una empresa</td>
-                <td class="py-2 px-4">2025-07-24 09:12</td>
+                <td class="py-2 px-4">Creó una orden de servicio</td>
+                <td class="py-2 px-4">2025-07-30 10:12</td>
             </tr>
             <tr>
                 <td class="py-2 px-4">Ana López</td>
-                <td class="py-2 px-4">Cerró un ticket</td>
-                <td class="py-2 px-4">2025-07-24 08:45</td>
+                <td class="py-2 px-4">Generó una cotización</td>
+                <td class="py-2 px-4">2025-07-29 15:45</td>
             </tr>
             <tr>
                 <td class="py-2 px-4">Carlos Ruiz</td>
-                <td class="py-2 px-4">Actualizó su perfil</td>
-                <td class="py-2 px-4">2025-07-23 17:30</td>
+                <td class="py-2 px-4">Cerró una orden de servicio</td>
+                <td class="py-2 px-4">2025-07-28 17:30</td>
             </tr>
         </tbody>
     </table>
@@ -70,71 +120,24 @@
 
 <!-- Accesos rápidos -->
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-    <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-4 flex flex-col items-center transition">
-        <i class="fas fa-user-plus fa-lg mb-2"></i>
-        <span>Nuevo usuario</span>
+    <a href="#"
+        class="bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg p-4 flex flex-col items-center transition">
+        <i class="fas fa-file-alt fa-lg mb-2"></i>
+        <span>Nueva orden de servicio</span>
+    </a>
+    <a href="#" class="bg-pink-500 hover:bg-pink-600 text-white rounded-lg p-4 flex flex-col items-center transition">
+        <i class="fas fa-file-invoice-dollar fa-lg mb-2"></i>
+        <span>Nueva cotización</span>
     </a>
     <a href="#" class="bg-green-500 hover:bg-green-600 text-white rounded-lg p-4 flex flex-col items-center transition">
         <i class="fas fa-building fa-lg mb-2"></i>
         <span>Nueva empresa</span>
     </a>
-    <a href="#"
-        class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg p-4 flex flex-col items-center transition">
-        <i class="fas fa-ticket-alt fa-lg mb-2"></i>
-        <span>Nuevo ticket</span>
-    </a>
-    <a href="#"
-        class="bg-purple-500 hover:bg-purple-600 text-white rounded-lg p-4 flex flex-col items-center transition">
-        <i class="fas fa-chart-bar fa-lg mb-2"></i>
-        <span>Ver reportes</span>
+    <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-4 flex flex-col items-center transition">
+        <i class="fas fa-users fa-lg mb-2"></i>
+        <span>Nuevo usuario</span>
     </a>
 </div>
 
-<!-- Script para los gráficos -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const usersChart = document.getElementById('usersChart').getContext('2d');
-    new Chart(usersChart, {
-        type: 'line',
-        data: {
-            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
-            datasets: [{
-                label: 'Usuarios',
-                data: [120, 150, 180, 200, 250, 300, 350],
-                borderColor: '#3b82f6',
-                backgroundColor: 'rgba(59,130,246,0.1)',
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
-
-    const ticketsChart = document.getElementById('ticketsChart').getContext('2d');
-    new Chart(ticketsChart, {
-        type: 'doughnut',
-        data: {
-            labels: ['Abiertos', 'En Proceso', 'Cerrados'],
-            datasets: [{
-                data: [120, 80, 112],
-                backgroundColor: ['#f59e42', '#3b82f6', '#22c55e']
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        }
-    });
-</script>
 @endsection
