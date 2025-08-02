@@ -2,10 +2,9 @@
     if ($store.perfil.firstTime) {
         $el.classList.add('pointer-events-none', 'opacity-50');
     }
-  "
-    class="bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto transition-all duration-300 ease-in-out relative"
+  " class="bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto transition-all duration-300 ease-in-out relative"
     style="scrollbar-width: thin; scrollbar-color: #4B5563 #1F2937;">
-    
+
 
     <template x-if="$store.perfil.firstTime">
         <div class="absolute inset-0 z-50 bg-black bg-opacity-60 flex flex-col items-center justify-center">
@@ -52,21 +51,6 @@
                             Gestión de Usuarios
                         </x-admin.sidebar-link>
                     </li>
-                    <li>
-                        <x-admin.sidebar-link :href="route('admin.roles-permisos')"
-                            :active="request()->routeIs('admin.roles-permisos')" class="py-1 px-3">
-                            <i class="fas fa-user-shield text-sm w-4 text-center"></i>
-                            Gestión de roles y permisos
-                        </x-admin.sidebar-link>
-                    </li>
-                    <li>
-                        <x-admin.sidebar-link :href="route('admin.gestion-objetos')"
-                            :active="request()->routeIs('admin.gestion-objetos')" class="py-1 px-3">
-                            <i class="fas fa-cube text-sm w-4 text-center"></i>
-                            Gestión de Objetos
-                        </x-admin.sidebar-link>
-                    </li>
-
 
                     <li>
                         <x-admin.sidebar-link :href="route('admin.parametros')"
@@ -113,7 +97,7 @@
                         <x-admin.sidebar-link :href="route('admin.cotizaciones')"
                             :active="request()->routeIs('admin.cotizaciones')" class="py-1 px-3">
                             <i class="fas fa-file-invoice text-sm w-4 text-center"></i>
-                            Cotizaciones
+                            Gestión de Cotizaciones
                         </x-admin.sidebar-link>
                     </li>
                 </ul>
@@ -139,14 +123,14 @@
                         <x-admin.sidebar-link :href="route('admin.solicitudes.index')"
                             :active="request()->routeIs('admin.solicitudes.index')" class="py-1 px-3">
                             <i class="fas fa-envelope-open-text text-sm w-4 text-center"></i>
-                            Solicitudes
+                            Gestión de Solicitudes
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.solicitudes.empresas')"
                             :active="request()->routeIs('admin.solicitudes.empresas')" class="py-1 px-3">
                             <i class="fas fa-building text-sm w-4 text-center"></i>
-                            Empresas
+                            Gestión de Empresas
                         </x-admin.sidebar-link>
                     </li>
                 </ul>
@@ -169,13 +153,6 @@
                     </svg>
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
-                    <li>
-                        <x-admin.sidebar-link :href="route('admin.ordenes-servicio.index')"
-                            :active="request()->routeIs('admin.ordenes-servicio*')" class="py-1 px-3">
-                            <i class="fas fa-clipboard-list text-sm w-4 text-center"></i>
-                            Órdenes de Servicio
-                        </x-admin.sidebar-link>
-                    </li>
 
                     <li>
                         <x-admin.sidebar-link :href="route('admin.gestion-ordenes')"
@@ -267,7 +244,7 @@
                         <x-admin.sidebar-link :href="route('admin.agencias')"
                             :active="request()->routeIs('admin.agencias')" class="py-1 px-3">
                             <i class="fas fa-map-marker-alt text-sm w-4 text-center"></i>
-                            Agencias
+                            Gestión de Agencias
                         </x-admin.sidebar-link>
                     </li>
                     <li>
@@ -300,14 +277,14 @@
                         <x-admin.sidebar-link :href="route('admin.facturas')"
                             :active="request()->routeIs('admin.facturas')" class="py-1 px-3">
                             <i class="fas fa-file-invoice-dollar text-sm w-4 text-center"></i>
-                            Facturas
+                            Gestión de Facturas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.cai')" :active="request()->routeIs('admin.cai')"
                             class="py-1 px-3">
                             <i class="fas fa-barcode text-sm w-4 text-center"></i>
-                            CAI
+                            Gestión de CAI
                         </x-admin.sidebar-link>
                     </li>
                 </ul>
@@ -359,14 +336,14 @@
                         <x-admin.sidebar-link :href="route('admin.productos')"
                             :active="request()->routeIs('admin.productos')" class="py-1 px-3">
                             <i class="fas fa-box text-sm w-4 text-center"></i>
-                            Productos
+                            Gestión de Productos
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.kardex')" :active="request()->routeIs('admin.kardex')"
                             class="py-1 px-3">
                             <i class="fas fa-archive text-sm w-4 text-center"></i>
-                            Kardex
+                            Gestión de Kardex
                         </x-admin.sidebar-link>
                     </li>
                 </ul>
@@ -443,14 +420,19 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
-                <!-- <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
+                <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
+
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.mantenimiento.tickets')"
-                            :active="request()->routeIs('admin.mantenimiento.tickets')" class="py-1 px-3">
-                            Gestión de tickets
+                        <x-admin.sidebar-link :href="route('admin.mantenimiento-general')"
+                            :active="request()->routeIs('admin.mantenimiento-general')" class="py-1 px-3">
+                            <i class="fas fa-wrench text-sm w-4 text-center"></i>
+                            Mantenimiento del Sistema
                         </x-admin.sidebar-link>
                     </li>
-                </ul> -->
+
+                </ul>
+
+
             </li>
         </ul>
     </nav>
