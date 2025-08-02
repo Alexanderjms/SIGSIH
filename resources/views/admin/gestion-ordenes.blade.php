@@ -59,6 +59,10 @@
                             <td class="py-2 px-4">5</td>
                             <td class="py-2 px-4">C-001</td>
                             <td class="py-2 px-4 flex gap-2">
+                                <a href="{{ route('admin.detalle-orden') }}" target="_blank"
+                                    class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
+                                    <i class="fas fa-eye mr-1"></i> Ver detalles
+                                </a>
                                 <a href="#" @click="isEditModalOpen = true; ordenToEdit = {id: 1}"
                                     class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
                                 <a href="#" @click="isDeleteModalOpen = true; ordenToDelete = {id: 1}"
