@@ -180,6 +180,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('detalle-orden', function () {
         return view('admin.ordenes-servicio');
     })->name('detalle-orden');
+
+    // Mantenimiento del Sistema
+    Route::get('mantenimiento/general', function () {
+        return view('admin.mantenimiento-general');
+    })->name('mantenimiento-general');
 });
 
 // Login route
