@@ -1,9 +1,4 @@
-@extends('layouts.admin')
-
-@section('title', 'Gestión de Calendario')
-
-@section('content')
-<div x-data="{ tab: 'calendario', isAddModalOpen: false, isEditModalOpen: false, isDetailModalOpen: false, isCancelModalOpen: false, selectedEvent: null }" class="container mx-auto px-4 sm:px-8">
+<div x-data="{ tab: 'calendario', isAddModalOpen: false, isEditModalOpen: false, isDetailModalOpen: false, isCancelModalOpen: false, isAddEstadoModalOpen: false, isAddCalendarioModalOpen: false, selectedEvent: null }" class="container mx-auto px-4 sm:px-8">
     <div class="w-full">
         <ul class="flex border-b nunito-bold">
             <li @click="tab='calendario'" :class="tab==='calendario' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Calendario</li>
@@ -56,7 +51,6 @@
                         <div class="text-sm font-bold text-gray-600">Jue</div>
                         <div class="text-sm font-bold text-gray-600">Vie</div>
                         <div class="text-sm font-bold text-gray-600">Sáb</div>
-                        <!-- ...existing code for days... -->
                         <div class="py-3 text-base"></div>
                         <div class="py-3 text-base"></div>
                         <div class="py-3 text-base"></div>
@@ -276,4 +270,3 @@
         </div>
     </div>
 </div>
-@endsection

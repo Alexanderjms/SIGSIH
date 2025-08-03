@@ -1,7 +1,3 @@
-@extends('layouts.admin')
-
-
-@section('content')
 <div
     x-data="{ 
         isModalOpen: false, 
@@ -222,4 +218,3 @@
     <x-admin.confirmation-modal modalName="isDeleteUserModalOpen" itemToDelete="userToDelete"
         message="¿Estás seguro de que quieres eliminar el usuario?" />
 </div>
-@endsection

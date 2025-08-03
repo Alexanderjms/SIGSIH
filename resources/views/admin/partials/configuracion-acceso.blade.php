@@ -1,6 +1,3 @@
-@extends('layouts.admin')
-
-@section('content')
 <div x-data="{
     tab: 'gestion',
     // Modales roles y permisos
@@ -522,6 +519,3 @@
             message="¿Estás seguro de que quieres eliminar la asignación?" />
     </div>
 </div>
-
-
-@endsection

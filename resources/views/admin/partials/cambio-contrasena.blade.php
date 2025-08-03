@@ -1,6 +1,5 @@
-@extends('layouts.admin')
+{{-- resources/views/admin/partials/cambio-contrasena.blade.php --}}
 
-@section('content')
 <div class="container mx-auto py-8">
     <h1 class="text-2xl font-bold mb-4">Cambio de contraseña</h1>
     <div class="bg-white rounded shadow p-4 max-w-md mx-auto">
@@ -21,4 +20,3 @@
         </form>
     </div>
 </div>
-@endsection

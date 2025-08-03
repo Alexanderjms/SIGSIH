@@ -1,6 +1,5 @@
-@extends('layouts.admin')
+{{-- resources/views/admin/partials/mantenimiento-general.blade.php --}}
 
-@section('content')
 <div class="container mx-auto py-8" x-data="{
     tab: 'personalizacion',
     logoUrl: '/images/logo.png',
@@ -76,4 +75,3 @@
         </div>
     </div>
 </div>
-@endsection

@@ -1,7 +1,3 @@
-
-@extends('layouts.admin')
-
-@section('content')
 <div x-data="{
     tab: 'movimientos',
     // Modales de movimientos
@@ -78,7 +74,6 @@
                 </table>
             </div>
         </x-admin.tabla-crud>
-        <!-- ...modales de movimiento existentes aquí... -->
         <!-- Modal Nuevo Movimiento -->
         <div x-show="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div class="bg-white rounded-lg p-6 w-full max-w-md">
@@ -242,4 +237,3 @@
         </div>
     </div>
 </div>
-@endsection

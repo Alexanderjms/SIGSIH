@@ -1,8 +1,3 @@
-@extends('layouts.admin')
-
-
-@section('content')
-
 <div x-data="{
         tab: 'Personas',
         isModalOpenPersonas: false, isEditModalOpenPersonas: false, isDeleteModalOpenPersonas: false,
@@ -17,11 +12,9 @@
         <li @click="tab='Personas'"
             :class="tab==='Personas' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
             class="mr-6 pb-2">Personas</li>
-
         <li @click="tab='tipo_persona'"
             :class="tab==='tipo_persona' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
             class="mr-6 pb-2">Tipo de persona</li>
-
         <li @click="tab='genero'"
             :class="tab==='genero' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
             class="mr-6 pb-2">Género</li>
@@ -29,7 +22,6 @@
             :class="tab==='perfil' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
             class="mr-6 pb-2">Perfil</li>
     </ul>
-
     <div class="mt-6">
         <!-- TAB: Personas -->
         <div x-show="tab === 'Personas'">
@@ -156,7 +148,6 @@
                     </div>
                 </div>
             </x-admin.form-modal>
-
             <!-- Modal Editar Persona -->
             <x-admin.edit-modal modalName="isEditModalOpenPersonas" title="Editar Persona" itemToEdit="itemToEdit"
                 maxWidth="max-w-2xl">
@@ -206,12 +197,10 @@
                     </div>
                 </div>
             </x-admin.edit-modal>
-
             <!-- Modal Eliminar Persona -->
             <x-admin.confirmation-modal modalName="isDeleteModalOpenPersonas" itemToDelete="itemToDelete"
                 message="¿Estás seguro de que deseas eliminar esta persona?" />
         </div>
-
         <!-- TAB: Tipo de persona -->
         <div x-show="tab === 'tipo_persona'">
             <x-admin.tabla-crud :titulo="'Gestión de Tipos de Persona'">
@@ -231,7 +220,6 @@
                         tipo</button>
                 </x-slot>
                 <div class="w-full max-w-full overflow-x-auto relative block">
-
                     <table class="table-auto text-sm w-full">
                         <thead>
                             <tr class="bg-gray-100">
@@ -259,8 +247,6 @@
                     </table>
                 </div>
             </x-admin.tabla-crud>
-
-
             <!-- Modales tipo persona -->
             <x-admin.form-modal modalName="isModalOpenTipoPersona" title="Agregar Tipo de Persona" submitLabel="Guardar"
                 maxWidth="max-w-md">
@@ -288,7 +274,6 @@
             <x-admin.confirmation-modal modalName="isDeleteModalOpenTipoPersona" itemToDelete="itemToDelete"
                 message="¿Estás seguro de que deseas eliminar este tipo de persona?" />
         </div>
-
         <!-- TAB: Género -->
         <div x-show="tab === 'genero'">
             <x-admin.tabla-crud :titulo="'Gestión de Géneros'">
@@ -360,7 +345,6 @@
             <x-admin.confirmation-modal modalName="isDeleteModalOpenGenero" itemToDelete="itemToDelete"
                 message="¿Estás seguro de que deseas eliminar este género?" />
         </div>
-
         <!-- TAB: Perfil -->
         <div x-show="tab === 'perfil'">
             <x-admin.tabla-crud :titulo="'Gestión de Perfiles'">
@@ -420,7 +404,6 @@
             <!-- Modales perfil -->
             <x-admin.form-modal modalName="isModalOpenPerfil" title="Agregar Perfil" submitLabel="Guardar"
                 maxWidth="max-w-md">
-
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-1">Nombre del Perfil</label>
                     <input type="text" class="w-full border rounded px-3 py-2" placeholder="Ej: Administrador" />
@@ -447,6 +430,3 @@
         </div>
     </div>
 </div>
-</div>
-
-@endsection

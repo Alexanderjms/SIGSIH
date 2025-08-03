@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+{{-- resources/views/admin/partials/gestion-db.blade.php --}}
 
 <div class="max-w-4xl mx-auto py-8" x-data="{
         tab: 'respaldo',
@@ -125,5 +123,3 @@
         </div>
     </div>
 </div>
-
-@endsection

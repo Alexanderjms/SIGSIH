@@ -1,6 +1,3 @@
-@extends('layouts.admin')
-
-@section('content')
 <div x-data="{ 
     tab: 'facturas',
     isFacturaModalOpen: false, 
@@ -25,8 +22,6 @@
     estadoFacturaToDelete: {id: ''}
 }" class="p-6">
     {{-- Pestañas --}}
-
-
     <div class="mb-6">
         <ul class="flex border-b nunito-bold">
             <li @click="tab='facturas'"
@@ -43,7 +38,7 @@
                 class="pb-2">Estado de Factura</li>
         </ul>
     </div>
-
+    
     {{-- TAB: FACTURAS --}}
     <div x-show="tab==='facturas'" class="overflow-x-auto">
         <x-admin.tabla-crud>
@@ -60,7 +55,6 @@
                             <input type="date" class="px-3 py-2 outline-none" />
                         </div>
                     </div>
-
                     <div class="flex items-center gap-2">
                         <div class="flex rounded border overflow-hidden text-sm">
                             <span class="bg-white px-3 py-2 border-r">Hasta:</span>
@@ -110,8 +104,7 @@
                         <td class="py-2 px-4">CAI-987654321</td>
                         <td class="py-2 px-4">BAC credomatic</td>
                         <td class="py-2 px-4 flex gap-2">
-                            <a href="{{ route('admin.formato-factura') }}" target="_blank"
-                                class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
+                            <a href="#" class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
                                 <i class="fas fa-eye mr-1"></i> Ver detalles
                             </a>
                             <a href="#"
@@ -139,8 +132,7 @@
                         <td class="py-2 px-4">CAI-123456789</td>
                         <td class="py-2 px-4">Bancafe</td>
                         <td class="py-2 px-4 flex gap-2">
-                            <a href="{{ route('admin.formato-factura') }}" target="_blank"
-                                class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
+                            <a href="#" class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
                                 <i class="fas fa-eye mr-1"></i> Ver detalles
                             </a>
                             <a href="#"
@@ -288,7 +280,6 @@
 
     <x-admin.confirmation-modal modalName="isDeleteFacturaModalOpen" itemToDelete="facturaToDelete"
         message="¿Estás seguro de que quieres eliminar la factura?" />
-
 
     <!-- Modal Nuevo Detalle Factura -->
     <x-admin.form-modal modalName="isDetalleModalOpen" title="Nuevo Detalle Factura" submitLabel="Guardar Detalle"
@@ -501,7 +492,6 @@
         </x-admin.tabla-crud>
     </div>
 
-
     {{-- TAB: ESTADO FACTURA --}}
     <div x-show="tab==='estado_factura'" class="overflow-x-auto">
         <x-admin.tabla-crud>
@@ -590,4 +580,3 @@
     <x-admin.confirmation-modal modalName="isDeleteEstadoFacturaModalOpen" itemToDelete="estadoFacturaToDelete"
         message="¿Estás seguro de que quieres eliminar el estado de factura?" />
 </div>
-@endsection

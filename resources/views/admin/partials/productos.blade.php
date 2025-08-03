@@ -1,7 +1,3 @@
-
-@extends('layouts.admin')
-
-@section('content')
 <div x-data="{ isModalOpen: false, isEditModalOpen: false, productoToEdit: {id: '', nombre: '', categoria: '', precio: '', stock: ''}, isDeleteModalOpen: false, productoToDelete: {id: '', nombre: ''} }">
     <div x-data="{ tab: 'productos' }">
         <div class="border-b border-gray-200 mb-4">
@@ -194,4 +190,3 @@
     <!-- Modal Eliminar Producto -->
     <x-admin.confirmation-modal modalName="isDeleteModalOpen" itemToDelete="productoToDelete" message="¿Seguro que deseas eliminar este producto?" />
 </div>
-@endsection

@@ -1,6 +1,3 @@
-@extends('layouts.admin')
-
-@section('content')
 <div x-data="{
         tab: 'empresas',
         isEmpresaModalOpen: false,
@@ -328,4 +325,3 @@
         </div>
     </div>
 </div>
-@endsection

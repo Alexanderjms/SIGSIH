@@ -1,6 +1,3 @@
-@extends('layouts.admin')
-
-@section('content')
 <div
     x-data="{ 
         tab: 'ordenes', 
@@ -27,6 +24,7 @@
             :class="tab==='ordenes' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
             class="mr-6 pb-2">Gestión Órdenes de Servicio</li>
     </ul>
+    
     <div x-show="tab==='ordenes'" class="overflow-x-auto">
         <x-admin.tabla-crud>
             <x-slot name="titulo">
@@ -109,7 +107,6 @@
     <!-- Modal Nueva Orden -->
     <x-admin.form-modal modalName="isModalOpen" title="Nueva Orden" submitLabel="Guardar Orden" maxWidth="max-w-4xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
             <div>
                 <label for="id_solicitud" class="block text-sm font-medium text-gray-700">ID Solicitud</label>
                 <input type="text" id="id_solicitud" name="id_solicitud"
@@ -167,10 +164,19 @@
         </div>
     </x-admin.form-modal>
 
-    <!-- Modal Editar Orden (estructura base) -->
+    <!-- Modal Editar Orden -->
     <x-admin.edit-modal modalName="isEditModalOpen" title="Editar Orden" itemToEdit="ordenToEdit" maxWidth="max-w-4xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
+            <div>
+                <label for="edit_id_solicitud" class="block text-sm font-medium text-gray-700">ID Solicitud</label>
+                <input type="text" id="edit_id_solicitud" name="edit_id_solicitud" x-model="ordenToEdit.id_solicitud"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_id_tecnico" class="block text-sm font-medium text-gray-700">ID Técnico</label>
+                <input type="text" id="edit_id_tecnico" name="edit_id_tecnico" x-model="ordenToEdit.id_tecnico"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
             <div>
                 <label for="edit_fecha_recepcion" class="block text-sm font-medium text-gray-700">Fecha
                     Recepción</label>
@@ -216,6 +222,11 @@
                     x-model="ordenToEdit.calificacion_servicio"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
+            <div>
+                <label for="edit_id_cotizacion" class="block text-sm font-medium text-gray-700">ID Cotización</label>
+                <input type="text" id="edit_id_cotizacion" name="edit_id_cotizacion" x-model="ordenToEdit.id_cotizacion"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
         </div>
     </x-admin.edit-modal>
 
@@ -223,4 +234,3 @@
     <x-admin.confirmation-modal modalName="isDeleteModalOpen" itemToDelete="ordenToDelete"
         message="¿Estás seguro de que quieres eliminar la orden?" />
 </div>
-@endsection

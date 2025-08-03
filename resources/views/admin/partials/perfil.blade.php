@@ -1,6 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
+{{-- resources/views/admin/partials/perfil.blade.php --}}
 
 <div class="container mx-auto py-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -143,5 +141,3 @@
 
     </div>
 </div>
-
-@endsection

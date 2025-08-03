@@ -33,27 +33,92 @@ function collapse(Alpine) {
 document.addEventListener("alpine:init", () => {
     Alpine.store("navigation", {
         isTransitioning: false,
+        loadedViews: {},
+        currentView: null,
 
-        async navigate(url) {
+        async navigate(url, viewName) {
+            // Prevenir múltiples navegaciones simultáneas
+            if (this.isTransitioning) return;
+
+            // Si ya estamos en esta vista, no hacer nada
+            if (this.currentView === viewName) return;
+
+            // Si la vista ya está cargada, usarla directamente
+            if (this.loadedViews[viewName]) {
+                this.setContent(this.loadedViews[viewName]);
+                this.updateState(url, viewName);
+                return;
+            }
+
             this.isTransitioning = true;
+            this.showLoader();
 
             try {
-                await fetch(url)
-                    .then((response) => response.text())
-                    .then((html) => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, "text/html");
-                        const newContent = doc.querySelector("main").innerHTML;
+                const response = await fetch(`/load-view?view=${viewName}`);
+                if (!response.ok) {
+                    throw new Error(
+                        `HTTP ${response.status}: ${response.statusText}`
+                    );
+                }
 
-                        document.querySelector("main").innerHTML = newContent;
-                        window.history.pushState({}, "", url);
-
-                        // Actualizar el estado activo de los enlaces en la barra lateral
-                        this.updateActiveLinks(url);
-                    });
+                const html = await response.text();
+                this.loadedViews[viewName] = html;
+                this.setContent(html);
+                this.updateState(url, viewName);
+            } catch (error) {
+                console.error("Error loading view:", error);
+                this.showError(
+                    "Error al cargar la vista. Por favor, intenta de nuevo."
+                );
             } finally {
                 this.isTransitioning = false;
             }
+        },
+
+        setContent(html) {
+            document.querySelector("main").innerHTML = html;
+            // Reinicializar Alpine.js en el nuevo contenido
+            Alpine.initTree(document.querySelector("main"));
+            // Inicializar gráficos si estamos en el dashboard
+            if (
+                html.includes('id="ordenesChart"') ||
+                html.includes('id="cotizacionesChart"') ||
+                html.includes('id="proyectosChart"')
+            ) {
+                // Usar setTimeout para asegurar que el DOM esté listo
+                setTimeout(() => {
+                    initializeDashboardCharts();
+                }, 100);
+            }
+        },
+
+        updateState(url, viewName) {
+            // Actualizar la URL sin recargar la página
+            window.history.pushState({ viewName }, "", url);
+            this.currentView = viewName;
+            this.updateActiveLinks(url);
+        },
+
+        showLoader() {
+            document.querySelector("main").innerHTML = `
+                <div class="flex flex-col justify-center items-center h-64">
+                    <div class="text-blue-500 mb-4">
+                        <i class="fas fa-spinner fa-spin text-3xl"></i>
+                    </div>
+                    <div class="text-blue-500 text-lg font-medium">Cargando...</div>
+                </div>
+            `;
+        },
+
+        showError(message) {
+            document.querySelector("main").innerHTML = `
+                <div class="flex flex-col justify-center items-center h-64">
+                    <div class="text-red-500 mb-4">
+                        <i class="fas fa-exclamation-triangle text-3xl"></i>
+                    </div>
+                    <div class="text-red-500 text-lg font-medium">${message}</div>
+                </div>
+            `;
         },
 
         // Método para actualizar los enlaces activos en la barra lateral
@@ -95,19 +160,85 @@ document.addEventListener("alpine:init", () => {
                 }
             });
         },
+
+        // Método para manejar navegación con botón atrás/adelante del navegador
+        handlePopState(event) {
+            if (event.state && event.state.viewName) {
+                const viewName = event.state.viewName;
+                const url = window.location.pathname;
+
+                // Cargar la vista sin cambiar el estado del historial
+                if (this.loadedViews[viewName]) {
+                    this.setContent(this.loadedViews[viewName]);
+                    this.currentView = viewName;
+                    this.updateActiveLinks(url);
+                } else {
+                    // Si no está cargada, hacer un reload completo
+                    window.location.reload();
+                }
+            }
+        },
+
+        // Método para cargar la vista inicial basada en la URL actual
+        async loadInitialView() {
+            const path = window.location.pathname;
+            const viewName = this.extractViewNameFromPath(path);
+
+            if (viewName && viewName !== "dashboard") {
+                // Si no estamos en dashboard, cargar la vista correspondiente
+                await this.navigate(path, viewName);
+            } else {
+                // Establecer dashboard como vista actual
+                this.currentView = "dashboard";
+                this.updateActiveLinks(path);
+            }
+        },
+
+        // Extraer el nombre de la vista desde el path
+        extractViewNameFromPath(path) {
+            const match = path.match(/\/admin\/(.+)$/);
+            return match ? match[1] : "dashboard";
+        },
+    });
+
+    // Manejar navegación con botones del navegador
+    window.addEventListener("popstate", (event) => {
+        Alpine.store("navigation").handlePopState(event);
+    });
+
+    // Cargar vista inicial cuando la página esté lista
+    document.addEventListener("DOMContentLoaded", () => {
+        // Verificar si la página es una SPA page
+        const isSpaPage = document.querySelector('meta[name="spa-page"]');
+        const spaView = document.querySelector('meta[name="spa-view"]');
+
+        if (isSpaPage && spaView) {
+            const viewName = spaView.getAttribute("content");
+            Alpine.store("navigation").currentView = viewName;
+            Alpine.store("navigation").updateActiveLinks(
+                window.location.pathname
+            );
+        } else {
+            Alpine.store("navigation").loadInitialView();
+        }
     });
 });
 
 Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.color = "#6B7280";
 
-// Wrap chart initialization in DOMContentLoaded to ensure canvas elements exist
-document.addEventListener("DOMContentLoaded", () => {
+// Función para inicializar los gráficos del dashboard
+function initializeDashboardCharts() {
     // Initialize 'ordenesChart' only if element exists
     const ordenesEl = document.getElementById("ordenesChart");
     if (ordenesEl) {
+        // Destruir instancia existente si existe
+        if (window.ordenesChartInstance) {
+            window.ordenesChartInstance.destroy();
+        }
+
         const ordenesCtx = ordenesEl.getContext("2d");
-        new Chart(ordenesCtx, {
+        window.ordenesChartInstance = new Chart(ordenesCtx, {
             type: "doughnut",
             data: {
                 labels: ["Abiertas", "En Proceso", "Cerradas"],
@@ -140,8 +271,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize 'cotizacionesChart' only if element exists
     const cotizacionesEl = document.getElementById("cotizacionesChart");
     if (cotizacionesEl) {
+        // Destruir instancia existente si existe
+        if (window.cotizacionesChartInstance) {
+            window.cotizacionesChartInstance.destroy();
+        }
+
         const cotizacionesCtx = cotizacionesEl.getContext("2d");
-        new Chart(cotizacionesCtx, {
+        window.cotizacionesChartInstance = new Chart(cotizacionesCtx, {
             type: "line",
             data: {
                 labels: [
@@ -198,8 +334,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize 'proyectosChart' only if element exists
     const proyectosEl = document.getElementById("proyectosChart");
     if (proyectosEl) {
+        // Destruir instancia existente si existe
+        if (window.proyectosChartInstance) {
+            window.proyectosChartInstance.destroy();
+        }
+
         const proyectosCtx = proyectosEl.getContext("2d");
-        new Chart(proyectosCtx, {
+        window.proyectosChartInstance = new Chart(proyectosCtx, {
             type: "bar",
             data: {
                 labels: [
@@ -247,4 +388,9 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         });
     }
+}
+
+// Inicializar gráficos cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", () => {
+    initializeDashboardCharts();
 });

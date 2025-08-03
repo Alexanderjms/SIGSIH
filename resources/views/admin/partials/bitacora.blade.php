@@ -1,6 +1,5 @@
-@extends('layouts.admin')
+{{-- resources/views/admin/partials/bitacora.blade.php --}}
 
-@section('content')
 <div x-data="{ isModalOpen: false }" class="max-w-6xl mx-auto py-8">
     <div class="bg-white rounded-lg shadow p-6 mb-6">
         <h2 class="text-2xl font-bold text-gray-800 mb-2">Bitácora</h2>
@@ -62,6 +61,4 @@
             </table>
         </div>
     </div>
-
 </div>
-@endsection

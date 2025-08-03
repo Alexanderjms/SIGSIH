@@ -1,10 +1,3 @@
-@extends('layouts.admin')
-
-@section('page-header')
-    <h1 class="text-2xl nunito-bold text-gray-800">Dashboard Principal</h1>
-@endsection
-
-@section('content')
     <div class="flex items-center my-1 mb-10">
         <div class="flex-grow border-t border-gray-200"></div>
         <div class="mx-4">
@@ -399,7 +392,3 @@
             </div>
         </div>
     </div>
-</div>
-    
-@endsection
-

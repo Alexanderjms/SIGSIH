@@ -1,7 +1,3 @@
-@extends('layouts.admin')
-
-@section('content')
-
 <div x-data="{
         isCreateModalOpen: false,
         isEditModalOpen: false,
@@ -158,5 +154,3 @@
     <x-admin.confirmation-modal modalName="isDeleteModalOpen" itemToDelete="parametroToDelete"
         message="¿Estás seguro de que deseas eliminar este parámetro?" />
 </div>
-
-@endsection

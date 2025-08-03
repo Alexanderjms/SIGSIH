@@ -1,9 +1,3 @@
-
-@extends('layouts.admin')
-
-@section('title', 'Gestión de Agencias')
-
-@section('content')
 <div x-data="{ tab: 'agencias', isAgenciaModalOpen: false, isPaisModalOpen: false, isDepartamentoModalOpen: false, isCiudadModalOpen: false, isDireccionModalOpen: false, isDeleteAgenciaModalOpen: false, agenciaToEdit: null, agenciaToDelete: null }">
   <div class="w-full">
     <ul class="flex border-b nunito-bold">
@@ -50,7 +44,7 @@
               <td class="py-2 px-4">Honduras</td>
               <td class="py-2 px-4 flex gap-2">
                 <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
-                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                <a href="#" @click="isDeleteAgenciaModalOpen = true; agenciaToDelete = {nombre: 'Agencia Central'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
           </tbody>
@@ -280,4 +274,3 @@
     />
   </div>
 </div>
-@endsection

@@ -1,8 +1,3 @@
-@extends('layouts.admin')
-
-@section('title', 'Gestión de Reportes')
-
-@section('content')
 <div
     x-data="{ tab: 'reportes', isModalOpen: false, isCategoriaModalOpen: false, isEditCategoriaModalOpen: false, categoriaToEdit: null, isDeleteReporteModalOpen: false, reporteToDelete: null, isServicioModalOpen: false, isTipoVisitaModalOpen: false,  isAccionesModalOpen: false }">
     <div class="w-full">
@@ -19,7 +14,6 @@
             <li @click="tab='tipovisita'"
                 :class="tab==='tipovisita' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
                 class="mr-6 pb-2">Tipo de Visita</li>
-
         </ul>
 
         <div x-show="tab==='acciones'" class="overflow-x-auto w-full">
@@ -68,7 +62,6 @@
                 </table>
             </div>
         </div>
-        </ul>
 
         <div x-show="tab==='tipovisita'" class="overflow-x-auto w-full">
             <div class="bg-white rounded-lg shadow p-6 mt-6">
@@ -112,7 +105,7 @@
                 </table>
             </div>
         </div>
-        </ul>
+
         <div x-show="tab==='reportes'" class="overflow-x-auto">
             <div class="bg-white rounded-lg shadow p-6 mt-6">
                 <div
@@ -155,8 +148,7 @@
                             <td class="py-2 px-4">Revisión de equipos</td>
                             <td class="py-2 px-4">OS-00123</td>
                             <td class="py-2 px-4 flex gap-2">
-                                <a href="{{ route('admin.formato-reporte') }}" target="_blank"
-                                    class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
+                                <a href="{{ route('admin.formato-reporte') }}" target= blank_ class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
                                     <i class="fas fa-eye mr-1"></i> Ver detalles
                                 </a>
                                 <a href="#" @click="isDeleteReporteModalOpen = true; reporteToDelete = {id: 1}"
@@ -212,7 +204,6 @@
                 </table>
             </div>
         </div>
-
 
         <!-- Modal Nuevo Reporte -->
         <x-admin.form-modal modalName="isModalOpen" title="Nuevo Reporte" submitLabel="Guardar Reporte"
@@ -322,9 +313,8 @@
             </div>
         </x-admin.form-modal>
 
-
         <!-- Modal Confirmar Eliminación Reporte -->
         <x-admin.confirmation-modal modalName="isDeleteReporteModalOpen" itemToDelete="reporteToDelete"
             message="¿Estás seguro de que quieres eliminar el reporte" />
     </div>
-    @endsection
+</div>

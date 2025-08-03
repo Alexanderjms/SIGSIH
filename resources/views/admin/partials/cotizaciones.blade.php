@@ -1,7 +1,4 @@
-@extends('layouts.admin')
-
-@section('content')
-    <div x-data="{ 
+<div x-data="{ 
         deleteModal: false, 
         selectedItem: null, 
         generateCotizacionModal: false, 
@@ -112,7 +109,7 @@
                             <td class="px-4 py-3 border-t border-gray-200">$10,500.00</td>
                             <td class="px-4 py-3 border-t border-gray-200">$12,180.00</td>
                             <td class="px-4 py-3 border-t border-gray-200">
-                                <a href="{{ route('admin.detalle-cotizacion') }}" target="_blank"
+                                <a href="/admin/detalle-cotizacion" target="_blank"
                                   class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2"
                                 >
                                   <i class="fas fa-eye mr-1"></i> Ver detalles
@@ -147,7 +144,7 @@
                             <td class="px-4 py-3 border-t border-gray-200">$8,750.00</td>
                             <td class="px-4 py-3 border-t border-gray-200">$10,150.00</td>
                             <td class="px-4 py-3 border-t border-gray-200">
-                                <a href="{{ route('admin.detalle-cotizacion') }}" target="_blank"
+                                <a href="/admin/detalle-cotizacion" target="_blank"
                                   class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2"
                                 >
                                   <i class="fas fa-eye mr-1"></i> Ver detalles
@@ -342,12 +339,10 @@
                 </div>
             </div>
         </x-admin.edit-modal>
-    </div>
+</div>
 
-    <style>
-        table tbody td {
-            font-size: 0.875rem;
-        }
-    </style>
-
-@endsection
+<style>
+    table tbody td {
+        font-size: 0.875rem;
+    }
+</style>

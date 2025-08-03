@@ -1,7 +1,3 @@
-@extends('layouts.admin')
-
-@section('content')
-
 <div class="container mx-auto space-y-6">
     {{-- Header con navegación de proyecto y botón de nuevo proyecto --}}
     <div class="flex justify-between items-center">
@@ -86,4 +82,3 @@
         </div>
     </div>
 </div>
-@endsection
