@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ViewLoaderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 // Redirect root to admin dashboard
 Route::redirect('/', '/admin/dashboard');
+
+// Partial view loading
+Route::get('/load-view', [ViewLoaderController::class, 'load'])->name('load-view');
 
 // Admin routes group
 Route::prefix('admin')->name('admin.')->group(function () {

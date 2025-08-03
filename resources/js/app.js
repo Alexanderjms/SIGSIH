@@ -33,24 +33,40 @@ function collapse(Alpine) {
 document.addEventListener("alpine:init", () => {
     Alpine.store("navigation", {
         isTransitioning: false,
+        loadedViews: {},
 
-        async navigate(url) {
+        async navigate(url, viewName) {
+            if (this.loadedViews[viewName]) {
+                document.querySelector("main").innerHTML =
+                    this.loadedViews[viewName];
+                window.history.pushState({}, "", url);
+                this.updateActiveLinks(url);
+                return;
+            }
+
             this.isTransitioning = true;
 
+            // Mostrar indicador de carga
+            document.querySelector("main").innerHTML =
+                '<div class="flex justify-center items-center h-64"><div class="text-blue-500"><i class="fas fa-spinner fa-spin mr-2"></i>Cargando...</div></div>';
+
             try {
-                await fetch(url)
-                    .then((response) => response.text())
-                    .then((html) => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, "text/html");
-                        const newContent = doc.querySelector("main").innerHTML;
+                const response = await fetch(`/load-view?view=${viewName}`);
+                const html = await response.text();
 
-                        document.querySelector("main").innerHTML = newContent;
-                        window.history.pushState({}, "", url);
+                // El controlador devuelve directamente el HTML, no necesitamos parsear
+                this.loadedViews[viewName] = html;
+                document.querySelector("main").innerHTML = html;
+                window.history.pushState({}, "", url);
+                this.updateActiveLinks(url);
 
-                        // Actualizar el estado activo de los enlaces en la barra lateral
-                        this.updateActiveLinks(url);
-                    });
+                // Reinicializar Alpine.js en el nuevo contenido
+                Alpine.initTree(document.querySelector("main"));
+            } catch (error) {
+                console.error("Error loading view:", error);
+                // Mostrar mensaje de error al usuario
+                document.querySelector("main").innerHTML =
+                    '<div class="flex justify-center items-center h-64"><div class="text-red-500"><i class="fas fa-exclamation-triangle mr-2"></i>Error al cargar la vista</div></div>';
             } finally {
                 this.isTransitioning = false;
             }

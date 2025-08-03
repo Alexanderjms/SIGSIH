@@ -22,6 +22,7 @@
             {{-- Dashboard --}}
             <li>
                 <x-admin.sidebar-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')"
+                    view-name="dashboard"
                     class="py-2 px-2 rounded-l-full no-flash">
                     <i class="fa-solid fa-house w-5 text-center"></i>
                     <span :class="!sidebarOpen && 'hidden'" class="nunito-bold">Dashboard</span>
@@ -46,7 +47,8 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.gestion-usuarios')"
-                            :active="request()->routeIs('admin.gestion-usuarios')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.gestion-usuarios')" 
+                            view-name="gestion-usuarios" class="py-1 px-3">
                             <i class="fas fa-user text-sm w-4 text-center"></i>
                             Gestión de Usuarios
                         </x-admin.sidebar-link>
@@ -54,14 +56,16 @@
 
                     <li>
                         <x-admin.sidebar-link :href="route('admin.parametros')"
-                            :active="request()->routeIs('admin.parametros')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.parametros')" 
+                            view-name="parametros" class="py-1 px-3">
                             <i class="fas fa-sliders-h text-sm w-4 text-center"></i>
                             Parámetros
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.configuracion-acceso')"
-                            :active="request()->routeIs('admin.configuracion-acceso')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.configuracion-acceso')" 
+                            view-name="configuracion-acceso" class="py-1 px-3">
                             <i class="fas fa-key text-sm w-4 text-center"></i>
                             Configuración de accesos al sistema
                         </x-admin.sidebar-link>
@@ -88,14 +92,16 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.gestion-empresas')"
-                            :active="request()->routeIs('admin.gestion-empresas')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.gestion-empresas')" 
+                            view-name="gestion-empresas" class="py-1 px-3">
                             <i class="fas fa-building text-sm w-4 text-center"></i>
                             Gestión de Empresas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.cotizaciones')"
-                            :active="request()->routeIs('admin.cotizaciones')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.cotizaciones')" 
+                            view-name="cotizaciones" class="py-1 px-3">
                             <i class="fas fa-file-invoice text-sm w-4 text-center"></i>
                             Gestión de Cotizaciones
                         </x-admin.sidebar-link>
@@ -121,7 +127,8 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.solicitudes.index')"
-                            :active="request()->routeIs('admin.solicitudes.index')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.solicitudes.index')" 
+                            view-name="solicitudes" class="py-1 px-3">
                             <i class="fas fa-envelope-open-text text-sm w-4 text-center"></i>
                             Gestión de Solicitudes
                         </x-admin.sidebar-link>
@@ -149,7 +156,8 @@
 
                     <li>
                         <x-admin.sidebar-link :href="route('admin.gestion-ordenes')"
-                            :active="request()->routeIs('admin.gestion-ordenes')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.gestion-ordenes')" 
+                            view-name="gestion-ordenes" class="py-1 px-3">
                             <i class="fas fa-plus text-sm w-4 text-center"></i>
                             Gestion Ordenes de Servicios
                         </x-admin.sidebar-link>
@@ -176,14 +184,16 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.vista-proyectos')"
-                            :active="request()->routeIs('admin.vista-proyectos')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.vista-proyectos')" 
+                            view-name="vista-proyectos" class="py-1 px-3">
                             <i class="fas fa-eye text-sm w-4 text-center"></i>
                             Vista de proyectos
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.proyectos')"
-                            :active="request()->routeIs('admin.proyectos*')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.proyectos*')" 
+                            view-name="proyectos" class="py-1 px-3">
                             <i class="fas fa-cogs text-sm w-4 text-center"></i>
                             Gestión de proyectos
                         </x-admin.sidebar-link>
@@ -209,7 +219,8 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.tickets.index')"
-                            :active="request()->routeIs('admin.tickets*')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.tickets*')" 
+                            view-name="tickets" class="py-1 px-3">
                             <i class="fas fa-ticket-alt text-sm w-4 text-center"></i>
                             Gestión de tickets
                         </x-admin.sidebar-link>
@@ -235,14 +246,16 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.agencias')"
-                            :active="request()->routeIs('admin.agencias')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.agencias')" 
+                            view-name="agencias" class="py-1 px-3">
                             <i class="fas fa-map-marker-alt text-sm w-4 text-center"></i>
                             Gestión de Agencias
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.calendario')"
-                            :active="request()->routeIs('admin.calendario')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.calendario')" 
+                            view-name="calendario" class="py-1 px-3">
                             <i class="fas fa-calendar-alt text-sm w-4 text-center"></i>
                             Calendario
                         </x-admin.sidebar-link>
@@ -268,14 +281,15 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.facturas')"
-                            :active="request()->routeIs('admin.facturas')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.facturas')" 
+                            view-name="facturas" class="py-1 px-3">
                             <i class="fas fa-file-invoice-dollar text-sm w-4 text-center"></i>
                             Gestión de Facturas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.cai')" :active="request()->routeIs('admin.cai')"
-                            class="py-1 px-3">
+                            view-name="cai" class="py-1 px-3">
                             <i class="fas fa-barcode text-sm w-4 text-center"></i>
                             Gestión de CAI
                         </x-admin.sidebar-link>
@@ -301,7 +315,8 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.reportes')"
-                            :active="request()->routeIs('admin.reportes')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.reportes')" 
+                            view-name="reportes" class="py-1 px-3">
                             <i class="fas fa-file-alt text-sm w-4 text-center"></i>
                             Gestión de Reportes
                         </x-admin.sidebar-link>
@@ -327,14 +342,15 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.productos')"
-                            :active="request()->routeIs('admin.productos')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.productos')" 
+                            view-name="productos" class="py-1 px-3">
                             <i class="fas fa-box text-sm w-4 text-center"></i>
                             Gestión de Productos
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.kardex')" :active="request()->routeIs('admin.kardex')"
-                            class="py-1 px-3">
+                            view-name="kardex" class="py-1 px-3">
                             <i class="fas fa-archive text-sm w-4 text-center"></i>
                             Gestión de Kardex
                         </x-admin.sidebar-link>
@@ -361,35 +377,39 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
                         <x-admin.sidebar-link :href="route('admin.gestion-personas')"
-                            :active="request()->routeIs('admin.gestion-personas')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.gestion-personas')" 
+                            view-name="gestion-personas" class="py-1 px-3">
                             <i class="fas fa-user-cog text-sm w-4 text-center"></i>
                             Gestión de personas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.perfil')" :active="request()->routeIs('admin.perfil')"
-                            class="py-1 px-3">
+                            view-name="perfil" class="py-1 px-3">
                             <i class="fas fa-user-circle text-sm w-4 text-center"></i>
                             Mi perfil
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.cambio-contrasena')"
-                            :active="request()->routeIs('admin.cambio-contrasena')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.cambio-contrasena')" 
+                            view-name="cambio-contrasena" class="py-1 px-3">
                             <i class="fas fa-unlock-alt text-sm w-4 text-center"></i>
                             Cambio de contraseña
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.bitacora')"
-                            :active="request()->routeIs('admin.bitacora')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.bitacora')" 
+                            view-name="bitacora" class="py-1 px-3">
                             <i class="fas fa-book text-sm w-4 text-center"></i>
                             Bitácora
                         </x-admin.sidebar-link>
                     </li>
                     <li>
                         <x-admin.sidebar-link :href="route('admin.gestion-db')"
-                            :active="request()->routeIs('admin.gestion-db')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.gestion-db')" 
+                            view-name="gestion-db" class="py-1 px-3">
                             <i class="fas fa-database text-sm w-4 text-center"></i>
                             Gestión de Base de Datos
                         </x-admin.sidebar-link>
@@ -417,7 +437,8 @@
 
                     <li>
                         <x-admin.sidebar-link :href="route('admin.mantenimiento-general')"
-                            :active="request()->routeIs('admin.mantenimiento-general')" class="py-1 px-3">
+                            :active="request()->routeIs('admin.mantenimiento-general')" 
+                            view-name="mantenimiento-general" class="py-1 px-3">
                             <i class="fas fa-wrench text-sm w-4 text-center"></i>
                             Mantenimiento del Sistema
                         </x-admin.sidebar-link>
