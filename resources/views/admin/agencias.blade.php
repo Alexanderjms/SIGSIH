@@ -4,7 +4,7 @@
 @section('title', 'Gestión de Agencias')
 
 @section('content')
-<div x-data="{ tab: 'agencias', isAgenciaModalOpen: false, isPaisModalOpen: false, isDepartamentoModalOpen: false, isCiudadModalOpen: false, isDireccionModalOpen: false, agenciaToEdit: null, agenciaToDelete: null }">
+<div x-data="{ tab: 'agencias', isAgenciaModalOpen: false, isPaisModalOpen: false, isDepartamentoModalOpen: false, isCiudadModalOpen: false, isDireccionModalOpen: false, isDeleteAgenciaModalOpen: false, agenciaToEdit: null, agenciaToDelete: null }">
   <div class="w-full">
     <ul class="flex border-b nunito-bold">
       <li @click="tab='agencias'" :class="tab==='agencias' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Agencias</li>

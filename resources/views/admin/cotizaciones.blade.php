@@ -1,7 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div x-data="{ deleteModal: false, selectedItem: null, generateCotizacionModal: false, editModal: false, itemToEdit: null, showFilters: false }">
+    <div x-data="{ 
+        deleteModal: false, 
+        selectedItem: null, 
+        generateCotizacionModal: false, 
+        editModal: false, 
+        itemToEdit: {
+            id: null,
+            clienteId: '',
+            fechaCotizacion: '',
+            validoHasta: '',
+            imponible: '',
+            totalImpuesto: '',
+            otrosCargos: '',
+            total: '',
+            descripciones: []
+        }, 
+        showFilters: false 
+    }">
         <x-admin.tabla-crud titulo="Cotizaciones">
             <x-slot:filtros>
                 <div class="w-full">
@@ -113,7 +130,7 @@
                                         { descripcion: 'Producto 1', precio: 5000.00, cantidad: 1, impuesto: 750.00, total: 5750.00 },
                                         { descripcion: 'Producto 2', precio: 5500.00, cantidad: 1, impuesto: 830.00, total: 6330.00 }
                                     ]
-                                }">
+                                }">>
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a href="#" class="text-red-500 hover:text-red-700" @click="deleteModal = true; selectedItem = 1">
@@ -148,7 +165,7 @@
                                         { descripcion: 'Servicio A', precio: 4500.00, cantidad: 1, impuesto: 675.00, total: 5175.00 },
                                         { descripcion: 'Servicio B', precio: 4250.00, cantidad: 1, impuesto: 637.50, total: 4887.50 }
                                     ]
-                                }">
+                                }">>
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a href="#" class="text-red-500 hover:text-red-700" @click="deleteModal = true; selectedItem = 2">
@@ -267,7 +284,7 @@
                 </div>
 
                 <!-- Descripción dinámica -->
-                <div class="col-span-3" x-data="{}" x-init="$watch('itemToEdit', value => { if(!value.descripciones) value.descripciones = []; })">
+                <div class="col-span-3">
                     <label class="block text-sm font-medium text-gray-700 nunito-bold">Descripción</label>
                     <div class="max-h-48 overflow-y-auto pr-2">
                         <template x-for="(descripcion, index) in itemToEdit.descripciones" :key="index">
@@ -295,7 +312,7 @@
                             </div>
                         </template>
                     </div>
-                    <button type="button" @click="if(!itemToEdit.descripciones) itemToEdit.descripciones = []; itemToEdit.descripciones.push({})" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
+                    <button type="button" @click="itemToEdit.descripciones.push({})" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
                         <i class="fas fa-plus"></i> Añadir Descripción
                     </button>
                 </div>

@@ -3,7 +3,16 @@
 
 @section('content')
 <div
-    x-data="{ isModalOpen: false, isEditUserModalOpen: false, isDeleteUserModalOpen: false, userToEdit: null, userToDelete: null }">
+    x-data="{ 
+        isModalOpen: false, 
+        isEditUserModalOpen: false, 
+        isDeleteUserModalOpen: false, 
+        userToEdit: null, 
+        userToDelete: null,
+        search: '',
+        filtroPerfil: '',
+        ordenarPor: ''
+    }">
     <!-- REFERENCIA A LA TABLA -->
     <x-admin.tabla-crud :titulo="'Lista de Usuarios'">
         <x-slot name="filtros">

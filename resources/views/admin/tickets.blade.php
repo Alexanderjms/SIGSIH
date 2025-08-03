@@ -3,7 +3,7 @@
 @section('title', 'Gestión de Tickets')
 
 @section('content')
-<div x-data="{ tab: 'tickets', isModalOpen: false, isEditModalOpen: false, ticketToEdit: null, isDeleteModalOpen: false, ticketToDelete: null }">
+<div x-data="{ tab: 'tickets', isModalOpen: false, isEditModalOpen: false, ticketToEdit: { id: '', cliente: '', fecha: '', estado: '' }, isDeleteModalOpen: false, ticketToDelete: null }">
 <div class="w-full">
     <ul class="flex border-b nunito-bold">
       <li @click="tab='tickets'" :class="tab==='tickets' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Tickets</li>

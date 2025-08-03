@@ -2,7 +2,38 @@
 
 @section('content')
     {{-- Pestañas --}}
-    <div x-data="{ tab: 'proyectos', minIngresoMonto: '', maxIngresoMonto: '', minGastoMonto: '', maxGastoMonto: '', isModalOpen: false, isCategoriaModalOpen: false, isEditCategoriaModalOpen: false, categoriaToEdit: null, isIngresoModalOpen: false, isGastoModalOpen: false, isEditIngresoModalOpen: false, isEditGastoModalOpen: false, ingresoToEdit: null, gastoToEdit: null, isDeleteProjectModalOpen: false, projectToDelete: null, isDeleteCategoriaModalOpen: false, categoriaToDelete: null, isDeleteIngresoModalOpen: false, ingresoToDelete: null, isDeleteGastoModalOpen: false, gastoToDelete: null, isEditProjectModalOpen: false, projectToEdit: null, isEstadoModalOpen: false, isEditEstadoModalOpen: false, isDeleteEstadoModalOpen: false, estadoToEdit: null, estadoToDelete: null }">
+    <div x-data="{ 
+        tab: 'proyectos', 
+        minIngresoMonto: '', 
+        maxIngresoMonto: '', 
+        minGastoMonto: '', 
+        maxGastoMonto: '', 
+        isModalOpen: false, 
+        isCategoriaModalOpen: false, 
+        isEditCategoriaModalOpen: false, 
+        categoriaToEdit: { id: '', tipo: '', nombre: '' }, 
+        isIngresoModalOpen: false, 
+        isGastoModalOpen: false, 
+        isEditIngresoModalOpen: false, 
+        isEditGastoModalOpen: false, 
+        ingresoToEdit: { id: '', proyecto: '', nombre: '', fecha: '', monto: '', categoria: '', descripcion: '' }, 
+        gastoToEdit: { id: '', proyecto: '', nombre: '', fecha: '', monto: '', categoria: '', descripcion: '' }, 
+        isDeleteProjectModalOpen: false, 
+        projectToDelete: null, 
+        isDeleteCategoriaModalOpen: false, 
+        categoriaToDelete: null, 
+        isDeleteIngresoModalOpen: false, 
+        ingresoToDelete: null, 
+        isDeleteGastoModalOpen: false, 
+        gastoToDelete: null, 
+        isEditProjectModalOpen: false, 
+        projectToEdit: { id: '', nombre: '', fecha_inicio: '', fecha_estimada_fin: '', fecha_fin: '', descripcion: '', actividades: '', orden_servicio: '', estado: '' }, 
+        isEstadoModalOpen: false, 
+        isEditEstadoModalOpen: false, 
+        isDeleteEstadoModalOpen: false, 
+        estadoToEdit: { id: '', nombre: '', descripcion: '' }, 
+        estadoToDelete: null 
+    }">
         <ul class="flex border-b nunito-bold">
             <li @click="tab='proyectos'" :class="tab==='proyectos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Proyectos</li>
             <li @click="tab='categorias'" :class="tab==='categorias' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Categorías</li>

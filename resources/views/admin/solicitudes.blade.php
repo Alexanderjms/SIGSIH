@@ -2,7 +2,43 @@
 
 @section('content')
 <div
-    x-data="{ tab: 'solicitudes', isModalOpen: false, isEditModalOpen: false, solicitudToEdit: null, isDeleteModalOpen: false, solicitudToDelete: null, isEstadoModalOpen: false, isEditEstadoModalOpen: false, estadoToEdit: null, isDeleteEstadoModalOpen: false, estadoToDelete: null }">
+    x-data="{ 
+        tab: 'solicitudes', 
+        isModalOpen: false, 
+        isEditModalOpen: false, 
+        solicitudToEdit: {
+            id: null,
+            id_cliente: '',
+            num_solicitud_acf: '',
+            num_solicitud_cliente: '',
+            descripcion_problema: '',
+            fecha_creacion: '',
+            fecha_modificacion: '',
+            estado_solicitud: '',
+            id_contacto: ''
+        }, 
+        isDeleteModalOpen: false, 
+        solicitudToDelete: null, 
+        isEstadoModalOpen: false, 
+        isEditEstadoModalOpen: false, 
+        estadoToEdit: {
+            id: null,
+            nombre_estado: '',
+            descripcion_estado: ''
+        }, 
+        isDeleteEstadoModalOpen: false, 
+        estadoToDelete: null,
+        isContactoModalOpen: false,
+        isEditContactoModalOpen: false,
+        contactoToEdit: {
+            id: null,
+            tipo_contacto: '',
+            valor_contacto: '',
+            id_persona: ''
+        },
+        isDeleteContactoModalOpen: false,
+        contactoToDelete: null
+    }">
     <ul class="flex border-b nunito-bold">
         <li @click="tab='solicitudes'"
             :class="tab==='solicitudes' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
@@ -46,7 +82,12 @@
                             <td class="py-2 px-4">+9907-7134</td>
                             <td class="py-2 px-4">P-001</td>
                             <td class="py-2 px-4 flex gap-2">
-                                <a href="#" @click="isEditContactoModalOpen = true; contactoToEdit = {id: 1}"
+                                <a href="#" @click="isEditContactoModalOpen = true; contactoToEdit = {
+                                    id: 1,
+                                    tipo_contacto: 'Teléfono',
+                                    valor_contacto: '+9907-7134',
+                                    id_persona: 'P-001'
+                                }"
                                     class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
                                 <a href="#" @click="isDeleteContactoModalOpen = true; contactoToDelete = {id: 1}"
                                     class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
@@ -87,18 +128,18 @@
             <div>
                 <label for="edit_tipo_contacto" class="block text-sm font-medium text-gray-700">Tipo de Contacto</label>
                 <input type="text" id="edit_tipo_contacto" name="edit_tipo_contacto"
-                    :value="contactoToEdit.tipo_contacto"
+                    x-model="contactoToEdit.tipo_contacto"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_valor_contacto" class="block text-sm font-medium text-gray-700">Valor Contacto</label>
                 <input type="text" id="edit_valor_contacto" name="edit_valor_contacto"
-                    :value="contactoToEdit.valor_contacto"
+                    x-model="contactoToEdit.valor_contacto"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_id_persona" class="block text-sm font-medium text-gray-700">ID Persona</label>
-                <input type="text" id="edit_id_persona" name="edit_id_persona" :value="contactoToEdit.id_persona"
+                <input type="text" id="edit_id_persona" name="edit_id_persona" x-model="contactoToEdit.id_persona"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
         </div>
@@ -138,7 +179,11 @@
                             <td class="py-2 px-4">Abierta</td>
                             <td class="py-2 px-4">Solicitud creada y pendiente de atención</td>
                             <td class="py-2 px-4 flex gap-2">
-                                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {id: 1}"
+                                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {
+                                    id: 1,
+                                    nombre_estado: 'Abierta',
+                                    descripcion_estado: 'Solicitud creada y pendiente de atención'
+                                }"
                                     class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
                                 <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 1}"
                                     class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
@@ -174,13 +219,13 @@
             <div>
                 <label for="edit_nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del
                     Estado</label>
-                <input type="text" id="edit_nombre_estado" name="edit_nombre_estado" :value="estadoToEdit.nombre_estado"
+                <input type="text" id="edit_nombre_estado" name="edit_nombre_estado" x-model="estadoToEdit.nombre_estado"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
                 <textarea id="edit_descripcion_estado" name="edit_descripcion_estado" rows="2"
-                    x-text="estadoToEdit.descripcion_estado"
+                    x-model="estadoToEdit.descripcion_estado"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
             </div>
         </div>
@@ -239,7 +284,17 @@
                                     class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Abierta</span></td>
                             <td class="py-2 px-4">CT-001</td>
                             <td class="py-2 px-4 flex gap-2">
-                                <a href="#" @click="isEditModalOpen = true; solicitudToEdit = {id: 1}"
+                                <a href="#" @click="isEditModalOpen = true; solicitudToEdit = {
+                                    id: 1,
+                                    id_cliente: 'C-001',
+                                    num_solicitud_acf: 'ACF-123',
+                                    num_solicitud_cliente: 'CL-456',
+                                    descripcion_problema: 'No enciende el equipo',
+                                    fecha_creacion: '2025-07-01',
+                                    fecha_modificacion: '2025-07-02',
+                                    estado_solicitud: 'Abierta',
+                                    id_contacto: 'CT-001'
+                                }"
                                     class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
                                 <a href="#" @click="isDeleteModalOpen = true; solicitudToDelete = {id: 1}"
                                     class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
@@ -312,57 +367,57 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label for="edit_id_cliente" class="block text-sm font-medium text-gray-700">ID Cliente</label>
-                <input type="text" id="edit_id_cliente" name="edit_id_cliente" :value="solicitudToEdit.id_cliente"
+                <input type="text" id="edit_id_cliente" name="edit_id_cliente" x-model="solicitudToEdit.id_cliente"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_num_solicitud_acf" class="block text-sm font-medium text-gray-700">N° Solicitud
                     ACF</label>
                 <input type="text" id="edit_num_solicitud_acf" name="edit_num_solicitud_acf"
-                    :value="solicitudToEdit.num_solicitud_acf"
+                    x-model="solicitudToEdit.num_solicitud_acf"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_num_solicitud_cliente" class="block text-sm font-medium text-gray-700">N° Solicitud
                     Cliente</label>
                 <input type="text" id="edit_num_solicitud_cliente" name="edit_num_solicitud_cliente"
-                    :value="solicitudToEdit.num_solicitud_cliente"
+                    x-model="solicitudToEdit.num_solicitud_cliente"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div class="col-span-2">
                 <label for="edit_descripcion_problema" class="block text-sm font-medium text-gray-700">Descripción del
                     Problema</label>
                 <textarea id="edit_descripcion_problema" name="edit_descripcion_problema" rows="2"
-                    x-text="solicitudToEdit.descripcion_problema"
+                    x-model="solicitudToEdit.descripcion_problema"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
             </div>
             <div>
                 <label for="edit_fecha_creacion" class="block text-sm font-medium text-gray-700">Fecha de
                     Creación</label>
                 <input type="date" id="edit_fecha_creacion" name="edit_fecha_creacion"
-                    :value="solicitudToEdit.fecha_creacion"
+                    x-model="solicitudToEdit.fecha_creacion"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_fecha_modificacion" class="block text-sm font-medium text-gray-700">Fecha de
                     Modificación</label>
                 <input type="date" id="edit_fecha_modificacion" name="edit_fecha_modificacion"
-                    :value="solicitudToEdit.fecha_modificacion"
+                    x-model="solicitudToEdit.fecha_modificacion"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_estado_solicitud" class="block text-sm font-medium text-gray-700">Estado de la
                     Solicitud</label>
-                <select id="edit_estado_solicitud" name="edit_estado_solicitud"
+                <select id="edit_estado_solicitud" name="edit_estado_solicitud" x-model="solicitudToEdit.estado_solicitud"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-                    <option :selected="solicitudToEdit.estado_solicitud === 'Abierta'">Abierta</option>
-                    <option :selected="solicitudToEdit.estado_solicitud === 'En Proceso'">En Proceso</option>
-                    <option :selected="solicitudToEdit.estado_solicitud === 'Cerrada'">Cerrada</option>
+                    <option value="Abierta">Abierta</option>
+                    <option value="En Proceso">En Proceso</option>
+                    <option value="Cerrada">Cerrada</option>
                 </select>
             </div>
             <div>
                 <label for="edit_id_contacto" class="block text-sm font-medium text-gray-700">ID Contacto</label>
-                <input type="text" id="edit_id_contacto" name="edit_id_contacto" :value="solicitudToEdit.id_contacto"
+                <input type="text" id="edit_id_contacto" name="edit_id_contacto" x-model="solicitudToEdit.id_contacto"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
         </div>

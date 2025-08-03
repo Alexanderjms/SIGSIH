@@ -67,10 +67,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.solicitudes');
     })->name('solicitudes.index');
 
-    Route::get('solicitudes/empresas', function () {
-        return view('admin.solicitudes-empresas');
-    })->name('solicitudes.empresas');
-
     // Órdenes de Servicio
     Route::get('ordenes-servicio', function () {
         return view('admin.ordenes-servicio');
