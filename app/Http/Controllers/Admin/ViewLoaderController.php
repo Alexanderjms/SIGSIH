@@ -10,46 +10,47 @@ class ViewLoaderController extends Controller
 {
     public function load(Request $request)
     {
-        $view = $request->query('view');
-
+        $view = $request->get('view');
+        
         // Validación de seguridad
-        if (empty($view) || str_contains($view, '..')) {
-            abort(400, 'Invalid view name');
+        if (!$view || !preg_match('/^[a-zA-Z0-9_-]+$/', $view)) {
+            return response('Invalid view', 400);
         }
 
-        // Primero intentar cargar una vista parcial
-        $partialViewName = 'admin.partials.' . $view;
-        if (View::exists($partialViewName)) {
-            return view($partialViewName)->render();
+        // Primero verificar si existe una vista parcial específica
+        $partialView = "admin.partials.{$view}";
+        if (View::exists($partialView)) {
+            // Incluir header para vistas parciales
+            $headerHtml = view('partials.admin-header')->render();
+            $contentHtml = view($partialView)->render();
+            
+            return $headerHtml . '<div class="bg-white p-6 rounded-lg shadow">' . $contentHtml . '</div>';
         }
 
-        // Si no existe vista parcial, usar la vista completa y extraer contenido
-        $viewName = 'admin.' . $view;
-        if (!View::exists($viewName)) {
-            abort(404, "View not found: {$viewName}");
+        // Si no existe vista parcial, intentar cargar la vista completa y extraer contenido
+        $fullView = "admin.{$view}";
+        if (!View::exists($fullView)) {
+            return response('View not found', 404);
         }
 
         try {
-            // Renderizar la vista completa
-            $html = view($viewName)->render();
+            $fullHtml = view($fullView)->render();
             
-            // Usar regex para extraer el contenido del main
-            $pattern = '/<main[^>]*>(.*?)<\/main>/s';
-            if (preg_match($pattern, $html, $matches)) {
+            // Extraer solo el contenido principal usando regex
+            // Buscar el contenido entre las etiquetas del layout
+            if (preg_match('/<div class="bg-white p-6 rounded-lg shadow">(.*?)<\/div>\s*<\/main>/s', $fullHtml, $matches)) {
                 return $matches[1];
             }
             
-            // Si no encuentra main, buscar div con bg-white p-6 rounded-lg shadow (contenido principal)
-            $pattern = '/<div[^>]*class="[^"]*bg-white[^"]*p-6[^"]*rounded-lg[^"]*shadow[^"]*"[^>]*>(.*?)<\/div>/s';
-            if (preg_match($pattern, $html, $matches)) {
+            // Fallback: buscar cualquier div con clase bg-white
+            if (preg_match('/<div[^>]*class="[^"]*bg-white[^"]*"[^>]*>(.*?)<\/div>/s', $fullHtml, $matches)) {
                 return $matches[1];
             }
             
-            // Como último recurso, devolver todo el HTML
-            return $html;
+            return $fullHtml;
             
         } catch (\Exception $e) {
-            return '<div class="flex justify-center items-center h-64"><div class="text-red-500"><i class="fas fa-exclamation-triangle mr-2"></i>Error: ' . $e->getMessage() . '</div></div>';
+            return response('Error loading view: ' . $e->getMessage(), 500);
         }
     }
 }

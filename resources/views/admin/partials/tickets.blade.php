@@ -1,0 +1,231 @@
+<div x-data="{ tab: 'tickets', isModalOpen: false, isEditModalOpen: false, ticketToEdit: { id: '', cliente: '', fecha: '', estado: '' }, isDeleteModalOpen: false, ticketToDelete: null, isEstadoModalOpen: false, isEditEstadoModalOpen: false, isDeleteEstadoModalOpen: false, estadoToEdit: { id: '', nombre: '', descripcion: '' }, estadoToDelete: null }">
+<div class="w-full">
+    <ul class="flex border-b nunito-bold">
+      <li @click="tab='tickets'" :class="tab==='tickets' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Tickets</li>
+      <li @click="tab='estado'" :class="tab==='estado' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Estado Ticket</li>
+    </ul>
+
+    <div x-show="tab==='tickets'" class="overflow-x-auto w-full">
+      <div class="bg-white rounded-lg shadow p-6 mt-6 w-full">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
+          <h2 class="text-2xl text-gray-800 nunito-bold">Gestión de Tickets</h2>
+          <div class="flex flex-col sm:flex-row gap-2 flex-1 md:ml-6 nunito-bold">
+            <input type="text" placeholder="Buscar ticket..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
+            <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+              <option class="nunito-bold" value="">Todos los estados</option>
+              <option class="nunito-bold">Pendiente</option>
+              <option class="nunito-bold">En proceso</option>
+              <option class="nunito-bold">Finalizado</option>
+            </select>
+          </div>
+          <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo ticket</button>
+        </div>
+        <table class="min-w-full text-sm w-full">
+          <thead class="bg-gray-100 nunito-bold">
+            <tr>
+              <th class="py-2 px-4 text-left">ID</th>
+              <th class="py-2 px-4 text-left">Cliente</th>
+              <th class="py-2 px-4 text-left">Fecha</th>
+              <th class="py-2 px-4 text-left">Estado</th>
+              <th class="py-2 px-4 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">1</td>
+              <td class="py-2 px-4">Empresa Ejemplo S.A.</td>
+              <td class="py-2 px-4">26/07/2025</td>
+              <td class="py-2 px-4"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Pendiente</span></td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" @click="isEditModalOpen = true; ticketToEdit = {id: 1, cliente: 'Empresa Ejemplo S.A.', fecha: '26/07/2025', estado: 'Pendiente'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                <a href="#" @click="isDeleteModalOpen = true; ticketToDelete = {id: 1}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">2</td>
+              <td class="py-2 px-4">Bac Credomatic</td>
+              <td class="py-2 px-4">27/07/2025</td>
+              <td class="py-2 px-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">En proceso</span></td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" @click="isEditModalOpen = true; ticketToEdit = {id: 2, cliente: 'Bac Credomatic', fecha: '27/07/2025', estado: 'En proceso'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                <a href="#" @click="isDeleteModalOpen = true; ticketToDelete = {id: 2}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">3</td>
+              <td class="py-2 px-4">Ficohsa</td>
+              <td class="py-2 px-4">28/07/2025</td>
+              <td class="py-2 px-4"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Finalizado</span></td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" @click="isEditModalOpen = true; ticketToEdit = {id: 3, cliente: 'Ficohsa', fecha: '28/07/2025', estado: 'Finalizado'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                <a href="#" @click="isDeleteModalOpen = true; ticketToDelete = {id: 3}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div x-show="tab==='estado'" class="overflow-x-auto w-full">
+      <div class="bg-white rounded-lg shadow p-6 mt-6 w-full">
+        <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
+          <h2 class="text-2xl text-gray-800 nunito-bold">Estado Ticket</h2>
+          <button @click="isEstadoModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo Estado</button>
+        </div>
+        <table class="min-w-full text-sm w-full">
+          <thead class="bg-gray-100 nunito-bold">
+            <tr>
+              <th class="py-2 px-4 text-left">ID Estado</th>
+              <th class="py-2 px-4 text-left">Nombre</th>
+              <th class="py-2 px-4 text-left">Descripción</th>
+              <th class="py-2 px-4 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">E-001</td>
+              <td class="py-2 px-4">Pendiente</td>
+              <td class="py-2 px-4">Ticket en espera de atención</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {id: 'E-001', nombre: 'Pendiente', descripcion: 'Ticket en espera de atención'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 'E-001', nombre: 'Pendiente'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">E-002</td>
+              <td class="py-2 px-4">En proceso</td>
+              <td class="py-2 px-4">Ticket siendo atendido activamente</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {id: 'E-002', nombre: 'En proceso', descripcion: 'Ticket siendo atendido activamente'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 'E-002', nombre: 'En proceso'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+            <tr class="border-b nunito-regular">
+              <td class="py-2 px-4">E-003</td>
+              <td class="py-2 px-4">Finalizado</td>
+              <td class="py-2 px-4">Ticket resuelto completamente</td>
+              <td class="py-2 px-4 flex gap-2">
+                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {id: 'E-003', nombre: 'Finalizado', descripcion: 'Ticket resuelto completamente'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 'E-003', nombre: 'Finalizado'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal Nuevo Ticket -->
+    <x-admin.form-modal 
+        modalName="isModalOpen" 
+        title="Nuevo Ticket" 
+        submitLabel="Guardar Ticket">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
+                <input type="text" id="id" name="id" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="cliente" class="block text-sm font-medium text-gray-700">Cliente</label>
+                <input type="text" id="cliente" name="cliente" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="fecha" class="block text-sm font-medium text-gray-700">Fecha</label>
+                <input type="date" id="fecha" name="fecha" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="estado" class="block text-sm font-medium text-gray-700">Estado</label>
+                <select id="estado" name="estado" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+                    <option>Pendiente</option>
+                    <option>En proceso</option>
+                    <option>Finalizado</option>
+                </select>
+            </div>
+        </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Editar Ticket -->
+    <x-admin.edit-modal 
+        modalName="isEditModalOpen" 
+        title="Editar Ticket" 
+        itemToEdit="ticketToEdit">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="edit_id" class="block text-sm font-medium text-gray-700">ID</label>
+                <input type="text" id="edit_id" name="edit_id" :value="ticketToEdit.id" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_cliente" class="block text-sm font-medium text-gray-700">Cliente</label>
+                <input type="text" id="edit_cliente" name="edit_cliente" :value="ticketToEdit.cliente" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_fecha" class="block text-sm font-medium text-gray-700">Fecha</label>
+                <input type="date" id="edit_fecha" name="edit_fecha" :value="ticketToEdit.fecha" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_estado" class="block text-sm font-medium text-gray-700">Estado</label>
+                <select id="edit_estado" name="edit_estado" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+                    <option :selected="ticketToEdit.estado === 'Pendiente'">Pendiente</option>
+                    <option :selected="ticketToEdit.estado === 'En proceso'">En proceso</option>
+                    <option :selected="ticketToEdit.estado === 'Finalizado'">Finalizado</option>
+                </select>
+            </div>
+        </div>
+    </x-admin.edit-modal>
+
+    <!-- Modal Confirmar Eliminación Ticket -->
+    <x-admin.confirmation-modal
+        modalName="isDeleteModalOpen"
+        itemToDelete="ticketToDelete"
+        message="¿Estás seguro de que quieres eliminar el ticket?"
+    />
+
+    <!-- Modal Nuevo Estado -->
+    <x-admin.form-modal 
+        modalName="isEstadoModalOpen" 
+        title="Nuevo Estado de Ticket" 
+        submitLabel="Guardar Estado">
+        <div class="space-y-4">
+            <div>
+                <label for="id_estado" class="block text-sm font-medium text-gray-700">ID Estado</label>
+                <input type="text" id="id_estado" name="id_estado" placeholder="E-004" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del Estado</label>
+                <input type="text" id="nombre_estado" name="nombre_estado" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
+                <textarea id="descripcion_estado" name="descripcion_estado" rows="3" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+            </div>
+        </div>
+    </x-admin.form-modal>
+
+    <!-- Modal Editar Estado -->
+    <x-admin.edit-modal 
+        modalName="isEditEstadoModalOpen" 
+        title="Editar Estado de Ticket" 
+        itemToEdit="estadoToEdit">
+        <div class="space-y-4">
+            <div>
+                <label for="edit_id_estado" class="block text-sm font-medium text-gray-700">ID Estado</label>
+                <input type="text" id="edit_id_estado" name="edit_id_estado" :value="estadoToEdit.id" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del Estado</label>
+                <input type="text" id="edit_nombre_estado" name="edit_nombre_estado" :value="estadoToEdit.nombre" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div>
+                <label for="edit_descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
+                <textarea id="edit_descripcion_estado" name="edit_descripcion_estado" rows="3" class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2" x-text="estadoToEdit.descripcion"></textarea>
+            </div>
+        </div>
+    </x-admin.edit-modal>
+
+    <!-- Modal Confirmar Eliminación Estado -->
+    <x-admin.confirmation-modal
+        modalName="isDeleteEstadoModalOpen"
+        itemToDelete="estadoToDelete"
+        message="¿Estás seguro de que quieres eliminar el estado"
+    />
+</div>
+</div>
