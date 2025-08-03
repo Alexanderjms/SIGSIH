@@ -2,7 +2,26 @@
 
 @section('content')
 <div
-    x-data="{ tab: 'ordenes', isModalOpen: false, isEditModalOpen: false, ordenToEdit: null, isDeleteModalOpen: false, ordenToDelete: null }">
+    x-data="{ 
+        tab: 'ordenes', 
+        isModalOpen: false, 
+        isEditModalOpen: false, 
+        ordenToEdit: {
+            id: null,
+            id_solicitud: '',
+            id_tecnico: '',
+            fecha_recepcion: '',
+            fecha_inicio: '',
+            fecha_finalizacion: '',
+            observaciones: '',
+            diagnostico_tecnico: '',
+            diagnostico_cliente: '',
+            calificacion_servicio: '',
+            id_cotizacion: ''
+        }, 
+        isDeleteModalOpen: false, 
+        ordenToDelete: null 
+    }">
     <ul class="flex border-b nunito-bold">
         <li @click="tab='ordenes'"
             :class="tab==='ordenes' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
@@ -63,7 +82,19 @@
                                     class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
                                     <i class="fas fa-eye mr-1"></i> Ver detalles
                                 </a>
-                                <a href="#" @click="isEditModalOpen = true; ordenToEdit = {id: 1}"
+                                <a href="#" @click="isEditModalOpen = true; ordenToEdit = {
+                                    id: 1,
+                                    id_solicitud: '1001',
+                                    id_tecnico: 'T-001',
+                                    fecha_recepcion: '2025-07-01',
+                                    fecha_inicio: '2025-07-02',
+                                    fecha_finalizacion: '2025-07-05',
+                                    observaciones: 'Sin observaciones',
+                                    diagnostico_tecnico: 'Diagnóstico técnico ejemplo',
+                                    diagnostico_cliente: 'Diagnóstico cliente ejemplo',
+                                    calificacion_servicio: 5,
+                                    id_cotizacion: 'C-001'
+                                }"
                                     class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
                                 <a href="#" @click="isDeleteModalOpen = true; ordenToDelete = {id: 1}"
                                     class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
@@ -144,45 +175,45 @@
                 <label for="edit_fecha_recepcion" class="block text-sm font-medium text-gray-700">Fecha
                     Recepción</label>
                 <input type="date" id="edit_fecha_recepcion" name="edit_fecha_recepcion"
-                    :value="ordenToEdit.fecha_recepcion"
+                    x-model="ordenToEdit.fecha_recepcion"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_fecha_inicio" class="block text-sm font-medium text-gray-700">Fecha Inicio</label>
-                <input type="date" id="edit_fecha_inicio" name="edit_fecha_inicio" :value="ordenToEdit.fecha_inicio"
+                <input type="date" id="edit_fecha_inicio" name="edit_fecha_inicio" x-model="ordenToEdit.fecha_inicio"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div>
                 <label for="edit_fecha_finalizacion" class="block text-sm font-medium text-gray-700">Fecha
                     Finalización</label>
                 <input type="date" id="edit_fecha_finalizacion" name="edit_fecha_finalizacion"
-                    :value="ordenToEdit.fecha_finalizacion"
+                    x-model="ordenToEdit.fecha_finalizacion"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
             <div class="col-span-2">
                 <label for="edit_observaciones" class="block text-sm font-medium text-gray-700">Observaciones</label>
-                <textarea id="edit_observaciones" name="edit_observaciones" rows="2" x-text="ordenToEdit.observaciones"
+                <textarea id="edit_observaciones" name="edit_observaciones" rows="2" x-model="ordenToEdit.observaciones"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
             </div>
             <div class="col-span-2">
                 <label for="edit_diagnostico_tecnico" class="block text-sm font-medium text-gray-700">Diagnóstico del
                     Técnico</label>
                 <textarea id="edit_diagnostico_tecnico" name="edit_diagnostico_tecnico" rows="2"
-                    x-text="ordenToEdit.diagnostico_tecnico"
+                    x-model="ordenToEdit.diagnostico_tecnico"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
             </div>
             <div class="col-span-2">
                 <label for="edit_diagnostico_cliente" class="block text-sm font-medium text-gray-700">Diagnóstico del
                     Cliente</label>
                 <textarea id="edit_diagnostico_cliente" name="edit_diagnostico_cliente" rows="2"
-                    x-text="ordenToEdit.diagnostico_cliente"
+                    x-model="ordenToEdit.diagnostico_cliente"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
             </div>
             <div>
                 <label for="edit_calificacion_servicio" class="block text-sm font-medium text-gray-700">Calificación del
                     Servicio</label>
                 <input type="number" id="edit_calificacion_servicio" name="edit_calificacion_servicio" min="1" max="5"
-                    :value="ordenToEdit.calificacion_servicio"
+                    x-model="ordenToEdit.calificacion_servicio"
                     class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
             </div>
         </div>

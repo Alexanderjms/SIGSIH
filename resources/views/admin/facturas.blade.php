@@ -5,24 +5,24 @@
     tab: 'facturas',
     isFacturaModalOpen: false, 
     isEditFacturaModalOpen: false, 
-    facturaToEdit: null, 
+    facturaToEdit: {id: '', numero: '', fecha: '', oc: '', subtotal: '', total: '', total_letras: '', estado_factura: '', cai: '', cliente: ''}, 
     isDeleteFacturaModalOpen: false, 
-    facturaToDelete: null,
+    facturaToDelete: {id: ''},
     isDetalleModalOpen: false,
     isEditDetalleModalOpen: false,
-    detalleToEdit: null,
+    detalleToEdit: {id_detalle: '', id_factura: '', id_servicio: '', fecha_servicio: '', horas: '', descuento: ''},
     isDeleteDetalleModalOpen: false,
-    detalleToDelete: null,
+    detalleToDelete: {id_detalle: ''},
     isServicioModalOpen: false,
     isEditServicioModalOpen: false,
-    servicioToEdit: null,
+    servicioToEdit: {id: '', nombre: '', tarifa: ''},
     isDeleteServicioModalOpen: false,
-    servicioToDelete: null,
+    servicioToDelete: {id: ''},
     isEstadoFacturaModalOpen: false,
     isEditEstadoFacturaModalOpen: false,
-    estadoFacturaToEdit: null,
+    estadoFacturaToEdit: {id: '', nombre: '', descripcion: ''},
     isDeleteEstadoFacturaModalOpen: false,
-    estadoFacturaToDelete: null
+    estadoFacturaToDelete: {id: ''}
 }" class="p-6">
     {{-- Pestañas --}}
 

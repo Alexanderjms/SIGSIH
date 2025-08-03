@@ -2,7 +2,19 @@
 
 @section('content')
     {{-- Pestañas --}}
-    <div x-data="{ tab: 'cai', isModalOpen: false, isEditModalOpen: false, itemToEdit: null, isDeleteModalOpen: false, itemToDelete: null, isEstadoModalOpen: false, isEditEstadoModalOpen: false, estadoToEdit: null, isDeleteEstadoModalOpen: false, estadoToDelete: null }">
+    <div x-data="{ 
+        tab: 'cai', 
+        isModalOpen: false, 
+        isEditModalOpen: false, 
+        itemToEdit: {id: '', codigo: '', rango_inicio: '', rango_fin: '', fecha_limite: '', estado_cai: ''}, 
+        isDeleteModalOpen: false, 
+        itemToDelete: {id: ''}, 
+        isEstadoModalOpen: false, 
+        isEditEstadoModalOpen: false, 
+        estadoToEdit: {id: '', nombre: '', descripcion: ''}, 
+        isDeleteEstadoModalOpen: false, 
+        estadoToDelete: {id: ''} 
+    }">
         <ul class="flex border-b nunito-bold">
             <li @click="tab='cai'" :class="tab==='cai' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">CAI</li>
             <li @click="tab='estado_cai'" :class="tab==='estado_cai' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Estados CAI</li>
