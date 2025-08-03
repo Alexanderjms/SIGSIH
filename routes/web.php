@@ -17,174 +17,43 @@ use Illuminate\Support\Facades\Route;
 // Redirect root to admin dashboard
 Route::redirect('/', '/admin/dashboard');
 
-// Partial view loading
+// Partial view loading for SPA
 Route::get('/load-view', [ViewLoaderController::class, 'load'])->name('load-view');
 
-// Admin routes group
+// Admin routes group - SPA Entry Point
 Route::prefix('admin')->name('admin.')->group(function () {
-
-    // Dashboard
+    
+    // Dashboard - Main SPA entry point
     Route::get('dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
-
-    // Seguridad
-    Route::get('usuarios', function () {
-        return view('admin.usuarios');
-    })->name('usuarios');
-
-    Route::get('gestion-usuarios', function () {
-        return view('admin.gestion-usuarios');
-    })->name('gestion-usuarios');
-
-    // Roles y Permisos
-    Route::get('roles-permisos', function () {
-        return view('admin.roles-permisos');
-    })->name('roles-permisos');
-
-    // Vista PDF de Proyecto
-    Route::get('proyecto/pdf', function () {
-        return view('admin.proyecto-pdf');
-    })->name('proyecto-pdf');
-
-    // Gestión de Objetos
-    Route::get('gestion-objetos', function () {
-        return view('admin.gestion-objetos');
-    })->name('gestion-objetos');
-
-    // Configuración de Acceso
-    Route::get('configuracion-acceso', function () {
-        return view('admin.configuracion-acceso');
-    })->name('configuracion-acceso');
-
-    // Clientes
-    Route::get('gestion-empresas', function () {
-        return view('admin.gestion-empresas');
-    })->name('gestion-empresas');
-
-    Route::get('cotizaciones', function () {
-        return view('admin.cotizaciones');
-    })->name('cotizaciones');
-
-    // Solicitudes
-    Route::get('solicitudes', function () {
-        return view('admin.solicitudes');
-    })->name('solicitudes.index');
-
-    // Órdenes de Servicio
-    Route::get('ordenes-servicio', function () {
-        return view('admin.ordenes-servicio');
-    })->name('ordenes-servicio.index');
-
-    // Proyectos
-    Route::get('proyectos', function () {
-        return view('admin.proyectos');
-    })->name('proyectos');
-
-    Route::get('vista-proyectos', function () {
-        return view('admin.vista-proyectos');
-    })->name('vista-proyectos');
-
-    // Tickets
-    Route::get('tickets', function () {
-        return view('admin.tickets');
-    })->name('tickets.index');
-
-    // Calendario
-    Route::get('agencias', function () {
-        return view('admin.agencias');
-    })->name('agencias');
-
-    Route::get('calendario', function () {
-        return view('admin.calendario');
-    })->name('calendario');
-
-    // Facturación
-    Route::get('facturas', function () {
-        return view('admin.facturas');
-    })->name('facturas');
-
-    Route::get('cai', function () {
-        return view('admin.cai');
-    })->name('cai');
-
-    // Formato Factura
-    Route::get('formato-factura', function () {
-        return view('admin.formato-factura');
-    })->name('formato-factura');
-
-    // Formato Reporte 
-    Route::get('formato-reporte', function () {
-        return view('admin.formato-reporte');
-    })->name('formato-reporte');
-
-    // Reportes
-    Route::get('reportes', function () {
-        return view('admin.reportes');
-    })->name('reportes');
-
-    // Inventario
-    Route::get('productos', function () {
-        return view('admin.productos');
-    })->name('productos');
-
-    Route::get('kardex', function () {
-        return view('admin.kardex');
-    })->name('kardex');
-
-    // Administración
-    Route::get('gestion-db', function () {
-        return view('admin.gestion-db');
-    })->name('gestion-db');
-
-    Route::get('bitacora', function () {
-        return view('admin.bitacora');
-    })->name('bitacora');
-
-    Route::get('cambio-contrasena', function () {
-        return view('admin.cambio-contrasena');
-    })->name('cambio-contrasena');
-
-    // Perfil
-    Route::get('perfil', function () {
-        return view('admin.perfil');
-    })->name('perfil');
-
-    // Gestión Mantenimiento
-    Route::get('mantenimiento/tickets', function () {
-        return view('admin.mantenimiento-tickets');
-    })->name('mantenimiento.tickets');
-
-    // Detalle Cotización
+    
+    // Special routes for PDFs and external views (open in new tab)
     Route::get('detalle-cotizacion', function () {
         return view('admin.detalle-cotizacion');
     })->name('detalle-cotizacion');
-
-    // Parámetros
-    Route::get('parametros', function () {
-        return view('admin.parametros');
-    })->name('parametros');
-
-    // Gestión de Personas
-    Route::get('gestion-personas', function () {
-        return view('admin.gestion-personas');
-    })->name('gestion-personas');
-
-
-    // Gestión de Órdenes de Servicio
-    Route::get('gestion-ordenes', function () {
-        return view('admin.gestion-ordenes');
-    })->name('gestion-ordenes');
-
-    // Detalle Orden de Servicio
+    
     Route::get('detalle-orden', function () {
-        return view('admin.ordenes-servicio');
+        return view('admin.detalle-orden');
     })->name('detalle-orden');
-
-    // Mantenimiento del Sistema
-    Route::get('mantenimiento/general', function () {
-        return view('admin.mantenimiento-general');
-    })->name('mantenimiento-general');
+    
+    Route::get('formato-factura', function () {
+        return view('admin.formato-factura');
+    })->name('formato-factura');
+    
+    Route::get('proyecto-pdf', function () {
+        return view('admin.proyecto-pdf');
+    })->name('proyecto-pdf');
+    
+    Route::get('formato-reporte', function () {
+        return view('admin.formato-reporte');
+    })->name('formato-reporte');
+    
+    // Back links from detail views
+    Route::get('gestion-ordenes', function () {
+        return redirect('/admin/dashboard');
+    })->name('gestion-ordenes');
+    
 });
 
 // Login route

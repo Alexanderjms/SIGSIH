@@ -21,7 +21,7 @@
         <ul class="space-y-3 flex-1">
             {{-- Dashboard --}}
             <li>
-                <x-admin.sidebar-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')"
+                <x-admin.sidebar-link href="#" :active="false"
                     view-name="dashboard"
                     class="py-2 px-2 rounded-l-full no-flash">
                     <i class="fa-solid fa-house w-5 text-center"></i>
@@ -31,7 +31,7 @@
 
             {{-- Seguridad --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('seguridad', {{ (request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.roles-permisos') || request()->routeIs('admin.configuracion-acceso')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('seguridad', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -46,8 +46,7 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.gestion-usuarios')"
-                            :active="request()->routeIs('admin.gestion-usuarios')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="gestion-usuarios" class="py-1 px-3">
                             <i class="fas fa-user text-sm w-4 text-center"></i>
                             Gestión de Usuarios
@@ -55,16 +54,14 @@
                     </li>
 
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.parametros')"
-                            :active="request()->routeIs('admin.parametros')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="parametros" class="py-1 px-3">
                             <i class="fas fa-sliders-h text-sm w-4 text-center"></i>
                             Parámetros
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.configuracion-acceso')"
-                            :active="request()->routeIs('admin.configuracion-acceso')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="configuracion-acceso" class="py-1 px-3">
                             <i class="fas fa-key text-sm w-4 text-center"></i>
                             Configuración de accesos al sistema
@@ -76,7 +73,7 @@
 
             {{-- Clientes --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('clientes', {{ (request()->routeIs('admin.gestion-empresas') || request()->routeIs('admin.cotizaciones')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('clientes', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -91,16 +88,14 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.gestion-empresas')"
-                            :active="request()->routeIs('admin.gestion-empresas')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="gestion-empresas" class="py-1 px-3">
                             <i class="fas fa-building text-sm w-4 text-center"></i>
                             Gestión de Empresas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.cotizaciones')"
-                            :active="request()->routeIs('admin.cotizaciones')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="cotizaciones" class="py-1 px-3">
                             <i class="fas fa-file-invoice text-sm w-4 text-center"></i>
                             Gestión de Cotizaciones
@@ -111,7 +106,7 @@
 
             {{-- Solicitudes --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('solicitudes', {{ (request()->routeIs('admin.solicitudes.index') || request()->routeIs('admin.solicitudes.empresas')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('solicitudes', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -126,8 +121,7 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.solicitudes.index')"
-                            :active="request()->routeIs('admin.solicitudes.index')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="solicitudes" class="py-1 px-3">
                             <i class="fas fa-envelope-open-text text-sm w-4 text-center"></i>
                             Gestión de Solicitudes
@@ -138,7 +132,7 @@
 
             {{-- Órdenes de Servicio --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('ordenes-servicio', {{ request()->routeIs('admin.ordenes-servicio*') ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('ordenes-servicio', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -155,8 +149,7 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
 
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.gestion-ordenes')"
-                            :active="request()->routeIs('admin.gestion-ordenes')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="gestion-ordenes" class="py-1 px-3">
                             <i class="fas fa-plus text-sm w-4 text-center"></i>
                             Gestion Ordenes de Servicios
@@ -168,7 +161,7 @@
 
             {{-- Proyectos --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('proyectos', {{ (request()->routeIs('admin.proyectos*') || request()->routeIs('admin.vista-proyectos')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('proyectos', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -183,16 +176,14 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.vista-proyectos')"
-                            :active="request()->routeIs('admin.vista-proyectos')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="vista-proyectos" class="py-1 px-3">
                             <i class="fas fa-eye text-sm w-4 text-center"></i>
                             Vista de proyectos
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.proyectos')"
-                            :active="request()->routeIs('admin.proyectos*')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="proyectos" class="py-1 px-3">
                             <i class="fas fa-cogs text-sm w-4 text-center"></i>
                             Gestión de proyectos
@@ -203,7 +194,7 @@
 
             {{-- Tickets --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('tickets', {{ request()->routeIs('admin.tickets*') ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('tickets', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -218,8 +209,7 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.tickets.index')"
-                            :active="request()->routeIs('admin.tickets*')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="tickets" class="py-1 px-3">
                             <i class="fas fa-ticket-alt text-sm w-4 text-center"></i>
                             Gestión de tickets
@@ -230,7 +220,7 @@
 
             {{-- Calendario --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('calendario', {{ (request()->routeIs('admin.agencias') || request()->routeIs('admin.calendario')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('calendario', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -245,16 +235,14 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.agencias')"
-                            :active="request()->routeIs('admin.agencias')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="agencias" class="py-1 px-3">
                             <i class="fas fa-map-marker-alt text-sm w-4 text-center"></i>
                             Gestión de Agencias
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.calendario')"
-                            :active="request()->routeIs('admin.calendario')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="calendario" class="py-1 px-3">
                             <i class="fas fa-calendar-alt text-sm w-4 text-center"></i>
                             Calendario
@@ -265,7 +253,7 @@
 
             {{-- Facturación --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('facturacion', {{ (request()->routeIs('admin.facturas') || request()->routeIs('admin.cai')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('facturacion', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -280,15 +268,14 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.facturas')"
-                            :active="request()->routeIs('admin.facturas')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="facturas" class="py-1 px-3">
                             <i class="fas fa-file-invoice-dollar text-sm w-4 text-center"></i>
                             Gestión de Facturas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.cai')" :active="request()->routeIs('admin.cai')"
+                        <x-admin.sidebar-link href="#" :active="false"
                             view-name="cai" class="py-1 px-3">
                             <i class="fas fa-barcode text-sm w-4 text-center"></i>
                             Gestión de CAI
@@ -299,7 +286,7 @@
 
             {{-- Reportes --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('reportes', {{ request()->routeIs('admin.reportes*') ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('reportes', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -314,8 +301,7 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.reportes')"
-                            :active="request()->routeIs('admin.reportes')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="reportes" class="py-1 px-3">
                             <i class="fas fa-file-alt text-sm w-4 text-center"></i>
                             Gestión de Reportes
@@ -326,7 +312,7 @@
 
             {{-- Inventario --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('inventario', {{ (request()->routeIs('admin.productos') || request()->routeIs('admin.kardex')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('inventario', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -341,15 +327,14 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.productos')"
-                            :active="request()->routeIs('admin.productos')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="productos" class="py-1 px-3">
                             <i class="fas fa-box text-sm w-4 text-center"></i>
                             Gestión de Productos
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.kardex')" :active="request()->routeIs('admin.kardex')"
+                        <x-admin.sidebar-link href="#" :active="false"
                             view-name="kardex" class="py-1 px-3">
                             <i class="fas fa-archive text-sm w-4 text-center"></i>
                             Gestión de Kardex
@@ -360,7 +345,7 @@
 
             {{-- Administración --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('administracion', {{ (request()->routeIs('admin.gestion-usuarios') || request()->routeIs('admin.cambio-contrasena') || request()->routeIs('admin.bitacora') || request()->routeIs('admin.gestion-db')) ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('administracion', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -376,39 +361,35 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.gestion-personas')"
-                            :active="request()->routeIs('admin.gestion-personas')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="gestion-personas" class="py-1 px-3">
                             <i class="fas fa-user-cog text-sm w-4 text-center"></i>
                             Gestión de personas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.perfil')" :active="request()->routeIs('admin.perfil')"
+                        <x-admin.sidebar-link href="#" :active="false"
                             view-name="perfil" class="py-1 px-3">
                             <i class="fas fa-user-circle text-sm w-4 text-center"></i>
                             Mi perfil
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.cambio-contrasena')"
-                            :active="request()->routeIs('admin.cambio-contrasena')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="cambio-contrasena" class="py-1 px-3">
                             <i class="fas fa-unlock-alt text-sm w-4 text-center"></i>
                             Cambio de contraseña
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.bitacora')"
-                            :active="request()->routeIs('admin.bitacora')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="bitacora" class="py-1 px-3">
                             <i class="fas fa-book text-sm w-4 text-center"></i>
                             Bitácora
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.gestion-db')"
-                            :active="request()->routeIs('admin.gestion-db')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="gestion-db" class="py-1 px-3">
                             <i class="fas fa-database text-sm w-4 text-center"></i>
                             Gestión de Base de Datos
@@ -419,7 +400,7 @@
 
             {{-- Mantenimiento --}}
             <li class="mt-2"
-                x-data="sidebarDropdown('mantenimiento', {{ request()->routeIs('admin.mantenimiento.tickets') ? 'true' : 'false' }})"
+                x-data="sidebarDropdown('mantenimiento', false)"
                 x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
@@ -436,8 +417,7 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
 
                     <li>
-                        <x-admin.sidebar-link :href="route('admin.mantenimiento-general')"
-                            :active="request()->routeIs('admin.mantenimiento-general')" 
+                        <x-admin.sidebar-link href="#" :active="false" 
                             view-name="mantenimiento-general" class="py-1 px-3">
                             <i class="fas fa-wrench text-sm w-4 text-center"></i>
                             Mantenimiento del Sistema
