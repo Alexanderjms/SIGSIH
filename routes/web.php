@@ -25,111 +25,111 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
     
     // Main dashboard - entry point
     Route::get('dashboard', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.dashboard');
     })->name('dashboard');
     
     // Seguridad
     Route::get('gestion-usuarios', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.gestion-usuarios');
     })->name('gestion-usuarios');
     
     Route::get('parametros', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.parametros');
     })->name('parametros');
     
     Route::get('configuracion-acceso', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.configuracion-acceso');
     })->name('configuracion-acceso');
     
     // Clientes
     Route::get('gestion-empresas', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.gestion-empresas');
     })->name('gestion-empresas');
     
     Route::get('cotizaciones', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.cotizaciones');
     })->name('cotizaciones');
     
     // Solicitudes
     Route::get('solicitudes', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.solicitudes');
     })->name('solicitudes');
     
     // Órdenes de Servicio
     Route::get('gestion-ordenes', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.gestion-ordenes');
     })->name('gestion-ordenes');
     
     // Proyectos
     Route::get('vista-proyectos', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.vista-proyectos');
     })->name('vista-proyectos');
     
     Route::get('proyectos', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.proyectos');
     })->name('proyectos');
     
     // Tickets
     Route::get('tickets', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.tickets');
     })->name('tickets');
     
     // Calendario
     Route::get('agencias', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.agencias');
     })->name('agencias');
     
     Route::get('calendario', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.calendario');
     })->name('calendario');
     
     // Facturación
     Route::get('facturas', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.facturas');
     })->name('facturas');
     
     Route::get('cai', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.cai');
     })->name('cai');
     
     // Reportes
     Route::get('reportes', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.reportes');
     })->name('reportes');
     
     // Inventario
     Route::get('productos', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.productos');
     })->name('productos');
     
     Route::get('kardex', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.kardex');
     })->name('kardex');
     
     // Administración
     Route::get('gestion-personas', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.gestion-personas');
     })->name('gestion-personas');
     
     Route::get('perfil', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.perfil');
     })->name('perfil');
     
     Route::get('cambio-contrasena', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.cambio-contrasena');
     })->name('cambio-contrasena');
     
     Route::get('bitacora', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.bitacora');
     })->name('bitacora');
     
     Route::get('gestion-db', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.gestion-db');
     })->name('gestion-db');
     
     // Mantenimiento
     Route::get('mantenimiento-general', function () {
-        return view('admin.dashboard');
+        return view('layouts.admin')->with('partialView', 'admin.partials.mantenimiento-general');
     })->name('mantenimiento-general');
     
     // Special routes for PDFs and external views (open in new tab)

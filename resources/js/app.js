@@ -79,6 +79,17 @@ document.addEventListener("alpine:init", () => {
             document.querySelector("main").innerHTML = html;
             // Reinicializar Alpine.js en el nuevo contenido
             Alpine.initTree(document.querySelector("main"));
+            // Inicializar gráficos si estamos en el dashboard
+            if (
+                html.includes('id="ordenesChart"') ||
+                html.includes('id="cotizacionesChart"') ||
+                html.includes('id="proyectosChart"')
+            ) {
+                // Usar setTimeout para asegurar que el DOM esté listo
+                setTimeout(() => {
+                    initializeDashboardCharts();
+                }, 100);
+            }
         },
 
         updateState(url, viewName) {
@@ -216,13 +227,18 @@ document.addEventListener("alpine:init", () => {
 Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.color = "#6B7280";
 
-// Wrap chart initialization in DOMContentLoaded to ensure canvas elements exist
-document.addEventListener("DOMContentLoaded", () => {
+// Función para inicializar los gráficos del dashboard
+function initializeDashboardCharts() {
     // Initialize 'ordenesChart' only if element exists
     const ordenesEl = document.getElementById("ordenesChart");
     if (ordenesEl) {
+        // Destruir instancia existente si existe
+        if (window.ordenesChartInstance) {
+            window.ordenesChartInstance.destroy();
+        }
+
         const ordenesCtx = ordenesEl.getContext("2d");
-        new Chart(ordenesCtx, {
+        window.ordenesChartInstance = new Chart(ordenesCtx, {
             type: "doughnut",
             data: {
                 labels: ["Abiertas", "En Proceso", "Cerradas"],
@@ -255,8 +271,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize 'cotizacionesChart' only if element exists
     const cotizacionesEl = document.getElementById("cotizacionesChart");
     if (cotizacionesEl) {
+        // Destruir instancia existente si existe
+        if (window.cotizacionesChartInstance) {
+            window.cotizacionesChartInstance.destroy();
+        }
+
         const cotizacionesCtx = cotizacionesEl.getContext("2d");
-        new Chart(cotizacionesCtx, {
+        window.cotizacionesChartInstance = new Chart(cotizacionesCtx, {
             type: "line",
             data: {
                 labels: [
@@ -313,8 +334,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize 'proyectosChart' only if element exists
     const proyectosEl = document.getElementById("proyectosChart");
     if (proyectosEl) {
+        // Destruir instancia existente si existe
+        if (window.proyectosChartInstance) {
+            window.proyectosChartInstance.destroy();
+        }
+
         const proyectosCtx = proyectosEl.getContext("2d");
-        new Chart(proyectosCtx, {
+        window.proyectosChartInstance = new Chart(proyectosCtx, {
             type: "bar",
             data: {
                 labels: [
@@ -362,4 +388,9 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         });
     }
+}
+
+// Inicializar gráficos cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", () => {
+    initializeDashboardCharts();
 });

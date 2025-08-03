@@ -45,7 +45,11 @@
             @endif
 
             <div class="bg-white p-6 rounded-lg shadow">
-                @yield('content')
+                @if(isset($partialView))
+                    @include($partialView)
+                @else
+                    @yield('content')
+                @endif
             </div>
         </main>
     </div>
