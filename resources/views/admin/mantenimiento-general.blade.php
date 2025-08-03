@@ -26,7 +26,7 @@
             <div>
                 <label class="block font-medium mb-1">Logo del sistema</label>
                 <img :src="logoUrl" alt="Logo actual" class="h-16 mb-2">
-                <input type="file" class="block mb-2" @change="/* lógica para subir logo */">
+                <input type="file" class="block mb-2">
             </div>
             <div>
                 <label class="block font-medium mb-1">Tema</label>
