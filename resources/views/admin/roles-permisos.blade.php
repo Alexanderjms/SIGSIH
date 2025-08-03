@@ -10,7 +10,9 @@
         isEditRoleModalOpen: false,
         isDeleteRoleModalOpen: false,
         roleToEdit: null,
-        roleToDelete: null
+        roleToDelete: null,
+        search: '',
+        ordenarPor: ''
     }">
 
     <!-- Tabs -->

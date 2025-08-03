@@ -20,7 +20,12 @@
     isTipoEditModalOpen: false,
     isTipoDeleteModalOpen: false,
     tipoToEdit: null,
-    tipoToDelete: null
+    tipoToDelete: null,
+    // Variables para filtros-generales
+    search: '',
+    searchObjetos: '',
+    searchTipos: '',
+    ordenarPor: ''
 }">
     <!-- Tabs -->
     <div class="flex border-b mb-6 flex-wrap gap-2">
@@ -137,27 +142,27 @@
                 <label class="block text-sm font-medium mb-1">Permisos</label>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
                     <button type="button"
-                        :class="roleToEdit.permisos.includes('Crear') ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'"
+                        :class="roleToEdit?.permisos?.includes('Crear') ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'"
                         class="flex items-center gap-2 rounded px-3 py-2 shadow transition-colors focus:outline-none"
-                        @click="roleToEdit.permisos = roleToEdit.permisos.includes('Crear') ? roleToEdit.permisos.filter(p => p !== 'Crear') : [...roleToEdit.permisos, 'Crear']">
+                        @click="roleToEdit.permisos = roleToEdit?.permisos?.includes('Crear') ? roleToEdit.permisos.filter(p => p !== 'Crear') : [...(roleToEdit?.permisos || []), 'Crear']">
                         <i class="fas fa-plus"></i> Crear
                     </button>
                     <button type="button"
-                        :class="roleToEdit.permisos.includes('Editar') ? 'bg-yellow-500 text-white' : 'bg-gray-100 text-gray-700'"
+                        :class="roleToEdit?.permisos?.includes('Editar') ? 'bg-yellow-500 text-white' : 'bg-gray-100 text-gray-700'"
                         class="flex items-center gap-2 rounded px-3 py-2 shadow transition-colors focus:outline-none"
-                        @click="roleToEdit.permisos = roleToEdit.permisos.includes('Editar') ? roleToEdit.permisos.filter(p => p !== 'Editar') : [...roleToEdit.permisos, 'Editar']">
+                        @click="roleToEdit.permisos = roleToEdit?.permisos?.includes('Editar') ? roleToEdit.permisos.filter(p => p !== 'Editar') : [...(roleToEdit?.permisos || []), 'Editar']">
                         <i class="fas fa-edit"></i> Editar
                     </button>
                     <button type="button"
-                        :class="roleToEdit.permisos.includes('Eliminar') ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-700'"
+                        :class="roleToEdit?.permisos?.includes('Eliminar') ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-700'"
                         class="flex items-center gap-2 rounded px-3 py-2 shadow transition-colors focus:outline-none"
-                        @click="roleToEdit.permisos = roleToEdit.permisos.includes('Eliminar') ? roleToEdit.permisos.filter(p => p !== 'Eliminar') : [...roleToEdit.permisos, 'Eliminar']">
+                        @click="roleToEdit.permisos = roleToEdit?.permisos?.includes('Eliminar') ? roleToEdit.permisos.filter(p => p !== 'Eliminar') : [...(roleToEdit?.permisos || []), 'Eliminar']">
                         <i class="fas fa-trash"></i> Eliminar
                     </button>
                     <button type="button"
-                        :class="roleToEdit.permisos.includes('Ver') ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-700'"
+                        :class="roleToEdit?.permisos?.includes('Ver') ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-700'"
                         class="flex items-center gap-2 rounded px-3 py-2 shadow transition-colors focus:outline-none"
-                        @click="roleToEdit.permisos = roleToEdit.permisos.includes('Ver') ? roleToEdit.permisos.filter(p => p !== 'Ver') : [...roleToEdit.permisos, 'Ver']">
+                        @click="roleToEdit.permisos = roleToEdit?.permisos?.includes('Ver') ? roleToEdit.permisos.filter(p => p !== 'Ver') : [...(roleToEdit?.permisos || []), 'Ver']">
                         <i class="fas fa-eye"></i> Ver
                     </button>
                 </div>

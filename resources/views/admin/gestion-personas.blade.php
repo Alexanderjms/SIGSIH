@@ -9,7 +9,9 @@
         isModalOpenTipoPersona: false, isEditModalOpenTipoPersona: false, isDeleteModalOpenTipoPersona: false,
         isModalOpenGenero: false, isEditModalOpenGenero: false, isDeleteModalOpenGenero: false,
         isModalOpenPerfil: false, isEditModalOpenPerfil: false, isDeleteModalOpenPerfil: false,
-        itemToEdit: null, itemToDelete: null
+        itemToEdit: null, itemToDelete: null,
+        searchPersonas: '', tipo_persona: '', genero: '', ordenarPor: '',
+        searchTipoPersona: '', searchGenero: '', searchPerfil: ''
     }">
     <ul class="flex border-b nunito-bold">
         <li @click="tab='Personas'"

@@ -12,7 +12,9 @@
     objetoToEdit: null,
     objetoToDelete: null,
     tipoToEdit: null,
-    tipoToDelete: null
+    tipoToDelete: null,
+    search: '',
+    ordenarPor: ''
 }">
     <div class="mb-6">
         <nav class="flex gap-2 border-b">

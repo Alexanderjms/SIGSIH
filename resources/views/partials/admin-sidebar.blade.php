@@ -126,13 +126,6 @@
                             Gestión de Solicitudes
                         </x-admin.sidebar-link>
                     </li>
-                    <li>
-                        <x-admin.sidebar-link :href="route('admin.solicitudes.empresas')"
-                            :active="request()->routeIs('admin.solicitudes.empresas')" class="py-1 px-3">
-                            <i class="fas fa-building text-sm w-4 text-center"></i>
-                            Gestión de Empresas
-                        </x-admin.sidebar-link>
-                    </li>
                 </ul>
             </li>
 
