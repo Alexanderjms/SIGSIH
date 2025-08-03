@@ -17,6 +17,19 @@ class ViewLoaderController extends Controller
             return response('Invalid view', 400);
         }
 
+        // Lista de vistas válidas para mayor seguridad
+        $validViews = [
+            'dashboard', 'gestion-usuarios', 'parametros', 'configuracion-acceso',
+            'gestion-empresas', 'cotizaciones', 'solicitudes', 'gestion-ordenes',
+            'vista-proyectos', 'proyectos', 'tickets', 'agencias', 'calendario',
+            'facturas', 'cai', 'reportes', 'productos', 'kardex', 'gestion-personas',
+            'perfil', 'cambio-contrasena', 'bitacora', 'gestion-db', 'mantenimiento-general'
+        ];
+
+        if (!in_array($view, $validViews)) {
+            return response('View not allowed', 403);
+        }
+
         // Primero verificar si existe una vista parcial específica
         $partialView = "admin.partials.{$view}";
         if (View::exists($partialView)) {

@@ -34,42 +34,80 @@ document.addEventListener("alpine:init", () => {
     Alpine.store("navigation", {
         isTransitioning: false,
         loadedViews: {},
+        currentView: null,
 
         async navigate(url, viewName) {
+            // Prevenir múltiples navegaciones simultáneas
+            if (this.isTransitioning) return;
+
+            // Si ya estamos en esta vista, no hacer nada
+            if (this.currentView === viewName) return;
+
+            // Si la vista ya está cargada, usarla directamente
             if (this.loadedViews[viewName]) {
-                document.querySelector("main").innerHTML =
-                    this.loadedViews[viewName];
-                window.history.pushState({}, "", url);
-                this.updateActiveLinks(url);
+                this.setContent(this.loadedViews[viewName]);
+                this.updateState(url, viewName);
                 return;
             }
 
             this.isTransitioning = true;
-
-            // Mostrar indicador de carga
-            document.querySelector("main").innerHTML =
-                '<div class="flex justify-center items-center h-64"><div class="text-blue-500"><i class="fas fa-spinner fa-spin mr-2"></i>Cargando...</div></div>';
+            this.showLoader();
 
             try {
                 const response = await fetch(`/load-view?view=${viewName}`);
+                if (!response.ok) {
+                    throw new Error(
+                        `HTTP ${response.status}: ${response.statusText}`
+                    );
+                }
+
                 const html = await response.text();
-
-                // El controlador devuelve directamente el HTML, no necesitamos parsear
                 this.loadedViews[viewName] = html;
-                document.querySelector("main").innerHTML = html;
-                window.history.pushState({}, "", url);
-                this.updateActiveLinks(url);
-
-                // Reinicializar Alpine.js en el nuevo contenido
-                Alpine.initTree(document.querySelector("main"));
+                this.setContent(html);
+                this.updateState(url, viewName);
             } catch (error) {
                 console.error("Error loading view:", error);
-                // Mostrar mensaje de error al usuario
-                document.querySelector("main").innerHTML =
-                    '<div class="flex justify-center items-center h-64"><div class="text-red-500"><i class="fas fa-exclamation-triangle mr-2"></i>Error al cargar la vista</div></div>';
+                this.showError(
+                    "Error al cargar la vista. Por favor, intenta de nuevo."
+                );
             } finally {
                 this.isTransitioning = false;
             }
+        },
+
+        setContent(html) {
+            document.querySelector("main").innerHTML = html;
+            // Reinicializar Alpine.js en el nuevo contenido
+            Alpine.initTree(document.querySelector("main"));
+        },
+
+        updateState(url, viewName) {
+            // Actualizar la URL sin recargar la página
+            window.history.pushState({ viewName }, "", url);
+            this.currentView = viewName;
+            this.updateActiveLinks(url);
+        },
+
+        showLoader() {
+            document.querySelector("main").innerHTML = `
+                <div class="flex flex-col justify-center items-center h-64">
+                    <div class="text-blue-500 mb-4">
+                        <i class="fas fa-spinner fa-spin text-3xl"></i>
+                    </div>
+                    <div class="text-blue-500 text-lg font-medium">Cargando...</div>
+                </div>
+            `;
+        },
+
+        showError(message) {
+            document.querySelector("main").innerHTML = `
+                <div class="flex flex-col justify-center items-center h-64">
+                    <div class="text-red-500 mb-4">
+                        <i class="fas fa-exclamation-triangle text-3xl"></i>
+                    </div>
+                    <div class="text-red-500 text-lg font-medium">${message}</div>
+                </div>
+            `;
         },
 
         // Método para actualizar los enlaces activos en la barra lateral
@@ -111,6 +149,67 @@ document.addEventListener("alpine:init", () => {
                 }
             });
         },
+
+        // Método para manejar navegación con botón atrás/adelante del navegador
+        handlePopState(event) {
+            if (event.state && event.state.viewName) {
+                const viewName = event.state.viewName;
+                const url = window.location.pathname;
+
+                // Cargar la vista sin cambiar el estado del historial
+                if (this.loadedViews[viewName]) {
+                    this.setContent(this.loadedViews[viewName]);
+                    this.currentView = viewName;
+                    this.updateActiveLinks(url);
+                } else {
+                    // Si no está cargada, hacer un reload completo
+                    window.location.reload();
+                }
+            }
+        },
+
+        // Método para cargar la vista inicial basada en la URL actual
+        async loadInitialView() {
+            const path = window.location.pathname;
+            const viewName = this.extractViewNameFromPath(path);
+
+            if (viewName && viewName !== "dashboard") {
+                // Si no estamos en dashboard, cargar la vista correspondiente
+                await this.navigate(path, viewName);
+            } else {
+                // Establecer dashboard como vista actual
+                this.currentView = "dashboard";
+                this.updateActiveLinks(path);
+            }
+        },
+
+        // Extraer el nombre de la vista desde el path
+        extractViewNameFromPath(path) {
+            const match = path.match(/\/admin\/(.+)$/);
+            return match ? match[1] : "dashboard";
+        },
+    });
+
+    // Manejar navegación con botones del navegador
+    window.addEventListener("popstate", (event) => {
+        Alpine.store("navigation").handlePopState(event);
+    });
+
+    // Cargar vista inicial cuando la página esté lista
+    document.addEventListener("DOMContentLoaded", () => {
+        // Verificar si la página es una SPA page
+        const isSpaPage = document.querySelector('meta[name="spa-page"]');
+        const spaView = document.querySelector('meta[name="spa-view"]');
+
+        if (isSpaPage && spaView) {
+            const viewName = spaView.getAttribute("content");
+            Alpine.store("navigation").currentView = viewName;
+            Alpine.store("navigation").updateActiveLinks(
+                window.location.pathname
+            );
+        } else {
+            Alpine.store("navigation").loadInitialView();
+        }
     });
 });
 

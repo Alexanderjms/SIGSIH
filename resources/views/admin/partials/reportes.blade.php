@@ -148,7 +148,7 @@
                             <td class="py-2 px-4">Revisión de equipos</td>
                             <td class="py-2 px-4">OS-00123</td>
                             <td class="py-2 px-4 flex gap-2">
-                                <a href="#" class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
+                                <a href="{{ route('admin.formato-reporte') }}" target= blank_ class="inline-flex items-center justify-center text-xs w-24 h-9 rounded bg-emerald-500 text-white hover:bg-emerald-600 duration-300 mr-2">
                                     <i class="fas fa-eye mr-1"></i> Ver detalles
                                 </a>
                                 <a href="#" @click="isDeleteReporteModalOpen = true; reporteToDelete = {id: 1}"
