@@ -21,8 +21,7 @@
         <ul class="space-y-3 flex-1">
             {{-- Dashboard --}}
             <li>
-                <x-admin.sidebar-link href="#" :active="false"
-                    view-name="dashboard"
+                <x-admin.sidebar-link href="#" :active="false" view-name="dashboard"
                     class="py-2 px-2 rounded-l-full no-flash">
                     <i class="fa-solid fa-house w-5 text-center"></i>
                     <span :class="!sidebarOpen && 'hidden'" class="nunito-bold">Dashboard</span>
@@ -30,9 +29,7 @@
             </li>
 
             {{-- Seguridad --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('seguridad', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('seguridad', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -46,23 +43,21 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="gestion-usuarios" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="gestion-usuarios" class="py-1 px-3">
                             <i class="fas fa-user text-sm w-4 text-center"></i>
                             Gestión de Usuarios
                         </x-admin.sidebar-link>
                     </li>
 
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="parametros" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="parametros" class="py-1 px-3">
                             <i class="fas fa-sliders-h text-sm w-4 text-center"></i>
                             Parámetros
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="configuracion-acceso" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="configuracion-acceso"
+                            class="py-1 px-3">
                             <i class="fas fa-key text-sm w-4 text-center"></i>
                             Configuración de accesos al sistema
                         </x-admin.sidebar-link>
@@ -72,9 +67,7 @@
             </li>
 
             {{-- Clientes --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('clientes', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('clientes', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -88,81 +81,37 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="gestion-empresas" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="gestion-empresas" class="py-1 px-3">
                             <i class="fas fa-building text-sm w-4 text-center"></i>
                             Gestión de Empresas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="cotizaciones" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="cotizaciones" class="py-1 px-3">
                             <i class="fas fa-file-invoice text-sm w-4 text-center"></i>
                             Gestión de Cotizaciones
                         </x-admin.sidebar-link>
                     </li>
-                </ul>
-            </li>
-
-            {{-- Solicitudes --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('solicitudes', false)"
-                x-init="init()">
-                <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
-                    class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
-                    <div class="flex items-center gap-3">
-                        <i class="fas fa-tasks w-5 text-center"></i>
-                        <span :class="!sidebarOpen && 'hidden'" class="text-sm nunito-bold uppercase">Solicitudes</span>
-                    </div>
-                    <svg :class="{'rotate-90': open, 'hidden': !sidebarOpen}" class="w-4 h-4 ml-2 transition-transform"
-                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-                <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="solicitudes" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="solicitudes" class="py-1 px-3">
                             <i class="fas fa-envelope-open-text text-sm w-4 text-center"></i>
                             Gestión de Solicitudes
                         </x-admin.sidebar-link>
                     </li>
-                </ul>
-            </li>
 
-            {{-- Órdenes de Servicio --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('ordenes-servicio', false)"
-                x-init="init()">
-                <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
-                    class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <i class="fas fa-clipboard-list w-5 text-center flex-shrink-0"></i>
-                        <span :class="!sidebarOpen && 'hidden'" class="text-sm nunito-bold uppercase truncate">Órdenes
-                            de Servicio</span>
-                    </div>
-                    <svg :class="{'rotate-90': open, 'hidden': !sidebarOpen}" class="w-4 h-4 ml-2 transition-transform"
-                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-                <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
 
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="gestion-ordenes" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="gestion-ordenes" class="py-1 px-3">
                             <i class="fas fa-plus text-sm w-4 text-center"></i>
                             Gestion Ordenes de Servicios
                         </x-admin.sidebar-link>
                     </li>
-
                 </ul>
             </li>
 
+
             {{-- Proyectos --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('proyectos', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('proyectos', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -175,27 +124,24 @@
                     </svg>
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
+
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="vista-proyectos" class="py-1 px-3">
-                            <i class="fas fa-eye text-sm w-4 text-center"></i>
-                            Vista de proyectos
+                        <x-admin.sidebar-link href="#" :active="false" view-name="proyectos" class="py-1 px-3">
+                            <i class="fas fa-cogs text-sm w-4 text-center"></i>
+                            Gestión de proyectos
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="proyectos" class="py-1 px-3">
-                            <i class="fas fa-cogs text-sm w-4 text-center"></i>
-                            Gestión de proyectos
+                        <x-admin.sidebar-link href="#" :active="false" view-name="vista-proyectos" class="py-1 px-3">
+                            <i class="fas fa-eye text-sm w-4 text-center"></i>
+                            Vista de proyectos
                         </x-admin.sidebar-link>
                     </li>
                 </ul>
             </li>
 
             {{-- Tickets --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('tickets', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('tickets', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -209,8 +155,7 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="tickets" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="tickets" class="py-1 px-3">
                             <i class="fas fa-ticket-alt text-sm w-4 text-center"></i>
                             Gestión de tickets
                         </x-admin.sidebar-link>
@@ -219,9 +164,7 @@
             </li>
 
             {{-- Calendario --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('calendario', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('calendario', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -235,15 +178,13 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="agencias" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="agencias" class="py-1 px-3">
                             <i class="fas fa-map-marker-alt text-sm w-4 text-center"></i>
                             Gestión de Agencias
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="calendario" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="calendario" class="py-1 px-3">
                             <i class="fas fa-calendar-alt text-sm w-4 text-center"></i>
                             Calendario
                         </x-admin.sidebar-link>
@@ -252,9 +193,7 @@
             </li>
 
             {{-- Facturación --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('facturacion', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('facturacion', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -268,15 +207,13 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="facturas" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="facturas" class="py-1 px-3">
                             <i class="fas fa-file-invoice-dollar text-sm w-4 text-center"></i>
                             Gestión de Facturas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false"
-                            view-name="cai" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="cai" class="py-1 px-3">
                             <i class="fas fa-barcode text-sm w-4 text-center"></i>
                             Gestión de CAI
                         </x-admin.sidebar-link>
@@ -285,9 +222,7 @@
             </li>
 
             {{-- Reportes --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('reportes', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('reportes', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -301,8 +236,7 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="reportes" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="reportes" class="py-1 px-3">
                             <i class="fas fa-file-alt text-sm w-4 text-center"></i>
                             Gestión de Reportes
                         </x-admin.sidebar-link>
@@ -311,9 +245,7 @@
             </li>
 
             {{-- Inventario --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('inventario', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('inventario', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -327,15 +259,13 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="productos" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="productos" class="py-1 px-3">
                             <i class="fas fa-box text-sm w-4 text-center"></i>
                             Gestión de Productos
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false"
-                            view-name="kardex" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="kardex" class="py-1 px-3">
                             <i class="fas fa-archive text-sm w-4 text-center"></i>
                             Gestión de Kardex
                         </x-admin.sidebar-link>
@@ -344,9 +274,7 @@
             </li>
 
             {{-- Administración --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('administracion', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('administracion', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -361,36 +289,31 @@
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="gestion-personas" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="gestion-personas" class="py-1 px-3">
                             <i class="fas fa-user-cog text-sm w-4 text-center"></i>
                             Gestión de personas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false"
-                            view-name="perfil" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="perfil" class="py-1 px-3">
                             <i class="fas fa-user-circle text-sm w-4 text-center"></i>
                             Mi perfil
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="cambio-contrasena" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="cambio-contrasena" class="py-1 px-3">
                             <i class="fas fa-unlock-alt text-sm w-4 text-center"></i>
                             Cambio de contraseña
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="bitacora" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="bitacora" class="py-1 px-3">
                             <i class="fas fa-book text-sm w-4 text-center"></i>
                             Bitácora
                         </x-admin.sidebar-link>
                     </li>
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="gestion-db" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="gestion-db" class="py-1 px-3">
                             <i class="fas fa-database text-sm w-4 text-center"></i>
                             Gestión de Base de Datos
                         </x-admin.sidebar-link>
@@ -399,9 +322,7 @@
             </li>
 
             {{-- Mantenimiento --}}
-            <li class="mt-2"
-                x-data="sidebarDropdown('mantenimiento', false)"
-                x-init="init()">
+            <li class="mt-2" x-data="sidebarDropdown('mantenimiento', false)" x-init="init()">
                 <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
                     class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
                     <div class="flex items-center gap-3">
@@ -417,8 +338,8 @@
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
 
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" 
-                            view-name="mantenimiento-general" class="py-1 px-3">
+                        <x-admin.sidebar-link href="#" :active="false" view-name="mantenimiento-general"
+                            class="py-1 px-3">
                             <i class="fas fa-wrench text-sm w-4 text-center"></i>
                             Mantenimiento del Sistema
                         </x-admin.sidebar-link>
