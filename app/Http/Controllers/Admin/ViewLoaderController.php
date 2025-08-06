@@ -22,8 +22,9 @@ class ViewLoaderController extends Controller
             'dashboard', 'gestion-usuarios', 'parametros', 'configuracion-acceso',
             'gestion-empresas', 'cotizaciones', 'solicitudes', 'gestion-ordenes',
             'vista-proyectos', 'proyectos', 'tickets', 'agencias', 'calendario',
-            'facturas', 'cai', 'reportes', 'productos', 'kardex', 'gestion-personas',
-            'perfil', 'cambio-contrasena', 'bitacora', 'gestion-db', 'mantenimiento-general'
+            'facturas', 'cai', 'reportes', 'productos', 'kardex', 'catalogo-genero',
+            'gestion-personas', 'perfil', 'cambio-contrasena', 'bitacora', 'gestion-db', 
+            'mantenimiento-general'
         ];
 
         if (!in_array($view, $validViews)) {
