@@ -349,6 +349,36 @@
 
 
             </li>
+
+
+            {{-- Catalogo --}}
+            <li class="mt-2" x-data="sidebarDropdown('catalogo', false)" x-init="init()">
+                <button @click="toggle()" :class="open ? 'bg-gray-800 text-yellow-400' : 'text-gray-400'"
+                    class="w-full flex items-center justify-between px-4 py-1.5 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-book-open w-5 text-center"></i>
+                        <span :class="!sidebarOpen && 'hidden'" class="text-sm nunito-bold uppercase">Catalogo</span>
+                    </div>
+                    <svg :class="{'rotate-90': open, 'hidden': !sidebarOpen}" class="w-4 h-4 ml-2 transition-transform"
+                        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
+
+
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-genero" class="py-1 px-3">
+                            <i class="fas fa-venus-mars text-sm w-4 text-center"></i>
+                            Genero
+                        </x-admin.sidebar-link>
+                    </li>
+
+
+                </ul>
+
+
+            </li>
         </ul>
     </nav>
 
