@@ -140,6 +140,8 @@ Route::get('/admin/reportes-header', function (\Illuminate\Http\Request $request
         'calendario' => 'admin.reporte-calendario',
         'facturas' => 'admin.reporte-facturas',
         'cai' => 'admin.reporte-cai',
+        'bitacora' => 'admin.reporte-bitacora',
+        'gestion de personas' => 'admin.reporte-gestion-personas',
         default => 'admin.reporte-generico',
     };
     return view($view, compact('fecha', 'modulo'));

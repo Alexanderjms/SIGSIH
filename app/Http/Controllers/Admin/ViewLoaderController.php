@@ -70,6 +70,8 @@ class ViewLoaderController extends Controller
             'gestion-db',
             'mantenimiento-general',
             'reporte-cai',
+            'reporte-bitacora',
+            'reporte-gestion-personas',
         ];
 
         if (!in_array($view, $validViews)) {
