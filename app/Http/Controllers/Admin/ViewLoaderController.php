@@ -12,12 +12,10 @@ class ViewLoaderController extends Controller
     {
         $view = $request->get('view');
 
-        // Validación de seguridad
         if (!$view || !preg_match('/^[a-zA-Z0-9_-]+$/', $view)) {
             return response('Invalid view', 400);
         }
 
-        // Lista de vistas válidas para mayor seguridad
         $validViews = [
             'dashboard',
             'gestion-usuarios',
@@ -35,6 +33,11 @@ class ViewLoaderController extends Controller
             'facturas',
             'cai',
             'reportes',
+            'reportes-header',
+            'reporte-parametros',
+            'reporte-configuracion-accesos',
+            'reporte-empresas',
+            'reporte-solicitudes',
             'productos',
             'kardex',
             'catalogo-genero',
@@ -87,7 +90,6 @@ class ViewLoaderController extends Controller
             $fullHtml = view($fullView)->render();
 
             // Extraer solo el contenido principal usando regex
-            // Buscar el contenido entre las etiquetas del layout
             if (preg_match('/<div class="bg-white p-6 rounded-lg shadow">(.*?)<\/div>\s*<\/main>/s', $fullHtml, $matches)) {
                 return $matches[1];
             }

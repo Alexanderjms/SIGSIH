@@ -97,6 +97,41 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         return view('layouts.admin')->with('partialView', 'admin.partials.reportes');
     })->name('reportes');
 
+    // Ruta para generar reportes específicos por módulo
+    Route::get('reportes-header', function () {
+        $fecha = now()->format('d-M-Y');
+        $modulo = request('modulo', 'General');
+        
+        // Si es el módulo de Usuarios, usar la vista específica
+        if ($modulo === 'Usuarios') {
+            return view('admin.reporte-usuarios', compact('fecha', 'modulo'));
+        }
+        
+        // Si es el módulo de Parámetros, usar la vista específica
+        if ($modulo === 'Parametros') {
+            return view('admin.reporte-parametros', compact('fecha', 'modulo'));
+        }
+        
+        // Si es el módulo de Configuración de Accesos, usar la vista específica
+        if ($modulo === 'ConfiguracionAccesos') {
+            return view('admin.reporte-configuracion-accesos', compact('fecha', 'modulo'));
+        }
+
+        // Si es el módulo de Empresas, usar la vista específica
+        if ($modulo === 'Empresas') {
+            return view('admin.reporte-empresas', compact('fecha', 'modulo'));
+        }
+
+        // Si es el módulo de Solicitudes, usar la vista específica
+        if ($modulo === 'Solicitudes') {
+            return view('admin.reporte-solicitudes', compact('fecha', 'modulo'));
+        }
+        
+        // Para otros módulos, usar la vista genérica
+        $cotizacion = 'RPT-' . now()->format('Ymd') . '001';
+        return view('admin.reportes-header-ejemplo', compact('fecha', 'cotizacion', 'modulo'));
+    })->name('reportes-header');
+
     // Inventario
     Route::get('productos', function () {
         return view('layouts.admin')->with('partialView', 'admin.partials.productos');
