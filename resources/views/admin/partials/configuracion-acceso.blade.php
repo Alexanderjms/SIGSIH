@@ -12,23 +12,16 @@
     isDeleteObjetoModalOpen: false,
     objetoToEdit: {nombre: '', descripcion: '', tipo: '', creado_por: '', fecha: ''},
     objetoToDelete: {nombre: '', descripcion: '', tipo: '', creado_por: '', fecha: ''},
-    // Modales tipos de objetos
-    isTipoModalOpen: false,
-    isTipoEditModalOpen: false,
-    isTipoDeleteModalOpen: false,
-    tipoToEdit: {nombre: '', descripcion: ''},
-    tipoToDelete: {nombre: '', descripcion: ''},
     // Variables para filtros-generales
     search: '',
     searchObjetos: '',
-    searchTipos: '',
     ordenarPor: ''
 }">
     <!-- Tabs -->
     <div class="flex border-b mb-6 flex-wrap gap-2">
         <button @click="tab = 'gestion'"
             :class="tab === 'gestion' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700'"
-            class="px-4 py-2 font-semibold focus:outline-none">Gestión de Roles y Permisos</button>
+            class="px-4 py-2 font-semibold focus:outline-none">Gestión de Permisos</button>
         <button @click="tab = 'crear'"
             :class="tab === 'crear' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700'"
             class="px-4 py-2 font-semibold focus:outline-none">Roles</button>
@@ -40,9 +33,6 @@
         <button @click="tab = 'objetos'"
             :class="tab === 'objetos' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700'"
             class="px-4 py-2 font-semibold focus:outline-none">Objetos</button>
-        <button @click="tab = 'tipos'"
-            :class="tab === 'tipos' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-700'"
-            class="px-4 py-2 font-semibold focus:outline-none">Tipos de Objetos</button>
     </div>
 
     <!-- TAB: Gestión de Roles y Permisos -->
@@ -356,80 +346,6 @@
         </x-admin.edit-modal>
         <x-admin.confirmation-modal modalName="isDeleteObjetoModalOpen" itemToDelete="objetoToDelete"
             message="¿Estás seguro de que quieres eliminar el objeto?" />
-    </div>
-
-    <!-- TAB: Tipos de Objetos -->
-    <div x-show="tab === 'tipos'">
-        <x-admin.tabla-crud :titulo="'Tipos de Objetos'">
-            <x-slot name="filtros">
-                @include('partials.filtros-generales', [
-                'searchModel' => 'search',
-                'ordenarOptions' => [
-                'nombre' => 'Nombre',
-                'descripcion' => 'Descripción'
-                ]
-                ])
-            </x-slot>
-            <x-slot name="boton">
-                <button @click="isTipoModalOpen = true"
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">
-                    Agregar tipo
-                </button>
-            </x-slot>
-            <table class="min-w-full text-sm">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="py-2 px-4 text-left">Nombre</th>
-                        <th class="py-2 px-4 text-left">Descripción</th>
-                        <th class="py-2 px-4 text-left">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <template x-for="tipo in [
-                        {nombre: 'General', descripcion: 'Pantallas de resumen y navegación principal'},
-                        {nombre: 'Operativa', descripcion: 'Pantallas para gestión de procesos y tickets'},
-                        {nombre: 'Analítica', descripcion: 'Pantallas para reportes y análisis de datos'},
-                        {nombre: 'Financiera', descripcion: 'Pantallas para facturación y pagos'}
-                    ]" :key="tipo.nombre">
-                        <tr>
-                            <td class="py-2 px-4" x-text="tipo.nombre"></td>
-                            <td class="py-2 px-4" x-text="tipo.descripcion"></td>
-                            <td class="py-2 px-4 flex gap-2">
-                                <a href="#" @click="isTipoEditModalOpen = true; tipoToEdit = tipo"
-                                    class="text-blue-600 hover:text-blue-800"><i class="fas fa-edit"></i></a>
-                                <a href="#" @click="isTipoDeleteModalOpen = true; tipoToDelete = tipo"
-                                    class="text-red-600 hover:text-red-800"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                    </template>
-                </tbody>
-            </table>
-        </x-admin.tabla-crud>
-        <!-- Modales Tipos -->
-        <x-admin.form-modal modalName="isTipoModalOpen" title="Agregar Tipo de Objeto" submitLabel="Guardar Tipo"
-            maxWidth="max-w-xl">
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Nombre</label>
-                <input type="text" class="w-full border rounded px-3 py-2" placeholder="Ej: Tipo X" />
-            </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Descripción</label>
-                <textarea class="w-full border rounded px-3 py-2" placeholder="Describe el tipo..."></textarea>
-            </div>
-        </x-admin.form-modal>
-        <x-admin.edit-modal modalName="isTipoEditModalOpen" title="Editar Tipo de Objeto" itemToEdit="tipoToEdit"
-            maxWidth="max-w-xl">
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Nombre</label>
-                <input type="text" class="w-full border rounded px-3 py-2" :value="tipoToEdit?.nombre" />
-            </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Descripción</label>
-                <textarea class="w-full border rounded px-3 py-2" x-text="tipoToEdit?.descripcion"></textarea>
-            </div>
-        </x-admin.edit-modal>
-        <x-admin.confirmation-modal modalName="isTipoDeleteModalOpen" itemToDelete="tipoToDelete"
-            message="¿Estás seguro de que quieres eliminar el tipo de objeto?" />
     </div>
 
     <!-- TAB: Asignar Rol a Usuario -->

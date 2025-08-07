@@ -382,55 +382,11 @@
                     </svg>
                 </button>
                 <ul x-show="open && sidebarOpen" x-transition class="space-y-0.5 ml-4 mt-1">
-
-
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-genero" class="py-1 px-3">
-                            <i class="fas fa-venus-mars text-sm w-4 text-center"></i>
-                            Genero
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-solicitud"
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-acciones-realizadas"
                             class="py-1 px-3">
-                            <i class="fas fa-tasks text-sm w-4 text-center"></i>
-                            Estados de Solicitud
-                        </x-admin.sidebar-link>
-                    </li>
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-categorias-ingresos-gastos"
-                            class="py-1 px-3">
-                            <i class="fas fa-coins text-sm w-4 text-center"></i>
-                            Categorías de Ingresos y Gastos
-                        </x-admin.sidebar-link>
-                    </li>
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-proyecto"
-                            class="py-1 px-3">
-                            <i class="fas fa-project-diagram text-sm w-4 text-center"></i>
-                            Estados de Proyecto
-                        </x-admin.sidebar-link>
-                    </li>
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-tickets"
-                            class="py-1 px-3">
-                            <i class="fas fa-ticket-alt text-sm w-4 text-center"></i>
-                            Estados de Tickets
-                        </x-admin.sidebar-link>
-                    </li>
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-ubicaciones"
-                            class="py-1 px-3">
-                            <i class="fas fa-map-marker-alt text-sm w-4 text-center"></i>
-                            Ubicaciones
-                        </x-admin.sidebar-link>
-                    </li>
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-calendario"
-                            class="py-1 px-3">
-                            <i class="fas fa-calendar-check text-sm w-4 text-center"></i>
-                            Estados del Calendario
+                            <i class="fas fa-list-alt text-sm w-4 text-center"></i>
+                            Acciones Realizadas
                         </x-admin.sidebar-link>
                     </li>
                     <li>
@@ -441,10 +397,99 @@
                         </x-admin.sidebar-link>
                     </li>
                     <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-categorias-ingresos-gastos"
+                            class="py-1 px-3">
+                            <i class="fas fa-coins text-sm w-4 text-center"></i>
+                            Categorías de Ingresos y Gastos
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
                         <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-cai"
                             class="py-1 px-3">
                             <i class="fas fa-barcode text-sm w-4 text-center"></i>
                             Estados CAI
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-proyecto"
+                            class="py-1 px-3">
+                            <i class="fas fa-project-diagram text-sm w-4 text-center"></i>
+                            Estados de Proyecto
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-solicitud"
+                            class="py-1 px-3">
+                            <i class="fas fa-tasks text-sm w-4 text-center"></i>
+                            Estados de Solicitud
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-tickets"
+                            class="py-1 px-3">
+                            <i class="fas fa-ticket-alt text-sm w-4 text-center"></i>
+                            Estados de Tickets
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-estados-calendario"
+                            class="py-1 px-3">
+                            <i class="fas fa-calendar-check text-sm w-4 text-center"></i>
+                            Estados del Calendario
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-genero" class="py-1 px-3">
+                            <i class="fas fa-venus-mars text-sm w-4 text-center"></i>
+                            Genero
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-perfil" class="py-1 px-3">
+                            <i class="fas fa-user-shield text-sm w-4 text-center"></i>
+                            Perfiles
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-servicios-factura"
+                            class="py-1 px-3">
+                            <i class="fas fa-list text-sm w-4 text-center"></i>
+                            Servicio Factura
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-servicios-realizados"
+                            class="py-1 px-3">
+                            <i class="fas fa-plus text-sm w-4 text-center"></i>
+                            Servicios Realizados
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-movimiento"
+                            class="py-1 px-3">
+                            <i class="fas fa-clipboard-list text-sm w-4 text-center"></i>
+                            Tipo de Movimiento
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-objeto"
+                            class="py-1 px-3">
+                            <i class="fas fa-object-group text-sm w-4 text-center"></i>
+                            Tipo de Objeto
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-persona"
+                            class="py-1 px-3">
+                            <i class="fas fa-user-tag text-sm w-4 text-center"></i>
+                            Tipo de Personas
+                        </x-admin.sidebar-link>
+                    </li>
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-producto"
+                            class="py-1 px-3">
+                            <i class="fas fa-box text-sm w-4 text-center"></i>
+                            Tipo de Producto
                         </x-admin.sidebar-link>
                     </li>
                     <li>
@@ -454,67 +499,11 @@
                             Tipo de Visita
                         </x-admin.sidebar-link>
                     </li>
-
                     <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-persona"
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-ubicaciones"
                             class="py-1 px-3">
-                            <i class="fas fa-user-tag text-sm w-4 text-center"></i>
-                            Tipo de Personas
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-perfil" class="py-1 px-3">
-                            <i class="fas fa-user-shield text-sm w-4 text-center"></i>
-                            Perfiles
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-producto"
-                            class="py-1 px-3">
-                            <i class="fas fa-box text-sm w-4 text-center"></i>
-                            Tipo de Producto
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-movimiento"
-                            class="py-1 px-3">
-                            <i class="fas fa-clipboard-list text-sm w-4 text-center"></i>
-                            Tipo de Movimiento
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-servicios-realizados"
-                            class="py-1 px-3">
-                            <i class="fas fa-plus text-sm w-4 text-center"></i>
-                            Servicios Realizados
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-acciones-realizadas"
-                            class="py-1 px-3">
-                            <i class="fas fa-list-alt text-sm w-4 text-center"></i>
-                            Acciones Realizadas
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-servicios-factura"
-                            class="py-1 px-3">
-                            <i class="fas fa-list text-sm w-4 text-center"></i>
-                            Servicio Factura
-                        </x-admin.sidebar-link>
-                    </li>
-
-                    <li>
-                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-objeto"
-                            class="py-1 px-3">
-                            <i class="fas fa-object-group text-sm w-4 text-center"></i>
-                            Tipo de Objeto
+                            <i class="fas fa-map-marker-alt text-sm w-4 text-center"></i>
+                            Ubicaciones
                         </x-admin.sidebar-link>
                     </li>
                 </ul>
