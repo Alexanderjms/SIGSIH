@@ -14,7 +14,7 @@
             <h2 class="text-xl nunito-bold text-gray-800 mb-6 text-center">Configuración Completa de Accesos al Sistema</h2>
 
             <!-- Resumen General -->
-            <div class="grid grid-cols-4 gap-4 mb-6">
+            <div class="grid grid-cols-3 gap-4 mb-6">
                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
                     <div class="text-2xl nunito-bold text-blue-700 mb-2">4</div>
                     <div class="text-sm nunito-bold text-blue-600">ROLES TOTALES</div>
@@ -22,10 +22,6 @@
                 <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
                     <div class="text-2xl nunito-bold text-green-700 mb-2">4</div>
                     <div class="text-sm nunito-bold text-green-600">OBJETOS DEL SISTEMA</div>
-                </div>
-                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
-                    <div class="text-2xl nunito-bold text-purple-700 mb-2">4</div>
-                    <div class="text-sm nunito-bold text-purple-600">TIPOS DE OBJETOS</div>
                 </div>
                 <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 text-center">
                     <div class="text-2xl nunito-bold text-orange-700 mb-2">4</div>
@@ -220,39 +216,6 @@
                 </div>
             </div>
 
-            <!-- Sección 5: Tipos de Objetos -->
-            <div class="mb-6">
-                <h3 class="text-lg nunito-bold text-gray-800 mb-3">5. TIPOS DE OBJETOS</h3>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full border-collapse border border-gray-300">
-                        <thead class="bg-gray-100">
-                            <tr>
-                                <th class="border border-gray-300 py-2 px-3 text-left nunito-bold text-gray-700">NOMBRE</th>
-                                <th class="border border-gray-300 py-2 px-3 text-left nunito-bold text-gray-700">DESCRIPCIÓN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">General</td>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">Pantallas de resumen y navegación principal</td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">Operativa</td>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">Pantallas para gestión de procesos y tickets</td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">Analítica</td>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">Pantallas para reportes y análisis de datos</td>
-                            </tr>
-                            <tr>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">Financiera</td>
-                                <td class="border border-gray-300 py-2 px-3 nunito-regular">Pantallas para facturación y pagos</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
             <!-- Resumen Final -->
             <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mt-6">
                 <h3 class="text-lg nunito-bold text-gray-800 mb-3">RESUMEN EJECUTIVO</h3>
@@ -261,7 +224,6 @@
                     <ul class="list-disc list-inside ml-4 space-y-1">
                         <li><strong>4 Roles</strong> definidos con diferentes niveles de acceso (Administrador, Soporte, Supervisor, Cliente)</li>
                         <li><strong>4 Objetos del sistema</strong> categorizados por funcionalidad</li>
-                        <li><strong>4 Tipos de objetos</strong> para organización estructural</li>
                         <li><strong>4 Usuarios</strong> con roles asignados activos</li>
                     </ul>
                     <p class="mt-3"><strong>Distribución de permisos:</strong> El sistema cuenta con una estructura de permisos granular que permite control específico sobre las funcionalidades disponibles para cada rol, garantizando la seguridad y el acceso apropiado según el nivel de responsabilidad del usuario.</p>
