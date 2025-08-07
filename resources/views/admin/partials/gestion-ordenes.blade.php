@@ -61,7 +61,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Fila principal -->
                         <tr class="border-b nunito-regular hover:bg-gray-50">
                             <td class="py-2 px-4">1</td>
                             <td class="py-2 px-4">1001</td>
@@ -101,7 +100,6 @@
                                 </div>
                             </td>
                         </tr>
-                        <!-- Fila expandida con información adicional -->
                         <tr x-show="expandedRows[1]" x-transition class="bg-gray-50 border-b">
                             <td colspan="6" class="py-3 px-4">
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
