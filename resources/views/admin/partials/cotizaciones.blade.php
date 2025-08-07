@@ -127,7 +127,7 @@
                                         { descripcion: 'Producto 1', precio: 5000.00, cantidad: 1, impuesto: 750.00, total: 5750.00 },
                                         { descripcion: 'Producto 2', precio: 5500.00, cantidad: 1, impuesto: 830.00, total: 6330.00 }
                                     ]
-                                }">>
+                                }">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a href="#" class="text-red-500 hover:text-red-700" @click="deleteModal = true; selectedItem = 1">
@@ -162,7 +162,7 @@
                                         { descripcion: 'Servicio A', precio: 4500.00, cantidad: 1, impuesto: 675.00, total: 5175.00 },
                                         { descripcion: 'Servicio B', precio: 4250.00, cantidad: 1, impuesto: 637.50, total: 4887.50 }
                                     ]
-                                }">>
+                                }">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a href="#" class="text-red-500 hover:text-red-700" @click="deleteModal = true; selectedItem = 2">
