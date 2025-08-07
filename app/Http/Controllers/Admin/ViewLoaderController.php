@@ -23,8 +23,11 @@ class ViewLoaderController extends Controller
             'gestion-empresas', 'cotizaciones', 'solicitudes', 'gestion-ordenes',
             'vista-proyectos', 'proyectos', 'tickets', 'agencias', 'calendario',
             'facturas', 'cai', 'reportes', 'productos', 'kardex', 'catalogo-genero',
-            'gestion-personas', 'perfil', 'cambio-contrasena', 'bitacora', 'gestion-db', 
-            'mantenimiento-general'
+            'catalogo-estados-solicitud', 'catalogo-categorias-ingresos-gastos',
+            'catalogo-estados-proyecto', 'catalogo-estados-tickets', 'catalogo-ubicaciones',
+            'catalogo-estados-calendario', 'catalogo-admin-facturas', 'catalogo-estados-cai',
+            'catalogo-tipo-visita', 'gestion-personas', 'perfil', 'cambio-contrasena', 
+            'bitacora', 'gestion-db', 'mantenimiento-general'
         ];
 
         if (!in_array($view, $validViews)) {

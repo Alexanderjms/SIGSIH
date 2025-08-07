@@ -111,6 +111,42 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-genero');
     })->name('catalogo-genero');
 
+    Route::get('catalogo-estados-solicitud', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-estados-solicitud');
+    })->name('catalogo-estados-solicitud');
+
+    Route::get('catalogo-categorias-ingresos-gastos', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-categorias-ingresos-gastos');
+    })->name('catalogo-categorias-ingresos-gastos');
+
+    Route::get('catalogo-estados-proyecto', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-estados-proyecto');
+    })->name('catalogo-estados-proyecto');
+
+    Route::get('catalogo-estados-tickets', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-estados-tickets');
+    })->name('catalogo-estados-tickets');
+
+    Route::get('catalogo-ubicaciones', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-ubicaciones');
+    })->name('catalogo-ubicaciones');
+
+    Route::get('catalogo-estados-calendario', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-estados-calendario');
+    })->name('catalogo-estados-calendario');
+
+    Route::get('catalogo-admin-facturas', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-admin-facturas');
+    })->name('catalogo-admin-facturas');
+
+    Route::get('catalogo-estados-cai', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-estados-cai');
+    })->name('catalogo-estados-cai');
+
+    Route::get('catalogo-tipo-visita', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-tipo-visita');
+    })->name('catalogo-tipo-visita');
+
     // Administración
     Route::get('gestion-personas', function () {
         return view('layouts.admin')->with('partialView', 'admin.partials.gestion-personas');

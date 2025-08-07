@@ -16,4 +16,48 @@ document.addEventListener("alpine:init", () => {
             });
         },
     });
+
+    window.sidebarScrollManager = {
+        init() {
+            const sidebar = document.querySelector("aside");
+            if (!sidebar) return;
+
+            this.restoreScrollPosition(sidebar);
+
+            this.setupScrollListener(sidebar);
+        },
+
+        restoreScrollPosition(sidebar) {
+            const savedScrollTop = localStorage.getItem(
+                "sidebar-scroll-position"
+            );
+            if (savedScrollTop !== null) {
+                requestAnimationFrame(() => {
+                    sidebar.scrollTop = parseInt(savedScrollTop, 10);
+                });
+            }
+        },
+
+        setupScrollListener(sidebar) {
+            let scrollTimeout;
+
+            sidebar.addEventListener("scroll", () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    localStorage.setItem(
+                        "sidebar-scroll-position",
+                        sidebar.scrollTop
+                    );
+                }, 100);
+            });
+        },
+    };
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        if (window.sidebarScrollManager) {
+            window.sidebarScrollManager.init();
+        }
+    }, 100);
 });

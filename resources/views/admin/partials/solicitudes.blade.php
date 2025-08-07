@@ -40,9 +40,6 @@
         <li @click="tab='solicitudes'"
             :class="tab==='solicitudes' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
             class="mr-6 pb-2">Solicitudes</li>
-        <li @click="tab='estados'"
-            :class="tab==='estados' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
-            class="mr-6 pb-2">Estados de Solicitud</li>
         <li @click="tab='contactos'"
             :class="tab==='contactos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
             class="mr-6 pb-2">Contactos</li>
@@ -106,53 +103,6 @@
                                 }"
                                     class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
                                 <a href="#" @click="isDeleteModalOpen = true; solicitudToDelete = {id: 1}"
-                                    class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </x-admin.tabla-crud>
-    </div>
-
-    <!-- TAB: Estados de Solicitud -->
-    <div x-show="tab==='estados'" class="overflow-x-auto mt-6">
-        <x-admin.tabla-crud>
-            <x-slot name="titulo">
-                <h2 class="text-2xl text-gray-800 nunito-bold">Estados de Solicitud</h2>
-            </x-slot>
-            <x-slot name="filtros">
-                <input type="text" placeholder="Buscar estado..."
-                    class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-            </x-slot>
-            <x-slot name="boton">
-                <button @click="isEstadoModalOpen = true"
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo
-                    Estado</button>
-            </x-slot>
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-sm">
-                    <thead class="bg-gray-100 nunito-bold">
-                        <tr>
-                            <th class="py-2 px-4 text-left">ID</th>
-                            <th class="py-2 px-4 text-left">Nombre Estado</th>
-                            <th class="py-2 px-4 text-left">Descripción</th>
-                            <th class="py-2 px-4 text-left">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b nunito-regular">
-                            <td class="py-2 px-4">1</td>
-                            <td class="py-2 px-4">Abierta</td>
-                            <td class="py-2 px-4">Solicitud recién creada</td>
-                            <td class="py-2 px-4 flex gap-2">
-                                <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {
-                                    id: 1,
-                                    nombre_estado: 'Abierta',
-                                    descripcion_estado: 'Solicitud recién creada'
-                                }"
-                                    class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                                <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 1}"
                                     class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
