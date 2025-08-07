@@ -76,9 +76,16 @@ document.addEventListener("alpine:init", () => {
         },
 
         setContent(html) {
+            // Guardar posición del scroll del sidebar antes de cambiar contenido
+            this.saveSidebarScrollPosition();
+
             document.querySelector("main").innerHTML = html;
             // Reinicializar Alpine.js en el nuevo contenido
             Alpine.initTree(document.querySelector("main"));
+
+            // Restaurar posición del scroll del sidebar después de cargar nuevo contenido
+            this.restoreSidebarScrollPosition();
+
             // Inicializar gráficos si estamos en el dashboard
             if (
                 html.includes('id="ordenesChart"') ||
@@ -89,6 +96,29 @@ document.addEventListener("alpine:init", () => {
                 setTimeout(() => {
                     initializeDashboardCharts();
                 }, 100);
+            }
+        },
+
+        saveSidebarScrollPosition() {
+            const sidebar = document.querySelector("aside");
+            if (sidebar) {
+                localStorage.setItem(
+                    "sidebar-scroll-position",
+                    sidebar.scrollTop
+                );
+            }
+        },
+
+        restoreSidebarScrollPosition() {
+            const sidebar = document.querySelector("aside");
+            const savedScrollTop = localStorage.getItem(
+                "sidebar-scroll-position"
+            );
+            if (sidebar && savedScrollTop !== null) {
+                // Usar requestAnimationFrame para asegurar que el DOM esté listo
+                requestAnimationFrame(() => {
+                    sidebar.scrollTop = parseInt(savedScrollTop, 10);
+                });
             }
         },
 

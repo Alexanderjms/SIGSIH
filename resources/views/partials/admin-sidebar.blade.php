@@ -2,6 +2,23 @@
     if ($store.perfil.firstTime) {
         $el.classList.add('pointer-events-none', 'opacity-50');
     }
+    $nextTick(() => {
+        if (window.sidebarScrollManager) {
+            const savedScrollTop = localStorage.getItem('sidebar-scroll-position');
+            if (savedScrollTop !== null) {
+                $el.scrollTop = parseInt(savedScrollTop, 10);
+            }
+            
+            // Configurar listener de scroll
+            let scrollTimeout;
+            $el.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    localStorage.setItem('sidebar-scroll-position', $el.scrollTop);
+                }, 100);
+            });
+        }
+    });
   " class="bg-gray-900 text-gray-200 h-screen flex flex-col p-0 shadow-lg overflow-y-auto transition-all duration-300 ease-in-out relative"
     style="scrollbar-width: thin; scrollbar-color: #4B5563 #1F2937;">
 
