@@ -27,10 +27,16 @@
             </select>
         </x-slot>
         <x-slot name="boton">
-            <button @click="isModalOpen = true"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">
-                Nuevo movimiento
-            </button>
+            <div class="flex gap-2">
+                <a href="{{ route('admin.reporte-kardex') }}" target="_blank"
+                    class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
+                    <i class="fas fa-file-alt"></i> Generar Reporte
+                </a>
+                <button @click="isModalOpen = true"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">
+                    Nuevo movimiento
+                </button>
+            </div>
         </x-slot>
         <div class="overflow-x-auto">
             <table class="min-w-full text-sm">

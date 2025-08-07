@@ -101,17 +101,17 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
     Route::get('reportes-header', function () {
         $fecha = now()->format('d-M-Y');
         $modulo = request('modulo', 'General');
-        
+
         // Si es el módulo de Usuarios, usar la vista específica
         if ($modulo === 'Usuarios') {
             return view('admin.reporte-usuarios', compact('fecha', 'modulo'));
         }
-        
+
         // Si es el módulo de Parámetros, usar la vista específica
         if ($modulo === 'Parametros') {
             return view('admin.reporte-parametros', compact('fecha', 'modulo'));
         }
-        
+
         // Si es el módulo de Configuración de Accesos, usar la vista específica
         if ($modulo === 'ConfiguracionAccesos') {
             return view('admin.reporte-configuracion-accesos', compact('fecha', 'modulo'));
@@ -126,7 +126,7 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         if ($modulo === 'Solicitudes') {
             return view('admin.reporte-solicitudes', compact('fecha', 'modulo'));
         }
-        
+
         // Para otros módulos, usar la vista genérica
         $cotizacion = 'RPT-' . now()->format('Ymd') . '001';
         return view('admin.reportes-header-ejemplo', compact('fecha', 'cotizacion', 'modulo'));
@@ -250,6 +250,38 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         return view('admin.detalle-orden');
     })->name('detalle-orden');
 
+    // Reporte de kardex (vista)
+    Route::get('reporte-kardex', function () {
+        $fecha = now()->format('d-M-Y');
+        $modulo = 'Kardex';
+        return view('admin.reporte-kardex', compact('fecha', 'modulo'));
+    })->name('reporte-kardex');
+
+    // Reporte de kardex (PDF)
+    Route::get('kardex/reporte/pdf', function () {
+        // Aquí deberías generar el PDF real, esto es solo un placeholder
+        return view('admin.reporte-kardex', [
+            'fecha' => now()->format('d-M-Y'),
+            'modulo' => 'Kardex',
+            'pdf' => true
+        ]);
+    })->name('kardex.reporte.pdf');
+    // Reporte de productos (vista)
+    Route::get('reporte-productos', function () {
+        $fecha = now()->format('d-M-Y');
+        $modulo = 'Productos';
+        return view('admin.reporte-productos', compact('fecha', 'modulo'));
+    })->name('reporte-productos');
+
+    // Reporte de productos (PDF)
+    Route::get('productos/reporte/pdf', function () {
+        // Aquí deberías generar el PDF real, esto es solo un placeholder
+        return view('admin.reporte-productos', [
+            'fecha' => now()->format('d-M-Y'),
+            'modulo' => 'Productos',
+            'pdf' => true
+        ]);
+    })->name('productos.reporte.pdf');
     Route::get('formato-factura', function () {
         return view('admin.formato-factura');
     })->name('formato-factura');
