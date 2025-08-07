@@ -58,8 +58,9 @@
                 ])
             </x-slot>
             <x-slot name="boton">
-                <a href="/admin/reportes-header?modulo=ConfiguracionAccesos&fecha={{ now()->format('d-M-Y') }}" target="_blank"
-                   class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
+                <a href="/admin/reportes-header?modulo=configuracion-acceso&fecha={{ now()->format('d-M-Y') }}"
+                    target="_blank"
+                    class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
                     <i class="fas fa-file-alt"></i> Generar Reporte
                 </a>
             </x-slot>

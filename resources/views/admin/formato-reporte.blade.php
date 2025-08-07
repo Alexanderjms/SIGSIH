@@ -8,15 +8,15 @@
     <!-- CDN Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-
-            body {
-                background: #fff !important;
-            }
+    @media print {
+        .no-print {
+            display: none !important;
         }
+
+        body {
+            background: #fff !important;
+        }
+    }
     </style>
 </head>
 
