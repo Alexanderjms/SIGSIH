@@ -13,7 +13,13 @@
               <option class="nunito-bold">Finalizado</option>
             </select>
           </div>
-          <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo ticket</button>
+          <div class="flex flex-col gap-2 w-full sm:w-auto">
+            <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo ticket</button>
+            <a href="/admin/reportes-header?modulo=Tickets&fecha={{ now()->format('d-M-Y') }}" target="_blank"
+               class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
+                <i class="fas fa-file-alt"></i> Generar Reporte
+            </a>
+          </div>
         </div>
         <table class="min-w-full text-sm w-full">
           <thead class="bg-gray-100 nunito-bold">

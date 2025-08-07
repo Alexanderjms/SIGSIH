@@ -16,7 +16,13 @@
                 <input type="text" placeholder="Buscar CAI..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
             </x-slot>
             <x-slot name="boton">
-                <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo CAI</button>
+                <div class="flex gap-2 items-stretch">
+                    <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo CAI</button>
+                    <a href="/admin/reportes-header?modulo=CAI&fecha={{ now()->format('d-M-Y') }}" target="_blank"
+                       class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
+                        <i class="fas fa-file-alt"></i> Generar Reporte
+                    </a>
+                </div>
             </x-slot>
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
