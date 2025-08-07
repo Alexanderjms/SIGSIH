@@ -53,6 +53,8 @@ class ViewLoaderController extends Controller
             'catalogo-tipo-movimiento',
             'catalogo-servicios-realizados',
             'catalogo-acciones-realizadas',
+            'catalogo-servicios-factura',
+            'catalogo-tipo-objeto',
             'gestion-personas',
             'perfil',
             'cambio-contrasena',

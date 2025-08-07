@@ -500,6 +500,23 @@
                             <i class="fas fa-list-alt text-sm w-4 text-center"></i>
                             Acciones Realizadas
                         </x-admin.sidebar-link>
+                    </li>
+
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-servicios-factura"
+                            class="py-1 px-3">
+                            <i class="fas fa-list text-sm w-4 text-center"></i>
+                            Servicio Factura
+                        </x-admin.sidebar-link>
+                    </li>
+
+                    <li>
+                        <x-admin.sidebar-link href="#" :active="false" view-name="catalogo-tipo-objeto"
+                            class="py-1 px-3">
+                            <i class="fas fa-object-group text-sm w-4 text-center"></i>
+                            Tipo de Objeto
+                        </x-admin.sidebar-link>
+                    </li>
                 </ul>
 
 
