@@ -1,8 +1,7 @@
-<div x-data="{ tab: 'calendario', isAddModalOpen: false, isEditModalOpen: false, isDetailModalOpen: false, isCancelModalOpen: false, isAddEstadoModalOpen: false, isAddCalendarioModalOpen: false, selectedEvent: null }" class="container mx-auto px-4 sm:px-8">
+<div x-data="{ tab: 'calendario', isAddModalOpen: false, isEditModalOpen: false, isDetailModalOpen: false, isCancelModalOpen: false, isAddCalendarioModalOpen: false, selectedEvent: null }" class="container mx-auto px-4 sm:px-8">
     <div class="w-full">
         <ul class="flex border-b nunito-bold">
             <li @click="tab='calendario'" :class="tab==='calendario' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Calendario</li>
-            <li @click="tab='estado'" :class="tab==='estado' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Estado Calendario</li>
             <li @click="tab='calendarioCampos'" :class="tab==='calendarioCampos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Calendario</li>
         </ul>
 
@@ -198,37 +197,6 @@
             </x-admin.edit-modal>
             <!-- Modal Cancelar Evento -->
             <x-admin.confirmation-modal modalName="isCancelModalOpen" itemToDelete="selectedEvent" message="¿Está seguro que desea cancelar este evento? El estado cambiará a 'Cancelado'." />
-        </div>
-        </div>
-
-        <div x-show="tab==='estado'" class="overflow-x-auto w-full">
-            <div class="bg-white rounded-lg shadow p-6 mt-6 w-full">
-                <div class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
-                    <h2 class="text-2xl text-gray-800 nunito-bold">Estado Calendario</h2>
-                    <button @click="isAddEstadoModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo Estado</button>
-                </div>
-                <table class="min-w-full text-sm w-full">
-                    <thead class="bg-gray-100 nunito-bold">
-                        <tr>
-                            <th class="py-2 px-4 text-left">ID Estado</th>
-                            <th class="py-2 px-4 text-left">Nombre</th>
-                            <th class="py-2 px-4 text-left">Descripción</th>
-                            <th class="py-2 px-4 text-left">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b nunito-regular">
-                            <td class="py-2 px-4">E-001</td>
-                            <td class="py-2 px-4">Programado</td>
-                            <td class="py-2 px-4">Evento programado en el calendario</td>
-                            <td class="py-2 px-4 flex gap-2">
-                                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
-                                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
 
         <div x-show="tab==='calendarioCampos'" class="overflow-x-auto w-full">

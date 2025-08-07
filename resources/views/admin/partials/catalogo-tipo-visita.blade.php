@@ -1,91 +1,73 @@
-<div x-data="{ 
-    isModalOpenTipoVisita: false, 
-    isEditModalOpenTipoVisita: false, 
-    isDeleteModalOpenTipoVisita: false, 
-    itemToEdit: null, 
-    itemToDelete: null, 
-    searchTipoVisita: '' 
-}">
-    <x-admin.tabla-crud :titulo="'Gestión de Tipos de Visita'">
-        <x-slot name="filtros">
-            <div class="flex flex-wrap gap-2 items-center">
-                <input type="text" x-model="searchTipoVisita" placeholder="Buscar tipo de visita..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-                <select class="border rounded px-3 py-2 text-sm">
-                    <option value="">Duración</option>
-                    <option value="corta">Corta (< 2 horas)</option>
-                    <option value="media">Media (2-4 horas)</option>
-                    <option value="larga">Larga (> 4 horas)</option>
-                </select>
-            </div>
-        </x-slot>
-        <x-slot name="boton">
-            <button @click="isModalOpenTipoVisita = true"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar Tipo de Visita</button>
-        </x-slot>
-        <div class="overflow-x-auto w-full">
-            <table class="min-w-full text-sm">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="py-2 px-4 text-left">ID</th>
-                        <th class="py-2 px-4 text-left">Tipo</th>
-                        <th class="py-2 px-4 text-left">Descripción</th>
-                        <th class="py-2 px-4 text-left">Duración Estimada</th>
-                        <th class="py-2 px-4 text-left">Requiere Cita</th>
-                        <th class="py-2 px-4 text-left">Activo</th>
-                        <th class="py-2 px-4 text-left">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b">
-                        <td class="py-2 px-4">1</td>
-                        <td class="py-2 px-4">Consulta</td>
-                        <td class="py-2 px-4">Consulta general de información</td>
-                        <td class="py-2 px-4">30 minutos</td>
-                        <td class="py-2 px-4"><span class="text-red-600">No</span></td>
-                        <td class="py-2 px-4"><span class="text-green-600">Sí</span></td>
-                        <td class="py-2 px-4">
-                            <button class="text-blue-600 hover:text-blue-800 mr-2">Editar</button>
-                            <button class="text-red-600 hover:text-red-800">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2 px-4">2</td>
-                        <td class="py-2 px-4">Reunión</td>
-                        <td class="py-2 px-4">Reunión formal de negocios</td>
-                        <td class="py-2 px-4">1-2 horas</td>
-                        <td class="py-2 px-4"><span class="text-green-600">Sí</span></td>
-                        <td class="py-2 px-4"><span class="text-green-600">Sí</span></td>
-                        <td class="py-2 px-4">
-                            <button class="text-blue-600 hover:text-blue-800 mr-2">Editar</button>
-                            <button class="text-red-600 hover:text-red-800">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2 px-4">3</td>
-                        <td class="py-2 px-4">Soporte Técnico</td>
-                        <td class="py-2 px-4">Visita de soporte técnico especializado</td>
-                        <td class="py-2 px-4">2-4 horas</td>
-                        <td class="py-2 px-4"><span class="text-green-600">Sí</span></td>
-                        <td class="py-2 px-4"><span class="text-green-600">Sí</span></td>
-                        <td class="py-2 px-4">
-                            <button class="text-blue-600 hover:text-blue-800 mr-2">Editar</button>
-                            <button class="text-red-600 hover:text-red-800">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2 px-4">4</td>
-                        <td class="py-2 px-4">Instalación</td>
-                        <td class="py-2 px-4">Instalación de equipos o software</td>
-                        <td class="py-2 px-4">3-6 horas</td>
-                        <td class="py-2 px-4"><span class="text-green-600">Sí</span></td>
-                        <td class="py-2 px-4"><span class="text-green-600">Sí</span></td>
-                        <td class="py-2 px-4">
-                            <button class="text-blue-600 hover:text-blue-800 mr-2">Editar</button>
-                            <button class="text-red-600 hover:text-red-800">Eliminar</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div 
+    x-data="{ isTipoVisitaModalOpen: false }"
+    class="bg-white rounded-lg shadow p-6"
+>
+    <div class="mb-6">
+        <h2 class="text-2xl text-gray-800 nunito-bold">Catálogo de Tipo de Visita</h2>
+        <p class="text-gray-600 nunito-regular">Gestionar tipos de visita del sistema</p>
+    </div>
+    
+    <div class="flex flex-col sm:flex-row justify-between gap-4 mb-6">
+        <div class="flex flex-col sm:flex-row gap-2 flex-1">
+            <input 
+                type="text" 
+                placeholder="Buscar tipo de visita..." 
+                class="border rounded px-3 py-2 text-sm w-full sm:w-48"
+            />
+            <select class="border rounded px-3 py-2 text-sm w-full sm:w-40">
+                <option value="">Todos los tipos</option>
+                <option>Técnica</option>
+                <option>Supervisión</option>
+                <option>Capacitación</option>
+            </select>
         </div>
-    </x-admin.tabla-crud>
+        <button 
+            @click="isTipoVisitaModalOpen = true"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap"
+        >
+            Nuevo tipo de visita
+        </button>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+            <thead class="bg-gray-100 nunito-bold">
+                <tr>
+                    <th class="py-2 px-4 text-left">ID Tipo</th>
+                    <th class="py-2 px-4 text-left">Nombre</th>
+                    <th class="py-2 px-4 text-left">Descripción</th>
+                    <th class="py-2 px-4 text-left">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b nunito-regular">
+                    <td class="py-2 px-4">TV-001</td>
+                    <td class="py-2 px-4">Técnica</td>
+                    <td class="py-2 px-4">Visita para revisión técnica de equipos</td>
+                    <td class="py-2 px-4 flex gap-2">
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
+                        <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Nuevo Tipo de Visita -->
+    <x-admin.form-modal modalName="isTipoVisitaModalOpen" title="Nuevo Tipo de Visita"
+        submitLabel="Guardar Tipo de Visita" maxWidth="max-w-2xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="nombre_tipo_visita" class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" id="nombre_tipo_visita" name="nombre_tipo_visita"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+            <div class="col-span-2">
+                <label for="descripcion_tipo_visita"
+                    class="block text-sm font-medium text-gray-700">Descripción</label>
+                <textarea id="descripcion_tipo_visita" name="descripcion_tipo_visita" rows="2"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+            </div>
+        </div>
+    </x-admin.form-modal>
 </div>

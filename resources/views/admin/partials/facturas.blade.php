@@ -14,12 +14,7 @@
     isEditServicioModalOpen: false,
     servicioToEdit: {id: '', nombre: '', tarifa: ''},
     isDeleteServicioModalOpen: false,
-    servicioToDelete: {id: ''},
-    isEstadoFacturaModalOpen: false,
-    isEditEstadoFacturaModalOpen: false,
-    estadoFacturaToEdit: {id: '', nombre: '', descripcion: ''},
-    isDeleteEstadoFacturaModalOpen: false,
-    estadoFacturaToDelete: {id: ''}
+    servicioToDelete: {id: ''}
 }" class="p-6">
     {{-- Pestañas --}}
     <div class="mb-6">
@@ -32,10 +27,7 @@
                 class="mr-6 pb-2">Detalle de Factura</li>
             <li @click="tab='servicio'"
                 :class="tab==='servicio' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
-                class="mr-6 pb-2">Servicios</li>
-            <li @click="tab='estado_factura'"
-                :class="tab==='estado_factura' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
-                class="pb-2">Estado de Factura</li>
+                class="pb-2">Servicios</li>
         </ul>
     </div>
     
@@ -492,68 +484,13 @@
         </x-admin.tabla-crud>
     </div>
 
-    {{-- TAB: ESTADO FACTURA --}}
-    <div x-show="tab==='estado_factura'" class="overflow-x-auto">
-        <x-admin.tabla-crud>
-            <x-slot name="titulo">
-                <h2 class="text-2xl text-gray-800 nunito-bold">Estado Factura</h2>
-            </x-slot>
-            <x-slot name="filtros">
-                <input type="text" placeholder="Buscar estado..."
-                    class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-            </x-slot>
-            <x-slot name="boton">
-                <button @click="isEstadoFacturaModalOpen = true"
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo
-                    Estado</button>
-            </x-slot>
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-sm">
-                    <thead class="bg-gray-100 nunito-bold">
-                        <tr>
-                            <th class="py-2 px-4 text-left">ID</th>
-                            <th class="py-2 px-4 text-left">Nombre Estado</th>
-                            <th class="py-2 px-4 text-left">Descripción</th>
-                            <th class="py-2 px-4 text-left">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b nunito-regular">
-                            <td class="py-2 px-4">1</td>
-                            <td class="py-2 px-4">Pagada</td>
-                            <td class="py-2 px-4">Factura completamente pagada</td>
-                            <td class="py-2 px-4 flex gap-2">
-                                <a href="#"
-                                    @click.prevent="isEditEstadoFacturaModalOpen = true; estadoFacturaToEdit = {id: 1, nombre: 'Pagada', descripcion: 'Factura completamente pagada'}"
-                                    class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                                <a href="#"
-                                    @click.prevent="isDeleteEstadoFacturaModalOpen = true; estadoFacturaToDelete = {id: 1}"
-                                    class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </x-admin.tabla-crud>
-    </div>
-
     <!-- Modal Nuevo Estado Factura -->
-    <x-admin.form-modal modalName="isEstadoFacturaModalOpen" title="Nuevo Estado Factura" submitLabel="Guardar Estado"
-        maxWidth="max-w-md">
-        <div class="grid grid-cols-1 gap-4">
-            <div>
-                <label for="nombre_estado_factura" class="block text-sm font-medium text-gray-700">Nombre Estado</label>
-                <input type="text" id="nombre_estado_factura" name="nombre_estado_factura"
-                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-            </div>
-            <div>
-                <label for="descripcion_estado_factura"
-                    class="block text-sm font-medium text-gray-700">Descripción</label>
-                <input type="text" id="descripcion_estado_factura" name="descripcion_estado_factura"
-                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-            </div>
         </div>
-    </x-admin.form-modal>
+
+    <!-- Modal Confirmar Eliminación Detalle Factura -->
+    <x-admin.confirmation-modal modalName="isDeleteDetalleModalOpen" itemToDelete="detalleToDelete"
+        message="¿Estás seguro de que quieres eliminar el detalle de factura?" />
+</div>
 
     <!-- Modal Editar Estado Factura -->
     <x-admin.edit-modal modalName="isEditEstadoFacturaModalOpen" title="Editar Estado Factura"

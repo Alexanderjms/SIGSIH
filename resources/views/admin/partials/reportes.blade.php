@@ -1,5 +1,5 @@
 <div
-    x-data="{ tab: 'reportes', isModalOpen: false, isCategoriaModalOpen: false, isEditCategoriaModalOpen: false, categoriaToEdit: null, isDeleteReporteModalOpen: false, reporteToDelete: null, isServicioModalOpen: false, isTipoVisitaModalOpen: false,  isAccionesModalOpen: false }">
+    x-data="{ tab: 'reportes', isModalOpen: false, isCategoriaModalOpen: false, isEditCategoriaModalOpen: false, categoriaToEdit: null, isDeleteReporteModalOpen: false, reporteToDelete: null, isServicioModalOpen: false, isAccionesModalOpen: false }">
     <div class="w-full">
         <ul class="flex border-b nunito-bold">
             <li @click="tab='reportes'"
@@ -11,9 +11,6 @@
             <li @click="tab='acciones'"
                 :class="tab==='acciones' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
                 class="mr-6 pb-2">Acciones Realizadas</li>
-            <li @click="tab='tipovisita'"
-                :class="tab==='tipovisita' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'"
-                class="mr-6 pb-2">Tipo de Visita</li>
         </ul>
 
         <div x-show="tab==='acciones'" class="overflow-x-auto w-full">
@@ -53,49 +50,6 @@
                             <td class="py-2 px-4">Revisión</td>
                             <td class="py-2 px-4">Revisión de equipos de red</td>
 
-                            <td class="py-2 px-4 flex gap-2">
-                                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
-                                <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div x-show="tab==='tipovisita'" class="overflow-x-auto w-full">
-            <div class="bg-white rounded-lg shadow p-6 mt-6">
-                <div
-                    class="sticky top-0 z-10 bg-white pb-4 mb-4 border-b flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <h2 class="text-2xl text-gray-800 nunito-bold">Tipo de Visita</h2>
-                    <div class="flex flex-col sm:flex-row gap-2 flex-1 md:ml-6 nunito-bold">
-                        <input type="text" placeholder="Buscar tipo de visita..."
-                            class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-                        <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
-                            <option class="nunito-bold" value="">Todos los tipos</option>
-                            <option class="nunito-bold">Técnica</option>
-                            <option class="nunito-bold">Supervisión</option>
-                            <option class="nunito-bold">Capacitación</option>
-                        </select>
-                    </div>
-                    <button @click="isTipoVisitaModalOpen = true"
-                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo
-                        tipo de visita</button>
-                </div>
-                <table class="min-w-full text-sm">
-                    <thead class="bg-gray-100 nunito-bold">
-                        <tr>
-                            <th class="py-2 px-4 text-left">ID Tipo</th>
-                            <th class="py-2 px-4 text-left">Nombre</th>
-                            <th class="py-2 px-4 text-left">Descripción</th>
-                            <th class="py-2 px-4 text-left">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b nunito-regular">
-                            <td class="py-2 px-4">TV-001</td>
-                            <td class="py-2 px-4">Técnica</td>
-                            <td class="py-2 px-4">Visita para revisión técnica de equipos</td>
                             <td class="py-2 px-4 flex gap-2">
                                 <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
                                 <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
@@ -289,25 +243,6 @@
                 <div class="col-span-2">
                     <label for="descripcion_accion" class="block text-sm font-medium text-gray-700">Descripción</label>
                     <textarea id="descripcion_accion" name="descripcion_accion" rows="2"
-                        class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
-                </div>
-            </div>
-        </x-admin.form-modal>
-
-        <!-- Modal Nuevo Tipo de Visita -->
-        <x-admin.form-modal modalName="isTipoVisitaModalOpen" title="Nuevo Tipo de Visita"
-            submitLabel="Guardar Tipo de Visita" maxWidth="max-w-2xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                <div>
-                    <label for="nombre_tipo_visita" class="block text-sm font-medium text-gray-700">Nombre</label>
-                    <input type="text" id="nombre_tipo_visita" name="nombre_tipo_visita"
-                        class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-                </div>
-                <div class="col-span-2">
-                    <label for="descripcion_tipo_visita"
-                        class="block text-sm font-medium text-gray-700">Descripción</label>
-                    <textarea id="descripcion_tipo_visita" name="descripcion_tipo_visita" rows="2"
                         class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
                 </div>
             </div>

@@ -33,9 +33,7 @@
 }">
     <ul class="flex border-b nunito-bold">
         <li @click="tab='proyectos'" :class="tab==='proyectos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Proyectos</li>
-        <li @click="tab='categorias'" :class="tab==='categorias' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Categorías</li>
         <li @click="tab='movimientos'" :class="tab==='movimientos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Movimientos</li>
-        <li @click="tab='estados'" :class="tab==='estados' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="pb-2">Estados</li>
     </ul>
     
     <div x-show="tab==='proyectos'" class="overflow-x-auto">
@@ -112,56 +110,6 @@
             </div>
         </x-admin.tabla-crud>
     </div>
-
-    <div x-show="tab==='categorias'" class="overflow-x-auto">
-        <x-admin.tabla-crud>
-            <x-slot name="titulo">
-                <h2 class="text-2xl text-gray-800 nunito-bold">Categorías</h2>
-            </x-slot>
-            <x-slot name="filtros">
-                <input type="text" placeholder="Buscar categoría..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-                <select class="border rounded px-1 py-2 text-sm w-full sm:w-40">
-                    <option class="nunito-bold" value="">Todos los tipos</option>
-                    <option class="nunito-bold">Ingreso</option>
-                    <option class="nunito-bold">Gasto</option>
-                </select>
-            </x-slot>
-            <x-slot name="boton">
-                <button @click="isCategoriaModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Agregar categoría</button>
-            </x-slot>
-            <table class="min-w-full text-sm">
-                <thead class="bg-gray-100 nunito-bold">
-                    <tr>
-                        <th class="py-2 px-4 text-left">ID</th>
-                        <th class="py-2 px-4 text-left">Tipo</th>
-                        <th class="py-2 px-4 text-left">Nombre</th>
-                        <th class="py-2 px-4 text-left">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b nunito-regular">
-                        <td class="py-2 px-4">1</td>
-                        <td class="py-2 px-4">Ingreso</td>
-                        <td class="py-2 px-4">Salarios</td>
-                        <td class="py-2 px-4 flex gap-2">
-                            <a href="#" @click="isEditCategoriaModalOpen = true; categoriaToEdit = {id: 1, tipo: 'Ingreso', nombre: 'Salarios'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                            <a href="#" @click="isDeleteCategoriaModalOpen = true; categoriaToDelete = {id: 1, nombre: 'Salarios'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr class="border-b nunito-regular">
-                        <td class="py-2 px-4">2</td>
-                        <td class="py-2 px-4">Gasto</td>
-                        <td class="py-2 px-4">Alquiler</td>
-                        <td class="py-2 px-4 flex gap-2">
-                            <a href="#" @click="isEditCategoriaModalOpen = true; categoriaToEdit = {id: 2, tipo: 'Gasto', nombre: 'Alquiler'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                            <a href="#" @click="isDeleteCategoriaModalOpen = true; categoriaToDelete = {id: 2, nombre: 'Alquiler'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </x-admin.tabla-crud>
-    </div>
-
     <div x-show="tab==='movimientos'" class="space-y-6">
         <x-admin.tabla-crud>
             <x-slot name="titulo">
@@ -276,41 +224,6 @@
         </x-admin.tabla-crud>
     </div>
 
-    <div x-show="tab==='estados'" class="overflow-x-auto">
-        <x-admin.tabla-crud>
-            <x-slot name="titulo">
-                <h2 class="text-2xl text-gray-800 nunito-bold">Estados de Proyecto</h2>
-            </x-slot>
-            <x-slot name="filtros">
-                <input type="text" placeholder="Buscar estado..." class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-            </x-slot>
-            <x-slot name="boton">
-                <button @click="isEstadoModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo Estado</button>
-            </x-slot>
-            <table class="min-w-full text-sm">
-                <thead class="bg-gray-100 nunito-bold">
-                    <tr>
-                        <th class="py-2 px-4 text-left">ID</th>
-                        <th class="py-2 px-4 text-left">Nombre</th> 
-                        <th class="py-2 px-4 text-left">Descripción</th>
-                        <th class="py-2 px-4 text-left">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b nunito-regular">
-                        <td class="py-2 px-4">1</td>
-                        <td class="py-2 px-4">En Proceso</td>
-                        <td class="py-2 px-4">El proyecto se encuentra actualmente en desarrollo</td>
-                        <td class="py-2 px-4 flex gap-2">
-                            <a href="#" @click="isEditEstadoModalOpen = true; estadoToEdit = {id: 1, nombre: 'En Proceso', descripcion: 'El proyecto se encuentra actualmente en desarrollo'}" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
-                            <a href="#" @click="isDeleteEstadoModalOpen = true; estadoToDelete = {id: 1, nombre: 'En Proceso'}" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </x-admin.tabla-crud>
-    </div>
-
     <!-- Modal Nuevo Proyecto -->
     <x-admin.form-modal 
         modalName="isModalOpen" 
@@ -365,46 +278,6 @@
             </div>
         </div>
     </x-admin.form-modal>
-
-    <!-- Modal Nueva Categoría -->
-    <x-admin.form-modal 
-        modalName="isCategoriaModalOpen" 
-        title="Nueva Categoría" 
-        submitLabel="Guardar Categoría">
-        <div>
-            <label for="tipo_categoria" class="block text-sm font-medium text-gray-700">Tipo de Categoría</label>
-            <select id="tipo_categoria" name="tipo_categoria"
-                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-                <option>Ingreso</option>
-                <option>Gasto</option>
-            </select>
-        </div>
-        <div>
-            <label for="nombre_categoria" class="block text-sm font-medium text-gray-700">Nombre de la Categoría</label>
-            <input type="text" id="nombre_categoria" name="nombre_categoria"
-                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-        </div>
-    </x-admin.form-modal>
-
-    <!-- Modal Editar Categoría -->
-    <x-admin.edit-modal 
-        modalName="isEditCategoriaModalOpen" 
-        title="Editar Categoría" 
-        itemToEdit="categoriaToEdit">
-        <div>
-            <label for="edit_nombre_categoria" class="block text-sm font-medium text-gray-700">Nombre de la Categoría</label>
-            <input type="text" id="edit_nombre_categoria" name="edit_nombre_categoria" :value="categoriaToEdit.nombre"
-                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-        </div>
-        <div>
-            <label for="edit_tipo_categoria" class="block text-sm font-medium text-gray-700">Tipo de Categoría</label>
-            <select id="edit_tipo_categoria" name="edit_tipo_categoria" 
-                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-                <option :selected="categoriaToEdit.tipo === 'Ingreso'">Ingreso</option>
-                <option :selected="categoriaToEdit.tipo === 'Gasto'">Gasto</option>
-            </select>
-        </div>
-    </x-admin.edit-modal>
 
     <!-- Modal Editar Ingreso -->
     <x-admin.edit-modal 
@@ -575,13 +448,6 @@
         message="¿Estás seguro de que quieres eliminar el proyecto"
     />
 
-    <!-- Modal Confirmar Eliminación Categoría -->
-    <x-admin.confirmation-modal
-        modalName="isDeleteCategoriaModalOpen"
-        itemToDelete="categoriaToDelete"
-        message="¿Estás seguro de que quieres eliminar la categoría"
-    />
-
     <!-- Modal Confirmar Eliminación Ingreso -->
     <x-admin.confirmation-modal
         modalName="isDeleteIngresoModalOpen"
@@ -650,48 +516,4 @@
             </div>
         </div>
     </x-admin.edit-modal>
-
-    <!-- Modal Nuevo Estado -->
-    <x-admin.form-modal 
-        modalName="isEstadoModalOpen" 
-        title="Nuevo Estado" 
-        submitLabel="Guardar Estado">
-        <div class="space-y-4">
-            <div>
-                <label for="nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del Estado</label>
-                <input type="text" id="nombre_estado" name="nombre_estado"
-                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-            </div>
-            <div>
-                <label for="descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
-                <textarea id="descripcion_estado" name="descripcion_estado" rows="3"
-                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
-            </div>
-        </div>
-    </x-admin.form-modal>
-
-    <!-- Modal Editar Estado -->
-    <x-admin.edit-modal 
-        modalName="isEditEstadoModalOpen" 
-        title="Editar Estado" 
-        itemToEdit="estadoToEdit">
-        <div>
-            <label for="edit_nombre_estado" class="block text-sm font-medium text-gray-700">Nombre del Estado</label>
-            <input type="text" id="edit_nombre_estado" name="edit_nombre_estado" :value="estadoToEdit.nombre"
-                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
-        </div>
-        <div class="mt-4">
-            <label for="edit_descripcion_estado" class="block text-sm font-medium text-gray-700">Descripción</label>
-            <textarea id="edit_descripcion_estado" name="edit_descripcion_estado" rows="3" 
-                class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2" 
-                x-text="estadoToEdit.descripcion"></textarea>
-        </div>
-    </x-admin.edit-modal>
-
-    <!-- Modal Confirmar Eliminación Estado -->
-    <x-admin.confirmation-modal
-        modalName="isDeleteEstadoModalOpen"
-        itemToDelete="estadoToDelete"
-        message="¿Estás seguro de que quieres eliminar el estado"
-    />
 </div>
