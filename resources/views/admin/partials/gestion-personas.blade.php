@@ -27,42 +27,57 @@
     <x-admin.tabla-crud :titulo="'Gestión de Personas'">
         <x-slot name="filtros">
             <div class="flex flex-wrap gap-2 items-center">
+                <!-- Búsqueda -->
                 <input type="text" x-model="searchPersonas" placeholder="Buscar..."
                     class="border rounded px-3 py-2 text-sm w-full sm:w-48" />
-                <select x-model="filtroTipoPersona" class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                
+                <!-- Filtros -->
+                <select x-model="filtroTipoPersona" class="border rounded px-3 py-2 text-sm w-full sm:w-40">
                     <option value="">Todos los tipo de persona</option>
                     <option>Empleado</option>
                     <option>Cliente</option>
                     <option>Administrador</option>
                 </select>
-                <select x-model="filtroGenero" class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                
+                <select x-model="filtroGenero" class="border rounded px-3 py-2 text-sm w-full sm:w-40">
                     <option value="">Todos los género</option>
                     <option>Masculino</option>
                     <option>Femenino</option>
                 </select>
-                <select x-model="ordenarPor" class="border rounded px-1 py-2 text-sm w-full sm:w-40">
+                
+                <select x-model="ordenarPor" class="border rounded px-3 py-2 text-sm w-full sm:w-40">
                     <option value="">Ordenar por Primer Nombre</option>
                     <option value="primer_apellido">Ordenar por Primer Apellido</option>
                     <option value="cargo">Ordenar por Cargo</option>
                 </select>
-                <button @click="isModalOpenPersonas = true"
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap ml-auto">
-                    Agregar persona
-                </button>
+                
+                <!-- Botones de acción -->
+                <div class="flex gap-2 ml-auto">
+                    <button @click="isModalOpenPersonas = true"
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">
+                        Agregar persona
+                    </button>
+                    <a href="/admin/reportes-header?modulo=Gestion de Personas&fecha={{ now()->format('d-M-Y') }}" target="_blank"
+                       class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
+                        <i class="fas fa-file-alt"></i> Generar Reporte
+                    </a>
+                </div>
             </div>
         </x-slot>
+
+        <!-- Tabla de personas -->
         <div class="overflow-x-auto w-full">
             <table class="min-w-full text-sm">
                 <thead>
-                    <tr class="bg-gray-100">
-                        <th class="py-2 px-4 text-left">Id Persona</th>
+                    <tr class="bg-gray-100 nunito-bold">
+                        <th class="py-2 px-4 text-left">ID</th>
                         <th class="py-2 px-4 text-left">Primer Nombre</th>
                         <th class="py-2 px-4 text-left">Segundo Nombre</th>
                         <th class="py-2 px-4 text-left">Primer Apellido</th>
                         <th class="py-2 px-4 text-left">Segundo Apellido</th>
                         <th class="py-2 px-4 text-left">DNI</th>
                         <th class="py-2 px-4 text-left">Cargo</th>
-                        <th class="py-2 px-4 text-left">Tipo de Persona</th>
+                        <th class="py-2 px-4 text-left">Tipo</th>
                         <th class="py-2 px-4 text-left">Género</th>
                         <th class="py-2 px-4 text-left">Perfil</th>
                         <th class="py-2 px-4 text-left">Usuario</th>
@@ -84,7 +99,7 @@
                             if(ordenarPor === 'cargo') return a.cargo.localeCompare(b.cargo);
                             return a.primer_nombre.localeCompare(b.primer_nombre);
                         })" :key="persona.id">
-                        <tr class="border-b">
+                        <tr class="border-b nunito-regular">
                             <td class="py-2 px-4" x-text="persona.id"></td>
                             <td class="py-2 px-4" x-text="persona.primer_nombre"></td>
                             <td class="py-2 px-4" x-text="persona.segundo_nombre"></td>
