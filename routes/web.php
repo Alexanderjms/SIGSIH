@@ -171,6 +171,15 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-acciones-realizadas');
     })->name('catalogo-acciones-realizadas');
 
+    Route::get('catalogo-servicios-factura', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-servicios-factura');
+    })->name('catalogo-servicios-factura');
+
+    Route::get('catalogo-tipo-objeto', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-tipo-objeto');
+    })->name('catalogo-tipo-objeto');
+
+
     // Administración
     Route::get('gestion-personas', function () {
         return view('layouts.admin')->with('partialView', 'admin.partials.gestion-personas');
