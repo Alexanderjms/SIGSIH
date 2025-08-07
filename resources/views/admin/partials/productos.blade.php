@@ -35,7 +35,7 @@
         </x-slot>
         <x-slot name="boton">
             <div class="flex gap-2">
-                <a href="{{ route('admin.reporte-productos') }}" target="_blank"
+                <a href="{{ url('/admin/reportes-header?modulo=Productos') }}" target="_blank"
                     class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
                     <i class="fas fa-file-alt"></i> Generar Reporte
                 </a>

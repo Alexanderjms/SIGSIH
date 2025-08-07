@@ -35,7 +35,7 @@
         <li @click="tab='proyectos'" :class="tab==='proyectos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Proyectos</li>
         <li @click="tab='movimientos'" :class="tab==='movimientos' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">Movimientos</li>
     </ul>
-    
+
     <div x-show="tab==='proyectos'" class="overflow-x-auto">
         <x-admin.tabla-crud>
             <x-slot name="titulo">
@@ -52,7 +52,13 @@
                 </select>
             </x-slot>
             <x-slot name="boton">
-                <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo proyecto</button>
+                <div class="flex gap-2">
+                    <a href="{{ url('/admin/reportes-header?modulo=Proyectos') }}" target="_blank"
+                        class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
+                        <i class="fas fa-file-alt"></i> Generar Reporte
+                    </a>
+                    <button @click="isModalOpen = true" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nuevo proyecto</button>
+                </div>
             </x-slot>
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">
@@ -225,9 +231,9 @@
     </div>
 
     <!-- Modal Nuevo Proyecto -->
-    <x-admin.form-modal 
-        modalName="isModalOpen" 
-        title="Nuevo Proyecto" 
+    <x-admin.form-modal
+        modalName="isModalOpen"
+        title="Nuevo Proyecto"
         submitLabel="Guardar Proyecto"
         maxWidth="max-w-4xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -280,9 +286,9 @@
     </x-admin.form-modal>
 
     <!-- Modal Editar Ingreso -->
-    <x-admin.edit-modal 
-        modalName="isEditIngresoModalOpen" 
-        title="Editar Ingreso" 
+    <x-admin.edit-modal
+        modalName="isEditIngresoModalOpen"
+        title="Editar Ingreso"
         itemToEdit="ingresoToEdit"
         maxWidth="max-w-2xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -320,9 +326,9 @@
     </x-admin.edit-modal>
 
     <!-- Modal Editar Gasto -->
-    <x-admin.edit-modal 
-        modalName="isEditGastoModalOpen" 
-        title="Editar Gasto" 
+    <x-admin.edit-modal
+        modalName="isEditGastoModalOpen"
+        title="Editar Gasto"
         itemToEdit="gastoToEdit"
         maxWidth="max-w-2xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -361,9 +367,9 @@
     </x-admin.edit-modal>
 
     <!-- Modal Nuevo Ingreso -->
-    <x-admin.form-modal 
-        modalName="isIngresoModalOpen" 
-        title="Nuevo Ingreso" 
+    <x-admin.form-modal
+        modalName="isIngresoModalOpen"
+        title="Nuevo Ingreso"
         submitLabel="Guardar Ingreso"
         maxWidth="max-w-2xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -401,9 +407,9 @@
     </x-admin.form-modal>
 
     <!-- Modal Nuevo Gasto -->
-    <x-admin.form-modal 
-        modalName="isGastoModalOpen" 
-        title="Nuevo Gasto" 
+    <x-admin.form-modal
+        modalName="isGastoModalOpen"
+        title="Nuevo Gasto"
         submitLabel="Guardar Gasto"
         maxWidth="max-w-2xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -445,27 +451,24 @@
     <x-admin.confirmation-modal
         modalName="isDeleteProjectModalOpen"
         itemToDelete="projectToDelete"
-        message="¿Estás seguro de que quieres eliminar el proyecto"
-    />
+        message="¿Estás seguro de que quieres eliminar el proyecto" />
 
     <!-- Modal Confirmar Eliminación Ingreso -->
     <x-admin.confirmation-modal
         modalName="isDeleteIngresoModalOpen"
         itemToDelete="ingresoToDelete"
-        message="¿Estás seguro de que quieres eliminar el ingreso"
-    />
+        message="¿Estás seguro de que quieres eliminar el ingreso" />
 
     <!-- Modal Confirmar Eliminación Gasto -->
     <x-admin.confirmation-modal
         modalName="isDeleteGastoModalOpen"
         itemToDelete="gastoToDelete"
-        message="¿Estás seguro de que quieres eliminar el gasto"
-    />
+        message="¿Estás seguro de que quieres eliminar el gasto" />
 
     <!-- Modal Editar Proyecto -->
-    <x-admin.edit-modal 
-        modalName="isEditProjectModalOpen" 
-        title="Editar Proyecto" 
+    <x-admin.edit-modal
+        modalName="isEditProjectModalOpen"
+        title="Editar Proyecto"
         itemToEdit="projectToEdit"
         maxWidth="max-w-4xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

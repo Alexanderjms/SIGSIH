@@ -89,10 +89,23 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
 
     // Catálogo (solo listar nombres para no repetir)
     $catalogos = [
-        'genero', 'estados-solicitud', 'categorias-ingresos-gastos', 'estados-proyecto',
-        'estados-tickets', 'ubicaciones', 'estados-calendario', 'admin-facturas',
-        'estados-cai', 'tipo-visita', 'tipo-persona', 'perfil', 'tipo-producto',
-        'tipo-movimiento', 'servicios-realizados', 'acciones-realizadas', 'servicios-factura',
+        'genero',
+        'estados-solicitud',
+        'categorias-ingresos-gastos',
+        'estados-proyecto',
+        'estados-tickets',
+        'ubicaciones',
+        'estados-calendario',
+        'admin-facturas',
+        'estados-cai',
+        'tipo-visita',
+        'tipo-persona',
+        'perfil',
+        'tipo-producto',
+        'tipo-movimiento',
+        'servicios-realizados',
+        'acciones-realizadas',
+        'servicios-factura',
         'tipo-objeto'
     ];
 
@@ -117,12 +130,6 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
     Route::get('proyecto-pdf', fn() => view('admin.proyecto-pdf'))->name('proyecto-pdf');
     Route::get('formato-reporte', fn() => view('admin.formato-reporte'))->name('formato-reporte');
 
-    // Reportes PDF
-    Route::get('reporte-kardex', fn() => view('admin.reporte-kardex', ['fecha' => now()->format('d-M-Y'), 'modulo' => 'Kardex']))->name('reporte-kardex');
-    Route::get('kardex/reporte/pdf', fn() => view('admin.reporte-kardex', ['fecha' => now()->format('d-M-Y'), 'modulo' => 'Kardex', 'pdf' => true]))->name('kardex.reporte.pdf');
-
-    Route::get('reporte-productos', fn() => view('admin.reporte-productos', ['fecha' => now()->format('d-M-Y'), 'modulo' => 'Productos']))->name('reporte-productos');
-    Route::get('productos/reporte/pdf', fn() => view('admin.reporte-productos', ['fecha' => now()->format('d-M-Y'), 'modulo' => 'Productos', 'pdf' => true]))->name('productos.reporte.pdf');
 });
 
 // Ruta externa para reportes
@@ -133,6 +140,7 @@ Route::get('/admin/reportes-header', function (\Illuminate\Http\Request $request
         'usuarios' => 'admin.reporte-usuarios',
         'parametros' => 'admin.reporte-parametros',
         'configuracion de accesos' => 'admin.reporte-configuracion-accesos',
+        'configuracion-acceso' => 'admin.reporte-configuracion-accesos',
         'empresas' => 'admin.reporte-empresas',
         'solicitudes' => 'admin.reporte-solicitudes',
         'tickets' => 'admin.reporte-tickets',
@@ -142,6 +150,9 @@ Route::get('/admin/reportes-header', function (\Illuminate\Http\Request $request
         'cai' => 'admin.reporte-cai',
         'bitacora' => 'admin.reporte-bitacora',
         'gestion de personas' => 'admin.reporte-gestion-personas',
+        'productos' => 'admin.reporte-productos',
+        'kardex' => 'admin.reporte-kardex',
+        'proyectos' => 'admin.reporte-proyectos',
         default => 'admin.reporte-generico',
     };
     return view($view, compact('fecha', 'modulo'));

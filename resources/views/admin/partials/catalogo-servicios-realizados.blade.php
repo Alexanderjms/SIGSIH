@@ -1,5 +1,9 @@
 <div x-data="{
         isServicioModalOpen: false,
+        isEditModalOpen: false,
+        servicioToEdit: null,
+        isDeleteModalOpen: false,
+        servicioToDelete: null,
         servicios: [
             {
                 id_servicio: 'SR-001',
@@ -52,8 +56,8 @@
                         <td class="py-2 px-4" x-text="servicio.descripcion"></td>
                         <td class="py-2 px-4" x-text="servicio.fecha"></td>
                         <td class="py-2 px-4 flex gap-2">
-                            <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
+                            <a href="#" @click.prevent="isEditModalOpen = true; servicioToEdit = servicio" class="text-blue-500 hover:text-blue-700"><i class="fas fa-edit"></i></a>
+                            <a href="#" @click.prevent="isDeleteModalOpen = true; servicioToDelete = servicio" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 </template>
@@ -86,4 +90,33 @@
             </div>
         </div>
     </x-admin.form-modal>
+
+    <!-- Modal Editar Servicio -->
+    <x-admin.edit-modal modalName="isEditModalOpen" title="Editar Servicio Realizado" itemToEdit="servicioToEdit" maxWidth="max-w-2xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label for="edit_tipo_servicio" class="block text-sm font-medium text-gray-700">Tipo de Servicio</label>
+                <select id="edit_tipo_servicio" name="edit_tipo_servicio" :value="servicioToEdit?.tipo_servicio"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+                    <option>Mantenimiento</option>
+                    <option>Instalación</option>
+                    <option>Reparación</option>
+                </select>
+            </div>
+            <div class="col-span-2">
+                <label for="edit_descripcion_servicio" class="block text-sm font-medium text-gray-700">Descripción</label>
+                <textarea id="edit_descripcion_servicio" name="edit_descripcion_servicio" rows="2" :value="servicioToEdit?.descripcion"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2"></textarea>
+            </div>
+            <div>
+                <label for="edit_fecha_servicio" class="block text-sm font-medium text-gray-700">Fecha</label>
+                <input type="date" id="edit_fecha_servicio" name="edit_fecha_servicio" :value="servicioToEdit?.fecha"
+                    class="mt-1 block w-full rounded-md border-gray-500 shadow-sm border focus:border-gray-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 nunito-regular px-2">
+            </div>
+        </div>
+    </x-admin.edit-modal>
+
+    <!-- Modal Confirmar Eliminación -->
+    <x-admin.confirmation-modal modalName="isDeleteModalOpen" itemToDelete="servicioToDelete"
+        message="¿Estás seguro de que quieres eliminar este servicio?" />
 </div>
