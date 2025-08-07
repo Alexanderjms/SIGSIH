@@ -35,6 +35,9 @@ class ViewLoaderController extends Controller
             'reportes',
             'reportes-header',
             'reporte-usuarios',
+            'reporte-agencias',
+            'reporte-calendario',
+            'reporte-facturas',
             'reporte-parametros',
             'reporte-configuracion-accesos',
             'reporte-empresas',
@@ -65,7 +68,8 @@ class ViewLoaderController extends Controller
             'cambio-contrasena',
             'bitacora',
             'gestion-db',
-            'mantenimiento-general'
+            'mantenimiento-general',
+            'reporte-cai',
         ];
 
         if (!in_array($view, $validViews)) {

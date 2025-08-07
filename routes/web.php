@@ -74,16 +74,17 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         return view('layouts.admin')->with('partialView', 'admin.partials.tickets');
     })->name('tickets');
 
-    // Calendario
+    // Agencias
     Route::get('agencias', function () {
         return view('layouts.admin')->with('partialView', 'admin.partials.agencias');
     })->name('agencias');
 
+    // Calendario
     Route::get('calendario', function () {
         return view('layouts.admin')->with('partialView', 'admin.partials.calendario');
     })->name('calendario');
 
-    // Facturación
+    // Facturas
     Route::get('facturas', function () {
         return view('layouts.admin')->with('partialView', 'admin.partials.facturas');
     })->name('facturas');
@@ -130,6 +131,21 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         // Si es el módulo de Tickets, usar la vista específica
         if ($modulo === 'Tickets') {
             return view('admin.reporte-tickets', compact('fecha', 'modulo'));
+        }
+
+        // Si es el módulo de Agencias, usar la vista específica
+        if ($modulo === 'Agencias') {
+            return view('admin.reporte-agencias', compact('fecha', 'modulo'));
+        }
+
+        // Si es el módulo de Calendario, usar la vista específica
+        if ($modulo === 'Calendario') {
+            return view('admin.reporte-calendario', compact('fecha', 'modulo'));
+        }
+
+        // Si es el módulo de Facturas, usar la vista específica
+        if ($modulo === 'Facturas') {
+            return view('admin.reporte-facturas', compact('fecha', 'modulo'));
         }
         
         // Para otros módulos, usar la vista genérica
@@ -266,6 +282,26 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
     Route::get('formato-reporte', function () {
         return view('admin.formato-reporte');
     })->name('formato-reporte');
+});
+
+// Reportes
+Route::get('/admin/reportes-header', function (\Illuminate\Http\Request $request) {
+    $modulo = $request->query('modulo', '');
+    $fecha = $request->query('fecha', now()->format('d-M-Y'));
+    $view = match (strtolower($modulo)) {
+        'usuarios' => 'admin.reporte-usuarios',
+        'parametros' => 'admin.reporte-parametros',
+        'configuracion de accesos' => 'admin.reporte-configuracion-accesos',
+        'empresas' => 'admin.reporte-empresas',
+        'solicitudes' => 'admin.reporte-solicitudes',
+        'tickets' => 'admin.reporte-tickets',
+        'agencias' => 'admin.reporte-agencias',
+        'calendario' => 'admin.reporte-calendario',
+        'facturas' => 'admin.reporte-facturas',
+        'cai' => 'admin.reporte-cai',
+        default => 'admin.reporte-generico',
+    };
+    return view($view, compact('fecha', 'modulo'));
 });
 
 // Login route
