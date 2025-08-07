@@ -2,8 +2,8 @@
     isModalOpenGenero: false, 
     isEditModalOpenGenero: false, 
     isDeleteModalOpenGenero: false, 
-    itemToEdit: null, 
-    itemToDelete: null, 
+    itemToEdit: {id: '', nombre: '', descripcion: ''}, 
+    itemToDelete: {id: ''}, 
     searchGenero: '' 
 }">
     <x-admin.tabla-crud :titulo="'Gestión de Géneros'">

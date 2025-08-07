@@ -2,8 +2,8 @@
     isModalOpenEstadoTicket: false, 
     isEditModalOpenEstadoTicket: false, 
     isDeleteModalOpenEstadoTicket: false, 
-    itemToEdit: null, 
-    itemToDelete: null, 
+    itemToEdit: {id: '', nombre: '', descripcion: ''}, 
+    itemToDelete: {id: ''}, 
     searchEstadoTicket: '' 
 }">
     <x-admin.tabla-crud :titulo="'Gestión de Estados de Tickets'">

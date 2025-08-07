@@ -6,11 +6,7 @@
     isDeleteModalOpen: false, 
     itemToDelete: {id: ''}
 }">
-    <ul class="flex border-b nunito-bold">
-        <li @click="tab='cai'" :class="tab==='cai' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600 hover:text-blue-500 cursor-pointer'" class="mr-6 pb-2">CAI</li>
-    </ul>
 
-    {{-- TAB: CAI --}}
     <div x-show="tab==='cai'" class="overflow-x-auto">
         <x-admin.tabla-crud>
             <x-slot name="titulo">
