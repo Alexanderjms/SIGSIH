@@ -11,7 +11,7 @@ class ViewLoaderController extends Controller
     public function load(Request $request)
     {
         $view = $request->get('view');
-        
+
         // Validación de seguridad
         if (!$view || !preg_match('/^[a-zA-Z0-9_-]+$/', $view)) {
             return response('Invalid view', 400);
@@ -19,15 +19,46 @@ class ViewLoaderController extends Controller
 
         // Lista de vistas válidas para mayor seguridad
         $validViews = [
-            'dashboard', 'gestion-usuarios', 'parametros', 'configuracion-acceso',
-            'gestion-empresas', 'cotizaciones', 'solicitudes', 'gestion-ordenes',
-            'vista-proyectos', 'proyectos', 'tickets', 'agencias', 'calendario',
-            'facturas', 'cai', 'reportes', 'productos', 'kardex', 'catalogo-genero',
-            'catalogo-estados-solicitud', 'catalogo-categorias-ingresos-gastos',
-            'catalogo-estados-proyecto', 'catalogo-estados-tickets', 'catalogo-ubicaciones',
-            'catalogo-estados-calendario', 'catalogo-admin-facturas', 'catalogo-estados-cai',
-            'catalogo-tipo-visita', 'gestion-personas', 'perfil', 'cambio-contrasena', 
-            'bitacora', 'gestion-db', 'mantenimiento-general'
+            'dashboard',
+            'gestion-usuarios',
+            'parametros',
+            'configuracion-acceso',
+            'gestion-empresas',
+            'cotizaciones',
+            'solicitudes',
+            'gestion-ordenes',
+            'vista-proyectos',
+            'proyectos',
+            'tickets',
+            'agencias',
+            'calendario',
+            'facturas',
+            'cai',
+            'reportes',
+            'productos',
+            'kardex',
+            'catalogo-genero',
+            'catalogo-estados-solicitud',
+            'catalogo-categorias-ingresos-gastos',
+            'catalogo-estados-proyecto',
+            'catalogo-estados-tickets',
+            'catalogo-ubicaciones',
+            'catalogo-estados-calendario',
+            'catalogo-admin-facturas',
+            'catalogo-estados-cai',
+            'catalogo-tipo-visita',
+            'catalogo-tipo-persona',
+            'catalogo-perfil',
+            'catalogo-tipo-producto',
+            'catalogo-tipo-movimiento',
+            'catalogo-servicios-realizados',
+            'catalogo-acciones-realizadas',
+            'gestion-personas',
+            'perfil',
+            'cambio-contrasena',
+            'bitacora',
+            'gestion-db',
+            'mantenimiento-general'
         ];
 
         if (!in_array($view, $validViews)) {
@@ -40,7 +71,7 @@ class ViewLoaderController extends Controller
             // Incluir header para vistas parciales
             $headerHtml = view('partials.admin-header')->render();
             $contentHtml = view($partialView)->render();
-            
+
             return $headerHtml . '<div class="bg-white p-6 rounded-lg shadow">' . $contentHtml . '</div>';
         }
 
@@ -52,20 +83,19 @@ class ViewLoaderController extends Controller
 
         try {
             $fullHtml = view($fullView)->render();
-            
+
             // Extraer solo el contenido principal usando regex
             // Buscar el contenido entre las etiquetas del layout
             if (preg_match('/<div class="bg-white p-6 rounded-lg shadow">(.*?)<\/div>\s*<\/main>/s', $fullHtml, $matches)) {
                 return $matches[1];
             }
-            
+
             // Fallback: buscar cualquier div con clase bg-white
             if (preg_match('/<div[^>]*class="[^"]*bg-white[^"]*"[^>]*>(.*?)<\/div>/s', $fullHtml, $matches)) {
                 return $matches[1];
             }
-            
+
             return $fullHtml;
-            
         } catch (\Exception $e) {
             return response('Error loading view: ' . $e->getMessage(), 500);
         }
