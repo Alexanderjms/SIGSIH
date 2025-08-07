@@ -147,6 +147,30 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-tipo-visita');
     })->name('catalogo-tipo-visita');
 
+    Route::get('catalogo-tipo-persona', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-tipo-persona');
+    })->name('catalogo-tipo-persona');
+
+    Route::get('catalogo-perfil', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-perfil');
+    })->name('catalogo-perfil');
+
+    Route::get('catalogo-tipo-producto', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-tipo-producto');
+    })->name('catalogo-tipo-producto');
+
+    Route::get('catalogo-tipo-movimiento', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-tipo-movimiento');
+    })->name('catalogo-tipo-movimiento');
+
+    Route::get('catalogo-servicios-realizados', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-servicios-realizados');
+    })->name('catalogo-servicios-realizados');
+
+    Route::get('catalogo-acciones-realizadas', function () {
+        return view('layouts.admin')->with('partialView', 'admin.partials.catalogo-acciones-realizadas');
+    })->name('catalogo-acciones-realizadas');
+
     // Administración
     Route::get('gestion-personas', function () {
         return view('layouts.admin')->with('partialView', 'admin.partials.gestion-personas');
