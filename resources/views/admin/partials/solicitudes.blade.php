@@ -62,9 +62,15 @@
                 </select>
             </x-slot>
             <x-slot name="boton">
-                <button @click="isModalOpen = true"
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nueva
-                    Solicitud</button>
+                <div class="flex flex-col gap-2 w-full sm:w-auto">
+                    <button @click="isModalOpen = true"
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap">Nueva
+                        Solicitud</button>
+                    <a href="/admin/reportes-header?modulo=Solicitudes&fecha={{ now()->format('d-M-Y') }}" target="_blank"
+                       class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg nunito-bold transition whitespace-nowrap flex items-center gap-2">
+                        <i class="fas fa-file-alt"></i> Generar Reporte
+                    </a>
+                </div>
             </x-slot>
             <div class="overflow-x-auto">
                 <table class="min-w-full text-sm">

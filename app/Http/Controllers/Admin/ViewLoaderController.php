@@ -22,7 +22,7 @@ class ViewLoaderController extends Controller
             'dashboard', 'gestion-usuarios', 'parametros', 'configuracion-acceso',
             'gestion-empresas', 'cotizaciones', 'solicitudes', 'gestion-ordenes',
             'vista-proyectos', 'proyectos', 'tickets', 'agencias', 'calendario',
-            'facturas', 'cai', 'reportes', 'reportes-header', 'reporte-parametros', 'reporte-configuracion-accesos', 'productos', 'kardex', 'catalogo-genero',
+            'facturas', 'cai', 'reportes', 'reportes-header', 'reporte-parametros', 'reporte-configuracion-accesos', 'reporte-empresas', 'reporte-solicitudes', 'productos', 'kardex', 'catalogo-genero',
             'catalogo-estados-solicitud', 'catalogo-categorias-ingresos-gastos',
             'catalogo-estados-proyecto', 'catalogo-estados-tickets', 'catalogo-ubicaciones',
             'catalogo-estados-calendario', 'catalogo-admin-facturas', 'catalogo-estados-cai',

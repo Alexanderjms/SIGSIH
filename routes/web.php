@@ -116,6 +116,16 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
         if ($modulo === 'ConfiguracionAccesos') {
             return view('admin.reporte-configuracion-accesos', compact('fecha', 'modulo'));
         }
+
+        // Si es el módulo de Empresas, usar la vista específica
+        if ($modulo === 'Empresas') {
+            return view('admin.reporte-empresas', compact('fecha', 'modulo'));
+        }
+
+        // Si es el módulo de Solicitudes, usar la vista específica
+        if ($modulo === 'Solicitudes') {
+            return view('admin.reporte-solicitudes', compact('fecha', 'modulo'));
+        }
         
         // Para otros módulos, usar la vista genérica
         $cotizacion = 'RPT-' . now()->format('Ymd') . '001';
