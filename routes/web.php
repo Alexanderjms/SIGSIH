@@ -127,6 +127,11 @@ Route::prefix('admin')->name('admin.')->middleware(['spa.init'])->group(function
             return view('admin.reporte-solicitudes', compact('fecha', 'modulo'));
         }
         
+        // Si es el módulo de Tickets, usar la vista específica
+        if ($modulo === 'Tickets') {
+            return view('admin.reporte-tickets', compact('fecha', 'modulo'));
+        }
+        
         // Para otros módulos, usar la vista genérica
         $cotizacion = 'RPT-' . now()->format('Ymd') . '001';
         return view('admin.reportes-header-ejemplo', compact('fecha', 'cotizacion', 'modulo'));

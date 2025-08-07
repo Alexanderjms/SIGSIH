@@ -122,34 +122,4 @@
         </div>
     </div>
 </div>
-<!-- Estilos para impresión -->
-<style>
-    @media print {
-        .no-print {
-            display: none !important;
-        }
-        
-        body {
-            background: white !important;
-        }
-        
-        .shadow-sm {
-            box-shadow: none !important;
-        }
-        
-        table {
-            page-break-inside: auto;
-        }
-        
-        tr {
-            page-break-inside: avoid;
-            page-break-after: auto;
-        }
-    }
-    
-    @page {
-        size: landscape;
-        margin: 1cm;
-    }
-</style>
 @endsection
